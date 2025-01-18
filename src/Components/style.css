@@ -1,0 +1,143 @@
+.navbar {
+	width: 100%;
+	padding: 24px  4.6%;
+	aspect-ratio: 145 : 10;
+	display: flex;
+	justify-content: space-between;
+	color: var(--text);
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 1;
+}
+
+
+.logo {
+	width: 11.2%;
+}
+
+.logo > img {
+	width: 100%;
+}
+
+.nav-items {
+	width: 40%;
+	/*font-size: .8rem;*/
+	font-size: .72rem;
+	font-weight: 400;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.nav-items > span {
+	cursor: pointer;
+}
+
+.nav-extras {
+	display: flex;
+	gap: 32px;
+	align-items: center;
+}
+
+.nav-search {
+	width: 21px;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.nav-extras > button {
+	padding: 16px 24px;
+	border-radius: 32px;
+	border: none;
+	font-size: .72rem;
+	color: white;
+	background: var(--primary-gradient);
+	cursor: pointer;
+}
+
+.footer {
+	width: 100%;
+	display: flex;
+	gap: 24px;
+	flex-direction: column;
+	padding: 64px 72px;	
+}
+
+.footer-main {
+	display: flex;
+	width: 100%;
+	justify-content: space-between;
+	color: var(--text);
+	padding-bottom: 40px;
+	border-bottom: 1px solid rgb(120, 120, 120);
+}
+
+.footer-main-item {
+	display: flex;
+	gap: 24px;
+}
+
+.footer-main-item > span {
+	padding: 8px 10px;
+	font-size: .8rem;
+	cursor: pointer;
+}
+
+.footer-contact {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	font-size: .8rem;
+}
+
+.footer-contact-logo {
+	display: flex;
+	align-items: center;
+	gap: 16px;
+}
+
+
+.footer-copyright {
+	font-size: .8rem;
+	color: var(--text);
+}
+
+.banner-x {
+	width: 100%;
+	display: flex;
+	height: 471px;
+	/*background-color: red;*/
+	padding: 0 4.6%;
+	justify-content: space-between;
+	color: var(--text);
+	/*border-bottom: 1px solid red;*/
+	position: relative;
+}
+
+.banner-x > div:first-child {
+	margin-top: 317px;
+	font-size: 4rem;
+	font-weight: 600;
+}
+
+.banner-x > div:nth-child(2) {
+	align-self: flex-end;
+	position: relative;
+}
+
+.banner-x > div:nth-child(2) > img {
+	position: relative;
+	bottom: -3px;
+}
+
+.banner-x-line {
+	position: absolute;
+	width: 100%;
+	left: 0;
+	bottom: 0;
+	height: 1px;
+	background: linear-gradient(90deg, #0a0a0a 5%, #2d8f00, #0a0a0a 95%);
+}
