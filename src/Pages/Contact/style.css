@@ -1,0 +1,226 @@
+.contact {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	overflow-x: hidden;
+}
+
+.contact-cnt {
+	width: 100%;
+	padding: 160px 4.6%;
+	display: flex;
+	justify-content: space-between;
+	position: relative;
+}
+
+.contact-blur {
+	position: absolute;
+	right: -15%;
+	top: 50%;
+	width: 320px;
+	height: 320px;
+	border-radius: 50%;
+	background: var(--primary-gradient);
+	filter: blur(80px);
+}
+
+.contact-info {
+	width: 37%;
+	/*aspect-ratio: 560 / 941;*/
+	height: 941px;
+	display: flex;
+	flex-direction: column;
+	gap: 49px;
+}
+
+.contact-form {
+	width: 52.4%;
+	/*aspect-ratio: 792 / 941;*/
+	height: 941px;
+}
+
+.contact-form, .contact-info {
+	background: linear-gradient(rgb(47, 47, 47, .3), rgb(47, 47, 47, .12));
+	border-radius: 30px;
+	position: relative;
+	overflow: hidden;
+	z-index: 1;
+}
+
+.light-theme .contact-form, .light-theme .contact-info {
+	background: linear-gradient(rgb(218, 218, 218, .2), rgb(218, 218, 218, .3));
+}
+
+.contact-form::before, .contact-info::before {
+	position: absolute;
+	content: '';
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(rgb(31, 132, 36, .3), rgb(230, 239, 235, .2)) border-box;
+	border: 1px solid transparent !important;
+	mask: linear-gradient(#000 0 0) padding-box, linear-gradient(#000 0 0);
+	mask-composite: exclude;
+	left: 0;
+	top: 0;
+	border-radius: 30px;
+	z-index: 0;
+}
+
+.contact-info-img {
+	width: 100%;
+	height: 30.8%;
+	background-color: grey;
+	overflow: hidden;
+	position: relative;
+}
+
+.contact-info-img > img {
+	min-height: 100%;
+	position: relative;
+	left: 50%;
+	top: 50%;
+	translate: -50% -50%;
+	filter: ;
+	width: 100%;
+}
+
+.contact-info-cnt {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	gap: 72px;
+	padding: 49px 38px;
+	color: var(--text);
+}
+
+.contact-info-item {
+	display: flex;
+	gap: 24px;
+	align-items: flex-start;
+}
+
+.contact-info-item > span:first-child {
+	width: 32px;
+	height: 32px;
+	display: flex;
+	font-size: 1.28rem;
+}
+
+.contact-info-details {
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+}
+
+.contact-info-details > span:first-child {
+	font-size: 1rem;
+	/*line-height: 2rem;*/
+}
+
+.contact-info-details > span:last-child {
+	font-size: 1.4rem;
+	font-weight: 600;
+	/*line-height: 2rem;*/
+}
+
+.contact-time {
+	display: flex;
+	flex-direction: column;
+	gap: 19px;
+}
+
+.contact-time > span:first-child{
+	font-size: 1.4rem;
+	font-weight: 600;
+}
+
+.contact-time > div:nth-child(2), .contact-time > div:nth-child(3) {
+	gap: 5px;
+	display: flex;
+	flex-direction: column;
+}
+
+.contact-time > div:nth-child(2) > span:last-child, .contact-time > div:nth-child(3) > span:last-child {
+	font-size: 1.4rem;
+	font-weight: 600;
+}
+
+.contact-form {
+	display: flex;
+	flex-direction: column;
+	padding: 74px 71px;
+	gap: 48px;
+	color: var(--text);
+}
+
+.contact-form > div:first-child {
+	display: flex;
+	flex-direction: column;
+	gap: 18px;
+}
+
+.contact-form > div:first-child > div:first-child {
+	font-size: 2.2rem;
+	font-weight: 600;
+}
+
+.contact-form > div:first-child > div:last-child {
+	line-height: 1.48rem;
+}
+
+.contact-form > form {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	gap: 56px;
+}
+
+.contact-form > form > div:first-child {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	gap: 24px;
+}
+
+.contact-form-input {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+
+.contact-form-input > span:first-letter {
+	text-transform: capitalize;
+}
+
+.contact-form-input > input {
+	width: 100%;
+	z-index: 1;
+	color: var(--text);
+	outline: none;
+	font-size: .88rem;
+	padding: 12px;
+	border-radius: 6px;
+	background-color: transparent;
+	border: 1px solid #2f2f2f;
+}
+
+.contact-form-input > input::placeholder {
+	font-size: .88rem;
+	font-weight: 400;
+	color: #c2c2c2;
+}
+
+.contact-form > form > button {
+	padding: 16px 24px;
+	border-radius: 32px;
+	border: none;
+	font-size: .72rem;
+	color: white;
+	cursor: pointer;
+	z-index: 1;
+	height: fit-content;
+	background: var(--primary-gradient);
+	font-family: Gotham;
+	font-weight: 500;
+}

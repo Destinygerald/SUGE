@@ -1,0 +1,432 @@
+.quote {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	padding: 0 4.6%;
+	padding-top: 226px;
+	color: var(--text);
+	gap: 95px;
+	margin-bottom: 320px;
+	position: relative;
+	overflow-x: hidden;
+}
+
+
+.quote-flash {
+	position: absolute;
+	top: 0;
+	right: 0;
+	rotate: 0deg;
+	/*width: 65%;*/
+	mix-blend-mode: screen;
+}
+
+.quote-flash > img {
+}
+
+.quote-blur {
+	position: absolute;
+	width: 300px;
+	height: 300px;
+	background: var(--primary-gradient);
+	right: -18%;
+	top: 60%;
+	border-radius: 50%;
+	filter: blur(60px);
+}
+
+.quote-hdr {
+	width: 50%;
+	display: flex;
+	flex-direction: column;
+	gap: 48px;
+}
+
+.quote-hdr > div:first-child {
+	font-size: 3rem;
+	line-height: 4rem;
+}
+
+.quote-hdr > div:last-child {
+	line-height: 1.48rem;
+}
+
+.quote-cnt {
+	display: flex;
+	width: 100%;
+	gap: 132px;
+	position: relative;
+	z-index: 1;
+}
+
+
+.quote-indicator {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	align-items: center;
+	width: 6.7%;
+	max-width: 101px;
+	margin-top: 5px;
+}
+
+.quote-id {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	align-items: center;
+	text-align: center;
+}
+
+.quote-id > span:first-child {
+	font-size: ;
+	width: 24px;
+	height: 24px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 50%;
+	background-color: #1e1e1e;
+	color: white !important;
+}
+
+.light-theme .quote-id > span:first-child {
+	background-color: rgb(145, 145, 145);
+}
+
+.quote-id > span:last-child {
+	font-size: .8rem;
+	line-height: 1rem;
+}
+
+.quote-line {
+	width: 1px;
+	height: 67px;
+	background: linear-gradient(rgb(30, 30, 30, .2), white, rgb(30, 30, 30, .2));
+}
+
+
+.quote-main {
+	width: 75.4%;
+}
+
+.quote-1 {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	gap: 72px;
+}
+
+.quote-1 > button, .quote-btns > button:last-child {
+	padding: 16px 24px;
+	border-radius: 32px;
+	border: none;
+	font-size: .72rem;
+	color: white;
+	cursor: pointer;
+	height: fit-content;
+	background: var(--primary-gradient);
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	width: fit-content;
+}
+
+.quote-1-cnt {
+	display: flex;
+	flex-direction: column;
+	gap: 64px;
+	width: 100%;
+	position: relative;
+}
+
+.quote-1-hdr {
+	display: flex;
+	flex-direction: column;
+	gap: 24px;
+	width: 70.8%;
+	/*width: 800px;*/
+}
+
+.quote-1-hdr > div:first-child {
+	font-size: 1.6rem;
+	font-weight: 500;
+}
+
+.quote-1-hdr > div:last-child {
+	line-height: 1.48rem;
+}
+
+.quote-1-imgs {
+	width: 100%;
+	display: flex;
+	/*gap: 1.75%;*/
+	gap: 20px;
+	position: relative;
+}
+
+.quote-1-card {
+	width: 19%;
+	/*width: 212px;*/
+	position: relative;
+	aspect-ratio: 212 / 247;
+	/*height: 247px;*/
+	border-radius: 30px;
+	overflow: clip;
+	cursor: pointer;
+	box-sizing: border-box;
+}
+
+.quote-1-card:hover, .quote-1-card-selected {
+	border: 2px solid #259d2b;
+}
+
+.quote-1-card > div {
+	width: 100%;
+	height: 100%;
+	background-color: grey;	
+	position: relative;
+}
+
+.quote-1-card > div:first-child {
+	width: 100%;
+	height: 100%;
+}
+
+.quote-1-card > div:first-child  > img {
+	width: 100%;
+}
+
+.quote-1-card > div:last-child {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	/*font-size: clamp(.7rem, .17vw + .1rem, 1rem);*/
+	font-size: .8rem;
+	line-height: 1.2rem;
+	padding: 4.8% 1.2% 0 6.6%;
+	/*height: 76px;*/
+	height: 30.7%;
+	background-color: #1f8324;
+	color: white;
+}
+
+.quote-1-card-check {
+	position: absolute !important;
+	top: 17px;
+	right: 13px;
+	min-width: 20px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 11% !important;
+	height: auto !important;
+	aspect-ratio: 1 / 1;
+	border-radius: 50%;
+	z-index: 1;
+	background-color: #2cb933 !important;
+	color: white;
+}
+
+.quote-1-other {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	gap: 8px;
+	position: relative;
+}
+
+.quote-1-other > span:first-child {
+	font-size: .8rem;
+}
+
+.quote-1-other > input {
+	background-color: transparent;
+	border: 1px solid #2f2f2f;
+	font-size: .8rem;
+	padding: 12px;
+	border-radius: 6px;
+	color: var(--text);
+	outline: none;
+}
+
+.err {
+	position: absolute;
+	bottom: -20px;
+	left: 0;
+	font-size: .66rem;
+	color: rgb(255, 80, 80);
+}
+
+.quote-1-other  .err {
+	font-size: .6rem;
+	bottom: -12px;
+}
+
+.quote-1-other > input::placeholder {
+	color: #c2c2c2;
+}
+
+.green-id {
+	background-color: #145317 !important;
+}
+
+.quote-extra {
+	margin-top: -32px;
+}
+
+.quote-extra > span:first-child {
+	color: #1d932e;
+}
+
+.quote-extra > span:last-child {
+	text-decoration: underline;
+}
+
+.quote-btns {
+	display: flex;
+	gap: 40px;
+}
+
+.quote-btns > button:first-child::before {
+	position: absolute;
+	content: '';
+	width: 100%;
+	height: 100%;
+	background: var(--primary-gradient) border-box !important;
+	border: 1px solid transparent !important;
+	mask: linear-gradient(#000 0 0) padding-box, linear-gradient(#000 0 0);
+	mask-composite: exclude;
+	left: 50%;
+	top: 0;
+	translate: -50% 0;
+	border-radius: 50px;
+}
+
+.quote-btns > button:first-child {
+	position: relative;
+	color: #2e7d5d;
+	padding: 16px 24px;
+	border-radius: 32px;
+	border: none;
+	font-size: .72rem;
+	cursor: pointer;
+	background: transparent;
+	height: fit-content;
+}
+
+.quote-3-imgs {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	width: 75%;
+}
+
+.quote-3-imgs > div:last-child {
+	display: flex;
+	gap: 24px;
+	width: 100%;
+	position: relative;
+}
+
+.quote-3-card {
+	width: 22%;
+	/*height: 131px;*/
+	aspect-ratio: 134 / 131;
+	display: flex;
+	padding-top: 30px;
+	flex-direction: column;
+	align-items: center;
+	position: relative;
+	border-radius: 30px;
+	background: linear-gradient(rgb(47, 47, 47, .3), rgb(47, 47, 47, .12));
+	font-weight: 600;
+	overflow: hidden;
+	cursor: pointer;
+}
+
+.light-theme .quote-3-card {
+	background: linear-gradient(rgb(218, 218, 218, .2), rgb(218, 218, 218, .3));
+}
+
+.quote-3-card::before {
+	position: absolute;
+	content: '';
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(rgb(47, 47, 47, .3), rgb(47, 47, 47, .12)) border-box;
+	border: 1px solid transparent !important;
+	mask: linear-gradient(#000 0 0) padding-box, linear-gradient(#000 0 0);
+	mask-composite: exclude;
+	left: 0;
+	top: 0;
+	border-radius: 30px;
+	z-index: 0;
+}
+
+.light-theme .quote-3-card::before{
+	display: none;
+}
+
+.quote-3-card:hover {
+	border: 2px solid #259d2b;
+}
+
+.quote-3-card > div:first-child {
+	width: 72%;
+	text-align: center;
+	line-height: 1.48rem;
+}
+
+.quote-3-card > img {
+	position: absolute;
+	bottom: 0;
+}
+
+.quote-form {
+	width: 70.8%;
+	display: flex;
+	flex-direction: column;
+	gap: 24px;
+	position: relative;
+}
+
+.quote-confirmation {
+	display: flex;
+	flex-direction: column;
+	gap: 72px;
+}
+
+.quote-confirmation > span:first-child {
+	font-size: 1.4rem;
+	font-weight: 500;
+}
+
+.quote-confirmation-cnt {
+	display: flex;
+	flex-direction: column;
+	gap: 40px;
+}
+
+.quote-confirmation-text {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+
+.quote-confirmation-text > span:first-child {
+	font-size: .8rem;
+}
+
+.quote-confirmation-text > span:nth-child(2) {
+	font-size: 1.28rem;
+	font-weight: 500;
+}
+
+.quote-confirmation-contact {
+	display: flex;
+	flex-direction: column;
+	font-size: 1.28rem;
+	font-weight: 500;
+	gap: 4px;
+}

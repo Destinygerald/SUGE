@@ -1,0 +1,135 @@
+.sustainability {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	color: var(--text);
+	overflow-x: clip;
+	position: relative;
+	padding-bottom: 140px;
+}
+
+.sustainability-stat {
+	width: 100%;
+	display: flex;
+	padding: 0 4.6%;
+	padding-top: 120px;
+	justify-content: space-between;
+}
+
+
+.sustainability-stat-left {
+	width: 38.4%;
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+
+.sustainability-stat-left > div:first-child {
+	background-image: var(--primary-gradient);
+	color: transparent;
+	background-clip: text;
+	font-size: 1.6rem;
+}
+
+
+.sustainability-stat-left > div:last-child {
+	background-image: linear-gradient(white 50%, #0a0a0a);
+	color: transparent;
+	background-clip: text;
+	font-size: 3rem;
+}
+
+.sustainability-stat-right {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	gap: 80px;
+	width: 38.2%;
+}
+
+.sustainability-stat-card {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.sustainability-stat-card > div:first-child {
+	font-size: 6.8rem;
+}
+
+.sustainability-stat-card > div:last-child {
+	width: 40.7%;
+}
+
+
+.sustainability-img {
+	width: 70%;
+	align-self: center;
+	padding-top: 120px;
+	position: relative;
+}
+
+.sustainability-img > img {
+	width: 100%;
+}
+
+.sustainability-blur {
+	width: 400px;
+	height: 400px;
+	background: var(--primary-gradient);
+	filter: blur(80px);
+	position: absolute;
+	right: -25%;
+	overflow: hidden;
+	margin-top: 1500px;
+}
+
+.sustainability-info {
+	width: 100%;
+	display: flex;
+	margin-top: 200px;
+	justify-content: flex-end;
+	padding: 82px 8.7%;
+	padding-left: 13% !important;
+	position: relative;
+	height: 298px;
+	color: white;
+	background: linear-gradient(90deg, #2cb933, #004429);
+}
+
+.sustainability-info > div:first-child {
+	width: 43%;
+	position: absolute;
+	top: 50%;
+	translate: 0 -50%;
+	left: 7.2%;
+}
+
+.sustainability-info > div:first-child > img {
+	width: 100%;
+	aspect-ratio: 1 / 1;
+}
+
+.sustainability-info > div:nth-child(2) {
+	position: absolute;
+	left: 0;
+	top: 50%;
+	translate: 0 -50%;
+	mix-blend-mode: screen;
+	/*height: 100%;*/
+}
+
+.sustainability-info > div:nth-child(2) > img {
+	/*height: 300%;*/
+}
+
+.sustainability-info > div:last-child {
+	width: 48.2%;
+	/*width: fit-content;*/
+	/*background: red;*/
+	display: flex;
+	flex-direction: column;
+	font-size: 3.2rem;
+	gap: 24px;
+}

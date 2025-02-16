@@ -1,0 +1,88 @@
+*, *::after, *::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  width: 100%;
+  min-height: 100vh;
+}
+
+@font-face {
+  src: url('/fonts/Gotham/Gotham-Thin.otf');
+  font-family: Gotham;
+  font-weight: 100;
+}
+
+
+@font-face {
+  src: url('/fonts/Gotham/Gotham-XLight.otf');
+  font-family: Gotham;
+  font-weight: 200;
+}
+
+
+@font-face {
+  src: url('/fonts/Gotham/Gotham-Light.otf');
+  font-family: Gotham;
+  font-weight: 300;
+}
+
+@font-face {
+  src: url('/fonts/Gotham/Gotham-Book.otf');
+  font-family: Gotham;
+  font-weight: 400;
+}
+
+@font-face {
+  src: url('/fonts/Gotham/Gotham-Medium.otf');
+  font-family: Gotham;
+  font-weight: 500;
+}
+
+@font-face {
+  src: url('/fonts/Gotham/Gotham-Bold.otf');
+  font-family: Gotham;
+  font-weight: 600;
+}
+
+@font-face {
+  src: url('/fonts/Gotham/Gotham-Black.otf');
+  font-family: Gotham;
+  font-weight: 700;
+}
+
+@font-face {
+  src: url('/fonts/Gotham/Gotham-Ultra.otf');
+  font-family: Gotham;
+  font-weight: 800;
+}
+
+.app {
+  width: 100%;
+  min-height: 100vh;
+  --bg: #0A0A0A;
+  --text: white;
+  --primary-green: #259d2b;
+  --primary-gradient: linear-gradient(#2cb933, #004429);
+  background-color: var(--bg);
+  font-family: Gotham;
+}
+
+.light-theme {
+  --bg: rgb(255, 255, 255);
+  --text: rgb(10, 10, 10);
+}
+
+.app:has(.admin) > .navbar, .app:has(.admin) > .footer {
+  display: none;
+}
+
+img {
+  pointer-events: none;
+}
+
+input:focus::placeholder {
+  visibility: hidden;
+}
