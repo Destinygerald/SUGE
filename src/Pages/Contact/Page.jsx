@@ -82,8 +82,6 @@ function ContactForm () {
 	async function submitHandler (e) {
 		e.preventDefault()
 
-		console.log(45678)
-
 		await contactUs(formDetails)
 
 		setFormDetails({

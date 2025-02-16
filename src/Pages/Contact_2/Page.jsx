@@ -4,6 +4,8 @@ import { Banner } from '../../Components/Banner.jsx'
 import { GoClock, GoMail } from 'react-icons/go'
 import { FiPhone } from 'react-icons/fi'
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { contactUs } from '../../Redux/MessageFunction.js'
 import img1 from '/images/SUGE IMAGES/2.1 Tanker in field  copy.webp'
 
 function ContactInfo () {
@@ -74,8 +76,22 @@ function ContactForm () {
 		message: ''
 	})
 
-	function submitHandler (e) {
+	const navigate = useNavigate()
+
+	async function submitHandler (e) {
 		e.preventDefault()
+
+		await contactUs(formDetails)
+
+		setFormDetails({
+			name: '',
+			email: '',
+			company: '',
+			phone: '',
+			message: ''
+		})
+
+		navigate('/')
 	}
 
 	function changeHandler (e) {
