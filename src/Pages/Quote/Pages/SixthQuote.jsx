@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { PrimaryButton, SecondaryButton } from '../../../Components/Buttons.jsx'
 import { Success } from '../../../Components/Popup.jsx'
-import { contactUs } from '../../../Redux/MessageFunction.js'
+import { sendQuote } from '../../../Redux/MessageFunction.js'
 import { resetValue } from '../../../Redux/Quote.js'
 
 export function SixthQuote () {
@@ -25,7 +25,7 @@ export function SixthQuote () {
 
 	async function submit () {
 
-		await contactUs(info)
+		await sendQuote(info)
 
 		setPopup(true)
 

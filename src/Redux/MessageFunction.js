@@ -17,12 +17,12 @@ export function contactUs (data) {
 	  })
 	  .then(
 	    (response) => {
-	    	return response
-	      // console.log('SUCCESS!', response.status, response.text);
+	    	// return response
+	      console.log('SUCCESS!', response.status, response.text);
 	    },
 	    (err) => {
-	    	return err;
-	      // console.log('FAILED...', err);
+	    	// return err;
+	      console.log('FAILED...', err);
 	    },
 	  );
 }
@@ -30,17 +30,21 @@ export function contactUs (data) {
 export function sendQuote (data) {
 	
 	let templateParams = {
-      name: data.contact.name,
-      email: data.contact.email,
-	  phone: data.contact.phone,
-	  location: data.location,
-	  businessType: data.businessType,
-	  wasteType: data.wasteType,
-	  frequency: data.frequency
+      name: data?.contact?.name,
+      email: data?.contact?.email,
+	  phone: data?.contact?.phone,
+	  location: data?.location,
+	  businessType: data?.businessType,
+	  wasteType: data?.wasteType,
+	  frequency: data?.frequency
     };
 
+    console.log(templateParams)
+
 	emailjs
-	  .send('service_fy9iv7p', 'template_849em1m', templateParams)
+	  .send('service_fy9iv7p', 'template_849em1m', templateParams, {
+	  	publicKey: 'Jod6x65akg7pwl-Gb',
+	  })
 	  .then(
 	    (response) => {
 	    	// return response

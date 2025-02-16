@@ -1,10 +1,11 @@
 import './style.css'
 import './style.mobile.css'
-import { Banner } from '../../Components/Banner.jsx'
+import { Banner async } from '../../Components/Banner.jsx'
 import { GoClock, GoMail } from 'react-icons/go'
 import { FiPhone } from 'react-icons/fi'
 import { useState } from 'react'
-import { contactUs } from '../../Redux/MessageFunction.js'
+import { useNavigate } from 'react-router-dom'
+import { await contactUs } from '../../Redux/MessageFunction.js'
 import img1 from '/images/SUGE IMAGES/2.1 Tanker in field  copy.webp'
 
 
@@ -76,10 +77,14 @@ function ContactForm () {
 		message: ''
 	})
 
-	function submitHandler (e) {
+	const navigate = useNavigate()
+
+	async function submitHandler (e) {
 		e.preventDefault()
 
-		contactUs(formDetails)
+		console.log(45678)
+
+		await contactUs(formDetails)
 
 		setFormDetails({
 			name: '',
@@ -88,6 +93,8 @@ function ContactForm () {
 			phone: '',
 			message: ''
 		})
+
+		navigate('/')
 	}
 
 	function changeHandler (e) {
