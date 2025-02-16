@@ -12,6 +12,8 @@
 	width: 100%;
 	display: flex;
 	justify-content: space-between;
+	/*justify-content: center;*/
+	/*gap: 60px;*/
 	margin-top: 145px;
 }
 
@@ -22,7 +24,8 @@
 }
 
 .mission-info {
-	width: 42.3%;;
+	width: 42.3%;
+	max-width: 520px;
 }
 
 .mission-info > div:first-child {
@@ -46,6 +49,7 @@
 
 .mission-img {
 	width: 46%;
+	max-width: 695px;
 	position: absolute;
 	right: 4.6%;
 	top: 0;
@@ -70,6 +74,8 @@
 	width: 100%;
 	display: flex;
 	justify-content: flex-end;
+	/*justify-content: space-between;*/
+	gap: 120px;
 	position: relative;
 }
 
@@ -94,6 +100,7 @@
 
 .mission-section-2 > div:nth-child(2) {
 	width: 42.3%;
+	max-width: 510px;
 	padding: 60px 0;
 	display: flex;
 	flex-direction: column;

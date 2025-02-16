@@ -1,11 +1,11 @@
 import './style.css'
 import './style.mobile.css'
-import { Banner async } from '../../Components/Banner.jsx'
+import { Banner } from '../../Components/Banner.jsx'
 import { GoClock, GoMail } from 'react-icons/go'
 import { FiPhone } from 'react-icons/fi'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { await contactUs } from '../../Redux/MessageFunction.js'
+import { contactUs } from '../../Redux/MessageFunction.js'
 import img1 from '/images/SUGE IMAGES/2.1 Tanker in field  copy.webp'
 
 

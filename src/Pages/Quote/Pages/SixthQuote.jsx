@@ -8,6 +8,7 @@ import { Success } from '../../../Components/Popup.jsx'
 import { sendQuote } from '../../../Redux/MessageFunction.js'
 import { resetValue } from '../../../Redux/Quote.js'
 
+
 export function SixthQuote () {
 
 	const [quote1Input, setQuote1Input] = useState('')
@@ -16,6 +17,7 @@ export function SixthQuote () {
 
 	const dispatch = useDispatch()
 
+	
 	const info = useSelector(state => state.quote.value)
 
 
@@ -23,13 +25,18 @@ export function SixthQuote () {
 		navigate('/quote/5')
 	}
 
+
+
 	async function submit () {
 
 		await sendQuote(info)
 
 		setPopup(true)
 
-		dispatch(resetValue())
+		setTimeout(() => {
+			dispatch(resetValue())
+		}, 3000)
+		
 	}
 
 	useLayoutEffect(() => {
