@@ -1,5 +1,6 @@
 import './style.css'
 import './style.mobile.css'
+import './style.1600.css'
 import { useLayoutEffect, useState } from 'react'
 import Logo from '/images/SUGE LOGO.webp'
 import { useSelector, useDispatch } from 'react-redux'

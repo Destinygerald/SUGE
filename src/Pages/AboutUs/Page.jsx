@@ -1,5 +1,6 @@
 import './style.css'
 import './style.mobile.css'
+import './style.1600.css'
 import { Banner } from '../../Components/Banner.jsx'
 import { Mission } from './Components/Mission.jsx'
 import { Section2 } from './Components/Section2.jsx'

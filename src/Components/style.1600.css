@@ -1,0 +1,19 @@
+@media (min-width: 1400px) {
+	.navbar {
+		padding: 24px  8%;
+	}
+
+	.footer {
+		padding: 64px 88px;
+	}
+
+	.banner-x {
+		padding: 0 8%;
+	}
+
+	.banner-x > div:nth-child(2) {
+		/*align-self: flex-end;*/
+		position: absolute;
+		right: 4%;
+	}
+}

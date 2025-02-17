@@ -1,5 +1,6 @@
 import './style.css'
 import './style.mobile.css'
+import './style.1600.css'
 import { ServiceOffered } from './Components/ServiceOffered.jsx'
 import { ServicesInfo } from './Components/ServicesInfo.jsx'
 import { ServiceContact } from './Components/ServiceContact.jsx'

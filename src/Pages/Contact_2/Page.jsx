@@ -1,5 +1,6 @@
 import './style.css'
 import './style.mobile.css'
+import './style.1600.css'
 import { Banner } from '../../Components/Banner.jsx'
 import { GoClock, GoMail } from 'react-icons/go'
 import { FiPhone } from 'react-icons/fi'

@@ -1,5 +1,6 @@
 import './style.css'
 import './style.mobile.css'
+import './style.1600.css'
 import { Banner } from '../../Components/Banner.jsx'
 import Infographics from '/images/Infographics 1.webp'
 import Logo from '/images/SUGE ASSETS/Asset 5300 5.webp'

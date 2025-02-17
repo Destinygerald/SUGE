@@ -1,5 +1,6 @@
 import './style.css'
 import './style.mobile.css'
+import './style.1600.css'
 import { Routes, Route, useParams } from 'react-router-dom'
 import { FirstQuote } from './Pages/FirstQuote.jsx'
 import { SecondQuote } from './Pages/SecondQuote.jsx'

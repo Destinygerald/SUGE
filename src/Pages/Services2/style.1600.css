@@ -1,0 +1,14 @@
+@media (min-width: 1400px) {
+	.service-2-banner {
+		padding: 0 8%;
+	}
+
+
+	.service-2-banner-main-cnt {
+		padding: 20px 0;
+	}
+
+	.service-2-contact {
+		padding: 105px 8% 0 8.9%;
+	}
+}

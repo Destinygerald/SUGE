@@ -1,5 +1,6 @@
 import './style.css'
 import './style.mobile.css'
+import './style.1600.css'
 import { useNavigate } from 'react-router-dom'
 import { Banner } from '../../Components/Banner.jsx'
 import img1 from '/images/Frame 1618868296.webp'

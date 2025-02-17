@@ -1,0 +1,28 @@
+@media (min-width: 1400px) {
+	.mission {
+		padding: 0 8%;
+	}
+
+	.mission-img {
+		right: 8%;
+	}
+
+	.mission-section-2 {
+		padding: 0 8%;
+	}
+
+	.mission-section-2-img {
+		left: 8%;
+	}
+
+	.mission-section-2 > div:nth-child(2) {
+		padding: 100px 0;
+	}
+
+	.suge-heroes {
+		width: 60%;
+	}
+
+
+
+}
