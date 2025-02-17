@@ -23,7 +23,7 @@ export function Message2() {
 	return (
 		<div className='message-2'>
 			<div className='message-2-cnt'>
-				<div>Nothing Goes to waste</div>
+				<div>Nothing Goes to Waste</div>
 				<div>We're revolutionising waste management across the UK.<br /> With a commitment to simplicity and efficiency, we ensure every piece of waste we handle is 100% recycled.</div>
 			</div>
 

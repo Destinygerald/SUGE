@@ -380,6 +380,10 @@
 	gap: 56px;
 }
 
+.message-3-cnt-info > div:first-child {
+	line-height: 1.48rem;
+}
+
 /*.message-3-cnt-info > button {
 	padding: 16px 24px;
 	border-radius: 32px;

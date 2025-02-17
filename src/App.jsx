@@ -62,6 +62,3 @@ function App() {
 }
 
 export default App
-
-
-// mailto:Maverickmgts@gmail.com
