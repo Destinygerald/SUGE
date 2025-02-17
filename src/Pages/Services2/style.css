@@ -250,6 +250,7 @@
 	flex-direction: column;
 	gap: 8px;
 	font-size: .8rem;
+	position: relative;
 }
 
 .service-2-contact-input > input, .service-2-contact-input > textarea {
@@ -266,6 +267,14 @@
 
 .service-2-contact-input > textarea  {
 	height: 211px;
+}
+
+.err {
+	position: absolute;
+	bottom: -14px !important;
+	left: 4px !important;
+	font-size: .6rem !important;
+	color: rgb(255, 80, 80);
 }
 
 /*.service-2-contact-input > input*/

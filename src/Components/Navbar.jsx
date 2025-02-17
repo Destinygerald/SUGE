@@ -11,13 +11,13 @@ import { useNavigate, useLocation } from 'react-router-dom'
 import { PrimaryButton } from './Buttons.jsx'
 
 
-function NavItem ({ nav, clickHandler, route }) {
+function NavItem ({ nav, clickHandler, route, route2 }) {
 		
 	const { pathname } = useLocation()
 
 	return (
 		<div>
-			<span className={pathname == route ? 'nav-active' : ''} onClick={() => clickHandler(route)}>{nav}</span>
+			<span className={pathname == route || pathname == route2 ? 'nav-active' : ''} onClick={() => clickHandler(route)}>{nav}</span>
 			{
 				pathname == route
 				?
@@ -73,9 +73,9 @@ export function Navbar () {
 			<div className='nav-items'>
 				<NavItem nav='Home' route='/' clickHandler={clickHandler} />
 				<NavItem nav='About Us' route='/about' clickHandler={clickHandler} />
-				<NavItem nav='Services' route='/services' clickHandler={clickHandler} />
+				<NavItem nav='Services' route='/services' route2='/services/2' clickHandler={clickHandler} />
 				<NavItem nav='Sustainability' route='/sustainability' clickHandler={clickHandler} />
-				<NavItem nav='Contact Us' route='/contact' clickHandler={clickHandler} />
+				<NavItem nav='Contact Us' route='/contact' route2='/contact/2' clickHandler={clickHandler} />
 			</div>
 
 			<div className='nav-extras'>

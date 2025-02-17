@@ -184,13 +184,24 @@
 
 .contact-form-input {
 	width: 100%;
+	position: relative;
 	display: flex;
 	flex-direction: column;
 	gap: 8px;
 }
 
+
 .contact-form-input > span:first-letter {
 	text-transform: capitalize;
+}
+
+
+.err {
+	position: absolute;
+	bottom: -14px !important;
+	left: 4px !important;
+	font-size: .6rem !important;
+	color: rgb(255, 80, 80);
 }
 
 .contact-form-input > input {

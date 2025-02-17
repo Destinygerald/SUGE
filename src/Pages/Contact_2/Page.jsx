@@ -57,12 +57,20 @@ function ContactInfo () {
 	)
 }
 
-function ContactFormInput ({ name, value, placeholder, type, changeHandler }) {
+function ContactFormInput ({ name, value, placeholder, type, changeHandler, err }) {
 	return (
 		<div className='contact-2-form-input'>
 			<span> {name} </span>
 
 			<input type={type} name={name} value={value} placeholder={placeholder} onChange={changeHandler} />
+
+			{
+				err
+				?
+				<span className='err'>{err}</span>
+				:
+				<></>
+			}
 		</div>
 	)
 }
@@ -77,10 +85,43 @@ function ContactForm () {
 		message: ''
 	})
 
+	const [ formErr, setFormErr ] = useState({
+		name: '',
+		email: '',
+		company: '',
+		phone: '',
+		message: ''
+	})
+
 	const navigate = useNavigate()
 
 	async function submitHandler (e) {
 		e.preventDefault()
+
+		if (!formDetails.name) {
+			setFormErr({...formErr, name : 'Name is empty'})
+			return
+		}
+
+		if (!formDetails.email) {
+			setFormErr({...formErr, email : 'Email field is empty'})
+			return
+		}
+
+		if (!formDetails.company) {
+			setFormErr({...formErr, company : 'Company field is empty'})
+			return
+		}
+
+		if (!formDetails.phone) {
+			setFormErr({...formErr, phone : 'Phone field is empty'})
+			return
+		}
+
+		if (!formDetails.message) {
+			setFormErr({...formErr, message : 'Message field is empty'})
+			return
+		}
 
 		await contactUs(formDetails)
 
@@ -97,6 +138,14 @@ function ContactForm () {
 
 	function changeHandler (e) {
 		setFormDetails({...formDetails, [e.target.name]: e.target.value})
+
+		setFormErr({
+			name: '',
+			email: '',
+			company: '',
+			phone: '',
+			message: ''
+		})
 	}
 
 	return (
@@ -108,11 +157,11 @@ function ContactForm () {
 
 			<form onSubmit={submitHandler}>
 				<div>
-					<ContactFormInput type='text' name='name' value={formDetails.name} placeholder='Enter Name' changeHandler={changeHandler}/>
-					<ContactFormInput type='email' name='email' value={formDetails.email} placeholder='Enter Email address' changeHandler={changeHandler}/>
-					<ContactFormInput type='text' name='company' value={formDetails.company} placeholder='Enter company name' changeHandler={changeHandler}/>
-					<ContactFormInput type='tel' name='phone' value={formDetails.phone} placeholder='Enter phone number' changeHandler={changeHandler}/>
-					<ContactFormInput type='text' name='message' value={formDetails.message} placeholder='Enter text here' changeHandler={changeHandler}/>
+					<ContactFormInput type='text' name='name' value={formDetails.name} placeholder='Enter Name' changeHandler={changeHandler} err={formErr.name} />
+					<ContactFormInput type='email' name='email' value={formDetails.email} placeholder='Enter Email address' changeHandler={changeHandler} err={formErr.email} />
+					<ContactFormInput type='text' name='company' value={formDetails.company} placeholder='Enter company name' changeHandler={changeHandler} err={formErr.company} />
+					<ContactFormInput type='tel' name='phone' value={formDetails.phone} placeholder='Enter phone number' changeHandler={changeHandler} err={formErr.phone} />
+					<ContactFormInput type='text' name='message' value={formDetails.message} placeholder='Enter text here' changeHandler={changeHandler} err={formErr.message} />
 				</div>
 
 				<button>Send</button>

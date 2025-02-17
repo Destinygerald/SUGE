@@ -187,10 +187,19 @@
 	display: flex;
 	flex-direction: column;
 	gap: 8px;
+	position: relative;
 }
 
 .contact-2-form-input > span:first-letter {
 	text-transform: capitalize;
+}
+
+.err {
+	position: absolute;
+	bottom: -14px !important;
+	left: 4px !important;
+	font-size: .6rem !important;
+	color: rgb(255, 80, 80);
 }
 
 .contact-2-form-input > input {
