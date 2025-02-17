@@ -43,7 +43,7 @@ function ServiceMain () {
 				<ServiceCard nav='/quote' img_source={img1} title='Organic Waste Haulage' cnt='Licensed to haul. Whether it’s farm scraps or food factory waste, we make it disappear—sustainably.' />
 				<ServiceCard nav='/contact/2' img_source={img3} title='AD Plant Partnership' cnt='Zero landfill, 100% recycled. We team up with cutting-edge AD plants to ensure your waste gets a new lease of life.' />
 				<ServiceCard nav='/services/2' img_source={img2} title='Waste Water Tankering' cnt='Waste water hates to see us coming—armed with up to 6-inch hoses and 30,000-liter capacity tankers, we clear it out: swift, clean, and without a trace.' />
-				<ServiceCard img_source={img4} title='Consultation & Support' cnt='Even the best agents need backup. We’ll guide you toward smarter, greener waste solutions.' />
+				<ServiceCard nav='/contact' img_source={img4} title='Consultation & Support' cnt='Even the best agents need backup. We’ll guide you toward smarter, greener waste solutions.' />
 
 				<div className='service-blur' />
 			</div>
