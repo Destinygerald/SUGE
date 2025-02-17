@@ -38,7 +38,7 @@ export function Footer () {
 			</div>
 
 			<div className='footer-copyright'>
-				<span> Copyright© 2025 Suge</span>
+				<span> Copyright © 2025 Suge</span>
 
 				<div className='footer-contact'>
 

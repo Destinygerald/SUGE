@@ -192,6 +192,7 @@
 .message-cnt > div:last-child {
 	text-align: center;
 	width: 70.6%;
+	line-height: 1.48rem;
 }
 
 .message-img {
@@ -201,7 +202,14 @@
 
 .message-img > img {
 	width: 100%;
+	content: url('../../assets/Infographics 1.webp');
 }
+
+.light-theme .message-img > img {
+	width: 100%;
+	content: url('../../assets/Infohraphics 2.webp');	
+}
+
 
 .message-1-flash {
 	position: absolute;
@@ -259,6 +267,7 @@
 .message-2-cnt > div:last-child {
 	width: 56%;
 	text-align: center;
+	line-height: 1.48rem;
 }
 
 .message-2-grid {

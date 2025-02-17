@@ -39,6 +39,10 @@
 	font-size: 3rem;
 }
 
+.light-theme .sustainability-stat-left > div:last-child {
+	background-image: linear-gradient(rgb(44, 185, 52), rgb(0, 68, 41));
+}
+
 .sustainability-stat-right {
 	width: 100%;
 	display: flex;
@@ -70,8 +74,15 @@
 	position: relative;
 }
 
+
 .sustainability-img > img {
 	width: 100%;
+	content: url('../../assets/Infographics 1.webp');
+}
+
+.light-theme .sustainability-img > img {
+	width: 100%;
+	content: url('../../assets/Infohraphics 2.webp');	
 }
 
 .sustainability-blur {

@@ -2,9 +2,13 @@ import '../style.css'
 import '../style.mobile.css'
 import Flash1 from '/images/FLASH/Lighting Black.webp'
 import Infographics from '/images/Infographics 1.webp'
+import Light_Infographics from '/images/LIGHT/Infohraphics 2.webp'
 
 
 export function Message () {
+
+
+
 	return (
 		<div className='message'>
 			<div className='message-cnt'>

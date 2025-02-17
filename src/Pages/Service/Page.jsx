@@ -35,7 +35,7 @@ function ServiceMain () {
 	return (
 		<div className='service-main'>
 			<div className='service-main-cnt'>
-				<div>For Your organic waste Only.</div>
+				<div>FOR YOUR ORGANIC WASTE ONLY.</div>
 				<div>No matter the size of the mission, SUGE has the tools, tech, and trucks to handle it.</div>
 			</div>
 
@@ -54,7 +54,7 @@ function ServiceMain () {
 function Page () {
 	return (
 		<div className='service'>
-			<Banner page='Service' />
+			<Banner page='Services' />
 			<ServiceMain />
 		</div>
 	)

@@ -18,7 +18,7 @@ export function Banner () {
 				
 				<div>Got Waste? <br/> Think <span>SUGE.</span></div>
 
-				<div> Your waste management heroes reporting for duty. Reliable, sustainable, and 100% diverted away from landfill. </div>
+				<div> Your waste management heroes reporting for duty. <br /> Reliable, sustainable, and 100% diverted away from landfill. </div>
 
 				<div className='banner-btn'>
 					<PrimaryButton text='Get a Quote' action={getQuote} />
