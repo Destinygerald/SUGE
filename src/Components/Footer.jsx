@@ -10,6 +10,10 @@ export function Footer () {
 
 	const navigate = useNavigate()
 
+	function inNewTab (route) {
+		window.open(route, '_blank', 'rel=noopener noreferrer')
+	}
+
 	return (
 		<div className='footer'>
 			<div className='footer-main'>
@@ -51,10 +55,10 @@ export function Footer () {
 					<div className='contact-separator' />
 					
 					<div className='footer-contact-logo'>
-						<span> <FaFacebook /> </span>
-						<span> <FaInstagram /> </span>
-						<span> <IoLogoLinkedin /> </span>
-						<span> <FaYoutube /> </span>
+						<span onClick={() => inNewTab('https://www.facebook.com/profile.php?id=61560994145969&mibextid=wwXlfr')}> <FaFacebook /> </span>
+						<span onClick={() => inNewTab('https://www.instagram.com/sugeltd')}> <FaInstagram /> </span>
+						<span onClick={() => inNewTab('https://uk.linkedin.com/company/sugeltd')}> <IoLogoLinkedin /> </span>
+						<span onClick={() => inNewTab('https://youtube.com/@sugeltd/')}> <FaYoutube /> </span>
 					</div>
 					
 				</div>
