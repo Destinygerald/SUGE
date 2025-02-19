@@ -44,17 +44,16 @@ export function LoadPopup () {
 					
 					<div>
 						<div>
-							New Year, <br /> 
-							New Waste <br />
-							Strategy? <br />
+							Time to Rethink <br />
+							Your Waste <br />
+							Strategy?
 						</div>
 
 						<div>
-							Kick off 2025 the smart way! <br />
-							Claim your FREE Waste Review today. Let us assess your waste management and reveal cost-saving, 
-							eco-friendly solutions tailored to your business. <br /> <br />
+							It’s never too late to save more and waste less.<br />
+							Claim your FREE Waste Review today. We’ll analyse your waste management and uncover cost-effective, greener solutions tailored to your business. <br /><br />
 
-							Don’t miss out—offer ends soon!
+							This offer won’t last forever—act now!
 						</div>
 					</div>
 
