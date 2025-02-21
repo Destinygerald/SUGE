@@ -255,6 +255,10 @@
 	z-index: 2;
 }
 
+.light-theme .banner-x-line {
+	background: linear-gradient(90deg, #ffffff 5%, #2d8f00, #ffffff 95%);
+}
+
 .primary-btn {
 	padding: 16px 24px;
 	border-radius: 32px;
