@@ -1,6 +1,6 @@
 @media (min-width: 1400px) {
 	.navbar {
-		padding: 24px  8%;
+		padding: 24px  10%;
 	}
 
 	.footer {
@@ -15,5 +15,10 @@
 		/*align-self: flex-end;*/
 		position: absolute;
 		right: 4%;
+	}
+
+	.load-popup {
+		height: 64vh;
+		width: 64%;
 	}
 }

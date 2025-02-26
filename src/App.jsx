@@ -1,7 +1,8 @@
 import './App.css'
-import { useLayoutEffect } from 'react'
+import { useLayoutEffect, useState } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import { Navbar } from './Components/Navbar.jsx'
+import { MobileSlider } from './Components/MobileSlider.jsx'
 import { Footer } from './Components/Footer.jsx'
 import { Provider } from 'react-redux'
 import { configureStore } from '@reduxjs/toolkit'
@@ -18,6 +19,7 @@ import Contact from './Pages/Contact/Page.jsx'
 import Contact_2 from './Pages/Contact_2/Page.jsx'
 import Quote from './Pages/Quote/Page.jsx'
 import Admin from './Pages/Admin/Page.jsx'
+import Blog from './Pages/Blog/Page.jsx'
 
 
 const store = configureStore({
@@ -30,12 +32,34 @@ const store = configureStore({
 
 function App() {
 
+  const [ sliderOpen, setSliderOpen ] = useState(false)
+
+  function openSlider () {
+    setSliderOpen(true)
+  }
+
+  function closeSlider () {
+    document.querySelector('.mobile-slider').classList.add('mobile-slider-exit-animation')
+ 
+    setTimeout(() => {
+      setSliderOpen(false)
+    }, 1100)
+    
+  }
 
   return (
     <Provider store={store}>
        <div className='app'>
 
-        <Navbar />
+        <Navbar openSlider={openSlider} />
+        
+        {
+          sliderOpen
+          ?
+          <MobileSlider sliderOpen={sliderOpen} closeSlider={closeSlider} />
+          :
+          <></>
+        }
 
           <ScrollTop>
      
@@ -43,6 +67,7 @@ function App() {
             <Route path='*' element={<LandingPage />} />
             <Route path='/' element={<LandingPage />} />
             <Route path='/about' element={<AboutUs />} />
+            <Route path='/blog/*' element={<Blog />} />
             <Route path='/services' element={<Service />} />
             <Route path='/services/2' element={<Service_2 />} />
             <Route path='/sustainability' element={<Sustainability />} />

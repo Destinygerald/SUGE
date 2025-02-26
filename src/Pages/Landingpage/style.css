@@ -17,6 +17,7 @@
 	aspect-ratio: 1512 / 792;
 	/*height: 792px;*/
 	min-height: 572px;
+	max-height: 868px;
 	background-image: url('../../assets/SUGE DARK TRUCK.webp');
 	background-repeat: no-repeat;
 	background-size: cover;
@@ -38,7 +39,8 @@
 }
 
 .banner-cnt > div:first-child {
-	font-size: 5.25rem;
+	/*font-size: 5.25rem;*/
+	font-size: clamp(5.25rem, 5.8vw ,8rem);
 	width: 100%;
 }
 
@@ -49,8 +51,8 @@
 }
 
 .banner-cnt > div:nth-child(2) {
-	font-size: 1.2rem;
-	line-height: 2rem;
+	font-size: clamp(1.2rem , 1.3vw, 1.6rem);
+	line-height: 2.4rem;
 	width: 100%;
 }
 
@@ -102,8 +104,9 @@
 	align-self: center;
 	flex-direction: column;
 	align-items: center;
-	padding: 42px 0%;
+	padding: 105px 0%;
 	gap: 24px;
+	/*margin-top: 105px;*/
 }
 
 .partners > span:first-child {
@@ -192,7 +195,10 @@
 .message-cnt > div:last-child {
 	text-align: center;
 	width: 70.6%;
-	line-height: 1.48rem;
+	line-height: 2rem;
+	/*font-size: clamp(1.2rem , 1.3vw, 1.6rem);*/
+	font-size: clamp(1rem , 1.2vw, 1.2rem);
+	font-weight: 400;
 }
 
 .message-img {
@@ -267,7 +273,8 @@
 .message-2-cnt > div:last-child {
 	width: 56%;
 	text-align: center;
-	line-height: 1.48rem;
+	line-height: 2rem;
+	font-size: clamp(1rem , 1.2vw, 1.2rem);
 }
 
 .message-2-grid {
@@ -312,6 +319,10 @@
 .message-2-card-main > div:first-child {
 	font-size: 1.5rem;
 	font-weight: 600;
+}
+
+.message-2-card-main > div:nth-child(2) {
+	/*font-size: clamp(1rem , 1.2vw, 1.2rem);*/
 }
 
 .message-2-card::before {
@@ -370,7 +381,7 @@
 
 .message-3-cnt > div:first-child {
 	/*font-size: 3rem;*/
-	font-size: 2.4rem;
+	font-size: clamp(2.4rem, 2.8vw, 2.8rem);
 	font-weight: 500;
 }
 
@@ -381,21 +392,10 @@
 }
 
 .message-3-cnt-info > div:first-child {
-	line-height: 1.48rem;
+	line-height: 2rem;
+	width: 80.5%;
+	font-size: clamp(1rem , 1.2vw, 1.2rem);
 }
-
-/*.message-3-cnt-info > button {
-	padding: 16px 24px;
-	border-radius: 32px;
-	border: none;
-	font-size: .72rem;
-	color: white;
-	background: var(--primary-gradient);
-	cursor: pointer;
-	display: flex;
-	gap: 12px;
-	width: fit-content;
-}*/
 
 .message-3-img {
 	width: 45%;
@@ -427,9 +427,7 @@
 
 .message-3-img-show > div:nth-child(2), .message-3-img-show > div:nth-child(3) {
 	position: absolute;
-	/*width: 327px;*/
 	width: 48.3%;
-	/*height: 252px;*/
 	aspect-ratio: 327 / 252;
 	border-radius: 30px;
 	top: 0;
@@ -476,7 +474,6 @@
 	margin-top: -40px;
 	margin-bottom: auto;
 	z-index: 1;
-	/*position: absolute;*/
 }
 
 .green-div-flash {
@@ -503,23 +500,11 @@
 }
 
 .green-div-cnt > div:first-child > div:first-child {
-	font-size: 2.2rem;
+	font-size: clamp(2.2rem, 2.4vw, 2.6rem);
 	font-weight: 600;
 }
 
 .green-div-cnt > div:first-child > div:last-child {
-	line-height: 1.8rem;
+	line-height: 2rem;
+	font-size: clamp(1rem , 1.2vw, 1.2rem);
 }
-
-/*.green-div-cnt > button {
-	padding: 16px 24px;
-	border-radius: 32px;
-	border: none;
-	font-size: .72rem;
-	color: white;
-	background: var(--primary-gradient);
-	cursor: pointer;
-	display: flex;
-	gap: 12px;
-	width: fit-content;
-}*/

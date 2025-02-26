@@ -1,6 +1,6 @@
 @media(min-width: 1400px) {
 	.banner { 
-		padding: 180px 8%;
+		padding: 180px 10%;
 		padding-top: 180px;
 		background-position: 0 60%;
 	}
@@ -11,6 +11,13 @@
 	}
 
 	.green-div {
-		padding: 0 8%;
+		padding: 0 10%;
+	}
+
+	.message-3 {
+		width: 100%;
+		display: flex;
+		padding: 260px 10%;
+		padding-left: 10%;
 	}
 }

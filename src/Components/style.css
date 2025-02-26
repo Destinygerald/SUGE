@@ -1,13 +1,13 @@
 .navbar {
 	width: 100%;
-	padding: 24px  4.6%;
-	aspect-ratio: 145 : 10;
-	display: flex;
-	justify-content: space-between;
+	padding: 28px  4.6%;
+	/*aspect-ratio: 145 : 10;*/
 	color: var(--text);
 	position: absolute;
-	top: 0;
+	display: flex;
 	align-items: center;
+	justify-content: space-between;
+	top: 0;
 	left: 0;
 	z-index: 3;
 	position: fixed;
@@ -96,9 +96,14 @@
 	cursor: pointer;
 }
 */
+.nav-mobile-menu {
+	display: none;
+}
+
 .theme-switch {
-	width: 24px;
-	height: 24px;
+	width: 28px;
+	height: 28px;
+	font-size: 1.28rem;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -525,4 +530,9 @@
 		opacity: 0;
 		display: none;
 	}
+}
+
+
+.mobile-slider {
+	display: none;
 }

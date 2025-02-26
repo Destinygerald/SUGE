@@ -1,0 +1,52 @@
+@media(max-width: 480px) {
+	.service-main {
+		/*display: none;*/
+		gap: 32px;
+	}
+
+	.service-main-cnt {
+		width: 100%;
+		gap: 16px
+	}
+
+	.service-main-cnt > div:first-child {
+		font-size: 1.5rem;
+		width: 95%;
+	}
+
+	.service-main-cnt > div:nth-child(2) {
+		font-size: 1rem;
+		font-weight: 300;
+		line-height: 1.6rem;
+	}
+
+	.service-main-grid {
+		grid-template-columns: repeat(1, 1fr);
+	}
+
+	.service-card {
+		height: 260px;
+		border-radius: 16px;
+	}
+
+	.service-card-img > img {
+		position: relative;
+		translate: 0 0;
+		height: 100%;
+	}
+
+	.service-card-cnt {
+		height: 49%;
+		padding: 16px 20px;
+	}
+
+	.service-card-cnt > div:first-child {
+		font-size: 1rem;
+	}
+
+	.service-card-cnt > div:nth-child(2) {
+		font-size: .72rem;
+	}
+
+
+}

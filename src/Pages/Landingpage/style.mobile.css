@@ -1,3 +1,168 @@
-@media (max-width: 600px) {
+@media (max-width: 480px) {
+	.banner {
+		padding: 0 6.4%;
+		padding-top: 140px;
+		min-height: 540px;
+		max-height: auto;
+		background-position: 42% 80px;
+		aspect-ratio: auto;
+		height: fit-content;
+		padding-bottom: 98px;
+		background-size: 720px 473px;
+	}
+
+	.banner-cnt {
+		width: 72%;
+		min-width: auto;
+	}
+
+	.banner-cnt > div:first-child {
+		font-size: 2.5rem;
+		width: 100%;
+	}
+
+	.banner-cnt > div:nth-child(2) {
+		font-size: clamp(1rem , 1.12vw, 1.2rem);
+		line-height: 1.65rem;
+		font-weight: 200;
+		width: 90%;
+	}	
+
+	.partners {
+		padding-top: 90px;
+	}
+
+	.partners-cnt {
+		flex-direction: column;
+		gap: 24px;
+	}
+
+	.partners-logo:nth-child(1) {
+		/*height: 60px;*/
+		width: 21%;
+	}
+
+	.partners-logo:nth-child(2) {
+		width: 36.5%;
+	}
+
+	.partners-logo:nth-child(3) {
+		width: 11.4%;
+	}
+
+	.partners-logo:nth-child(4) {
+		width: 30.3%;
+	}
+
+	.partners-logo:nth-child(5) {
+		width: 22.35%;
+	}
 	
+	.message {
+
+	}
+
+	.message-cnt {
+		width: 100%;
+	}
+
+	.message-cnt > div:first-child, .message-2-cnt > div:first-child {
+		font-size: 2.1rem;
+	}
+
+	.message-cnt > div:last-child {
+		width: 82%;
+		font-size: 1rem;
+		line-height: 1.6rem;
+		font-weight: 300;
+	}
+
+	.message-img {
+		width: 100%;
+	}
+
+	.message-2 {
+		width: 100%;
+	}
+
+	.message-2-cnt > div:last-child {
+		width: 100%;
+		font-size: 1rem;
+		line-height: 1.6rem;
+		font-weight: 300;
+	}
+
+	.message-2-grid {
+		grid-template-columns: repeat(1, 1fr);
+	}
+
+	.message-3 {
+		flex-direction: column;
+	}
+
+	.message-3-cnt {
+		width: 100%;
+	}
+
+	.message-3-cnt > div:first-child {
+		font-size: 1.625rem;
+	}
+
+	.message-3-cnt-info > div:first-child {
+		font-size: 1rem;
+		line-height: 1.6rem;
+		font-weight: 300;
+	}
+
+	.message-3-img {
+		width: 72%;
+		align-self: flex-end;
+		padding-top: 48px;
+	}
+
+	.message-3-img > img {
+		width: 60px;
+		aspect-ratio:  1 / 1;
+		top: 48px;
+		left: auto;
+		right: 10%;
+		translate: 0 -50%;
+		position: absolute;
+	}
+
+	.message-3-img-show {
+		aspect-ratio: 266 / 204;
+	}
+
+	.message-3-img-show > div {
+		border-radius: 12px !important;
+	}
+
+	.message-3-img-show > div:first-child {
+		top: 0;
+	}
+
+	.green-div {
+		background: linear-gradient(90deg, #2cb933 , #0a0a0a 90%);
+		height: fit-content;
+		flex-direction: column;
+		padding-bottom: 82px;
+	}
+
+	.green-div-logo {
+		width: 67%;
+	}
+
+	.green-div-cnt {
+		margin-top: 45px;
+		width: 100%;
+	}
+
+	.green-div-flash {
+		position: absolute;
+		left: -50%;
+		top: -42%;
+		width: 160%;
+	}
+
 }

@@ -64,6 +64,7 @@
 
 .sustainability-stat-card > div:last-child {
 	width: 40.7%;
+	font-size: clamp(1rem , 1.2vw, 1.2rem);
 }
 
 

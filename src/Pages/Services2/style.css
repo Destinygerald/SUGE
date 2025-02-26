@@ -37,12 +37,13 @@
 
 .service-2-banner-main-cnt > div:first-child {
 	color: var(--text);
-	font-size: 3rem;
+	font-size: clamp(3.2rem, 3.4vw, 3.6rem);
 }
 
 .service-2-banner-main-cnt > div:last-child {
 	/*font-size: ;*/
-	line-height: 1.48rem;
+	line-height: clamp(1.72rem, 1.9vw, 2rem);
+	font-size: clamp(1rem , 1.2vw, 1.2rem);
 }
 
 .service-2-banner-img {
@@ -103,14 +104,15 @@
 }
 
 .services-info-cnt-card > span:first-child {
-	line-height: 1.48rem;
+	line-height: 2rem;
+	font-size: clamp(1rem , 1.2vw, 1.2rem);
 }
 
 .services-info-cnt-card > div:last-child {
 	background: var(--primary-gradient);
 	color: transparent;
 	background-clip: text;
-	font-size: 2.8rem;
+	font-size: 3rem;
 	text-align: center;
 }
 
@@ -151,11 +153,12 @@
 	background-image: var(--primary-gradient);
 	color: transparent;
 	background-clip: text;
-	font-size: 1.6rem;
+	/*font-size: 1.8rem;*/
+	font-size: clamp(1.8rem , 2vw, 2rem);
 }
 
 .service-2-contact-cnt > div:first-child > div:last-child {
-	font-size: 1.8rem;
+	font-size: clamp(1.8rem , 2vw, 2rem);
 	line-height: 2.6rem;
 }
 
@@ -174,11 +177,12 @@
 }
 
 .service-2-contact-cnt-info > span:first-child {
-	font-size: 1.28rem;
+	font-size: clamp(1.28rem , 1.4vw, 1.6rem);
 }
 
 .service-2-contact-cnt-info > span:last-child {
-	line-height: 1.48rem;
+	line-height: 1.8rem;
+	font-size: clamp(1rem , 1.2vw, 1.22rem);
 }
 
 .service-2-contact-form {
@@ -222,6 +226,7 @@
 
 .service-2-contact-form-hdr > span:nth-child(2) {
 	line-height: 1.48rem;
+	font-size: clamp(1rem , 1.2vw, 1.2rem);
 }
 
 .service-2-contact-form-cnt {
@@ -249,7 +254,7 @@
 	display: flex;
 	flex-direction: column;
 	gap: 8px;
-	font-size: .8rem;
+	font-size: 1rem;
 	position: relative;
 }
 

@@ -43,12 +43,13 @@
 }
 
 .quote-hdr > div:first-child {
-	font-size: 3rem;
+	font-size: 3.56rem;
 	line-height: 4rem;
 }
 
 .quote-hdr > div:last-child {
-	line-height: 1.48rem;
+	line-height: 2rem;
+	font-size: clamp(1rem , 1.2vw, 1.2rem);
 }
 
 .quote-cnt {
@@ -154,7 +155,8 @@
 }
 
 .quote-1-hdr > div:last-child {
-	line-height: 1.48rem;
+	line-height: 2rem;
+	font-size: clamp(1rem , 1.2vw, 1.2rem);
 }
 
 .quote-1-imgs {

@@ -6,6 +6,7 @@ import Logo from '/images/SUGE LOGO.webp'
 import { useSelector, useDispatch } from 'react-redux'
 import { CiSearch } from 'react-icons/ci'
 import { IoMdMoon } from 'react-icons/io'
+import { AiOutlineMenu } from 'react-icons/ai'
 import { IoMoonOutline } from 'react-icons/io5'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { PrimaryButton } from './Buttons.jsx'
@@ -29,7 +30,7 @@ function NavItem ({ nav, clickHandler, route, route2 }) {
 	)
 }
 
-export function Navbar () {
+export function Navbar ({ openSlider }) {
 
 	const [ theme, setTheme ] = useState(localStorage.getItem('suge-dark-theme'))
 	const navigate = useNavigate()
@@ -68,29 +69,33 @@ export function Navbar () {
 
 	return (
 		<div className='navbar'>
-			<div className='logo'> <img src={Logo} /> </div>
+				
+				<div className='logo'> <img src={Logo} /> </div>
 
-			<div className='nav-items'>
-				<NavItem nav='Home' route='/' clickHandler={clickHandler} />
-				<NavItem nav='About Us' route='/about' clickHandler={clickHandler} />
-				<NavItem nav='Services' route='/services' route2='/services/2' clickHandler={clickHandler} />
-				<NavItem nav='Sustainability' route='/sustainability' clickHandler={clickHandler} />
-				<NavItem nav='Contact Us' route='/contact' route2='/contact/2' clickHandler={clickHandler} />
-			</div>
+				<div className='nav-items'>
+					<NavItem nav='Home' route='/' clickHandler={clickHandler} />
+					<NavItem nav='About Us' route='/about' clickHandler={clickHandler} />
+					<NavItem nav='Services' route='/services' route2='/services/2' clickHandler={clickHandler} />
+					<NavItem nav='Sustainability' route='/sustainability' clickHandler={clickHandler} />
+					<NavItem nav='Blog' route='/blog' clickHandler={clickHandler} />
+					<NavItem nav='Contact Us' route='/contact' route2='/contact/2' clickHandler={clickHandler} />
+				</div>
 
-			<div className='nav-extras'>
-				<span className='theme-switch' onClick={toggleTheme}> 
-				{ 
-					theme == 'true'
-					?
-					<IoMdMoon />
-					:
-					<IoMoonOutline />
-				}
-				</span>
-				<span className='nav-search'> <CiSearch /> </span>
-				<PrimaryButton text='Get a Quote' hasIcon={false} action={getQuote} />
-			</div>
+				<div className='nav-extras'>
+					<span className='theme-switch' onClick={toggleTheme}> 
+					{ 
+						theme == 'true'
+						?
+						<IoMdMoon />
+						:
+						<IoMoonOutline />
+					}
+					</span>
+					<span className='nav-mobile-menu' onClick={openSlider}> <AiOutlineMenu /> </span>
+					<span className='nav-search'> <CiSearch /> </span>
+					<PrimaryButton text='Get a Quote' hasIcon={false} action={getQuote} />
+				</div>
+
 		</div>
 	)
 }
