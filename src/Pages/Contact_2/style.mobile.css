@@ -1,0 +1,64 @@
+@media(max-width: 480px) {
+	.contact-2-cnt {
+		flex-direction: column;
+		gap: 16px;
+		padding-top: 56px;
+	}
+
+	.contact-2-info, .contact-2-form {
+		width: 100%;
+		border-radius: 18px;
+	}
+
+	.contact-2-info {
+		height: 571px;
+		gap: 30px;
+	}
+
+	.contact-2-info-img {
+		min-height: 30.8%;
+	}
+
+	.contact-2-info-cnt {
+		padding: 0 24px;
+		gap: 40px;
+	}
+
+	.contact-2-info-details > span:first-child {
+		font-size: .75rem;
+	}
+
+	.contact-2-info-details > span:last-child {
+		font-size: .875rem;
+	}
+
+	.contact-2-time > span:first-child, .contact-2-time > div:nth-child(2) > span:last-child, .contact-2-time > div:nth-child(3) > span:last-child  {
+		font-size: .875rem;
+	}
+
+	.contact-2-time > div:nth-child(2) > span:first-child, .contact-2-time > div:nth-child(3) > span:first-child {
+		font-size: .625rem;
+	}
+
+	.contact-2-form {
+		padding: 45px 22px;
+		height: fit-content;
+		padding-bottom: 68px;
+	}
+
+	.contact-2-form > div:first-child {
+		font-size: 16px;
+	}
+
+	.contact-2-form > div:first-child > div:first-child {
+		font-size: 1.75rem;
+	}
+
+	.contact-2-form > div:first-child > div:last-child {
+		font-size: .81rem;
+	}
+
+	.contact-2-form-input > span:first-child, .contact-2-form-input > input {
+		font-size: .81rem;
+	}
+}

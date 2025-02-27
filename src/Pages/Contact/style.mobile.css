@@ -1,0 +1,64 @@
+@media(max-width: 480px) {
+	.contact-cnt {
+		flex-direction: column;
+		gap: 16px;
+		padding-top: 56px;
+	}
+
+	.contact-info, .contact-form {
+		width: 100%;
+		border-radius: 18px;
+	}
+
+	.contact-info {
+		height: 571px;
+		gap: 30px;
+	}
+
+	.contact-info-img {
+		min-height: 30.8%;
+	}
+
+	.contact-info-cnt {
+		padding: 0 24px;
+		gap: 40px;
+	}
+
+	.contact-info-details > span:first-child {
+		font-size: .75rem;
+	}
+
+	.contact-info-details > span:last-child {
+		font-size: .875rem;
+	}
+
+	.contact-time > span:first-child, .contact-time > div:nth-child(2) > span:last-child, .contact-time > div:nth-child(3) > span:last-child  {
+		font-size: .875rem;
+	}
+
+	.contact-time > div:nth-child(2) > span:first-child, .contact-time > div:nth-child(3) > span:first-child {
+		font-size: .625rem;
+	}
+
+	.contact-form {
+		padding: 45px 22px;
+		height: fit-content;
+		padding-bottom: 68px;
+	}
+
+	.contact-form > div:first-child {
+		font-size: 16px;
+	}
+
+	.contact-form > div:first-child > div:first-child {
+		font-size: 1.75rem;
+	}
+
+	.contact-form > div:first-child > div:last-child {
+		font-size: .81rem;
+	}
+
+	.contact-form-input > span:first-child, .contact-form-input > input {
+		font-size: .81rem;
+	}
+}

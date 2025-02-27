@@ -10,13 +10,15 @@ import { FifthQuote } from './Pages/FifthQuote.jsx'
 import { SixthQuote } from './Pages/SixthQuote.jsx'
 import img1 from  '/images/SUGE ASSETS/Lighting Black.webp'
 
-function Indicator () {
+
+
+function Indicator ({ type }) {
 	const params = useParams()
 
 	// console.log(params['*'])
 
 	return (
-		<div className='quote-indicator'>
+		<div className={type}>
 			<div className='quote-id'> 
 				<span className='green-id'>1</span>
 				<span>Business Type</span>
@@ -65,6 +67,9 @@ function Indicator () {
 function Page () {
 	return (
 		<div className='quote'>
+
+			<Indicator type='quote-indicator-mobile' />
+
 			<div className='quote-hdr'>
 				<div>Ready to Conquer Waste? <br/> Let's Get You a Quote!</div>
 				<div>We’re the heroes your business needs to tackle its organic waste problems. Whether you're a food manufacturer, farmer or a business generating tonnes of organic waste, our waste haulage solutions are designed to clean up your mess and fight for a greener future. Let’s get started on your mission!</div>
@@ -75,7 +80,7 @@ function Page () {
 			<div className='quote-blur'/>
 
 			<div className='quote-cnt'>
-				<Indicator />
+				<Indicator type='quote-indicator' />
 
 				<div className='quote-main'>
 					

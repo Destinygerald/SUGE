@@ -124,6 +124,7 @@
 	flex-direction: column;
 	gap: 24px;
 	color: var(--text);
+	position: relative;
 	padding-bottom: 40px;
 	border-bottom: 1px solid rgb(120, 120, 120);
 }

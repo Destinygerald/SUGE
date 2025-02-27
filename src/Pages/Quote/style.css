@@ -6,7 +6,7 @@
 	padding-top: 226px;
 	color: var(--text);
 	gap: 95px;
-	margin-bottom: 320px;
+	padding-bottom: 320px;
 	position: relative;
 	overflow-x: hidden;
 }
@@ -60,6 +60,9 @@
 	z-index: 1;
 }
 
+.quote-indicator-mobile {
+	display: none;
+}
 
 .quote-indicator {
 	display: flex;

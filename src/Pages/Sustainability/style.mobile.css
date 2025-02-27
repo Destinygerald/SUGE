@@ -1,0 +1,83 @@
+@media(max-width: 480px) {
+	.sustainability-stat {
+		padding-top: 56px;
+		flex-direction: column;
+		gap: 45px;
+	}
+
+	.sustainability-stat-left {
+		width: 100%;
+	}
+
+	.sustainability-stat-left > div:first-child {
+		font-size: 1.5rem;
+	}
+
+	.sustainability-stat-left > div:last-child {
+		font-size: 2.5rem;
+		width: 80%;
+		line-height: 3.2rem;
+	}
+
+	.sustainability-stat-right {
+		width: 100%;
+		padding: 0 8px;
+		gap: 48px;
+	}
+
+	.sustainability-stat-card {
+		flex-direction: column;
+		gap: 24px;
+		align-items: flex-start;
+	}
+
+	.sustainability-stat-card > div:first-child {
+		font-size: 5.15rem;
+		font-weight: 300;
+	}
+
+	.sustainability-stat-card > div:last-child {
+		font-size: 1rem;
+		line-height: 1.5rem;
+		width: 50%;
+	}
+
+	.sustainability-img {
+		display: none;
+	}
+
+	.sustainability-info {
+		height: 370px;
+		flex-direction: column;
+	}
+
+	.sustainability-info > div:first-child {
+		top: 0;
+		translate: -10% -40%;
+		width: 342px;
+	}
+
+	.sustainability-info > div:nth-child(2) {
+		width: 100%;
+		top: 0;
+	}
+
+	.sustainability-info > div:nth-child(2) > img {
+		width: 100%;
+	}
+
+	.sustainability-info > div:last-child {
+		gap: 16px;
+		width: 78%;
+	}
+
+	.sustainability-info > div:last-child > span:first-child {
+		font-size: 1.75rem;
+		font-weight: 600;
+	}
+
+	.sustainability-blur {
+		width: 200px;
+		height: 200px;
+	}
+}
