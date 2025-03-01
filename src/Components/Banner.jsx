@@ -10,7 +10,7 @@ export function Banner ({ page }) {
 			<div> {page} </div>
 
 			<div>
-				<img src={Logo} />
+				<img src={Logo} loading='lazy' />
 			</div>
 
 			<img src={Flash} className='banner-x-flash' />

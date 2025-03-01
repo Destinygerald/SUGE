@@ -14,7 +14,7 @@ function ContactInfo () {
 	return (
 		<div className='contact-info'>
 			<div className='contact-info-img'>
-				<img src={img1} />
+				<img src={img1} loading='lazy' />
 			</div>
 
 			<div className='contact-info-cnt'>

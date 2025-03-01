@@ -107,6 +107,26 @@
 	right: 0;
 }
 
+.service-card:nth-child(1) > .service-card-img > img {
+	background-image: url('../../assets/SMALL/ser_frame_1_small.webp');
+	background-size: cover;
+}
+
+.service-card:nth-child(2) > .service-card-img > img {
+	background-image: url('../../assets/SMALL/ser_frame_3_small.webp');
+	background-size: cover;
+}
+
+.service-card:nth-child(3) > .service-card-img > img {
+	background-image: url('../../assets/SMALL/ser_frame_2_small.webp');
+	background-size: cover;
+}
+
+.service-card:nth-child(4) > .service-card-img > img {
+	background-image: url('../../assets/SMALL/ser_frame_4_small.webp');
+	background-size: cover;
+}
+
 .service-card-cnt {
 	display: flex;
 	flex-direction: column;

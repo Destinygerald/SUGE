@@ -19,7 +19,7 @@ function SugeHeroesCard ({ imgSource, text }) {
 				<></>
 			}
 
-			<img src={imgSource} />
+			<img src={imgSource} loading='lazy' />
 		</div>
 	)
 }

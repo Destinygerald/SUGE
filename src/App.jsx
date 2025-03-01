@@ -1,5 +1,5 @@
 import './App.css'
-import { useLayoutEffect, useState } from 'react'
+import { useState, Suspense, lazy } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import { Navbar } from './Components/Navbar.jsx'
 import { MobileSlider } from './Components/MobileSlider.jsx'
@@ -10,6 +10,8 @@ import QuoteSlice from './Redux/Quote.js'
 import QuotePopupSlice from './Redux/QuotePopup.js'
 import LoadPopupSlice from './Redux/LoadPopup.js'
 import ScrollTop from './Components/ScrollToTop.jsx'
+import { Loader } from './Components/Loader.jsx'
+
 import LandingPage from './Pages/Landingpage/Page.jsx'
 import AboutUs from './Pages/AboutUs/Page.jsx'
 import Service from './Pages/Service/Page.jsx'
@@ -18,8 +20,10 @@ import Sustainability from './Pages/Sustainability/Page.jsx'
 import Contact from './Pages/Contact/Page.jsx'
 import Contact_2 from './Pages/Contact_2/Page.jsx'
 import Quote from './Pages/Quote/Page.jsx'
+
+const Blog = lazy(() => import('./Pages/Blog/Page.jsx'))
+
 import Admin from './Pages/Admin/Page.jsx'
-import Blog from './Pages/Blog/Page.jsx'
 
 
 const store = configureStore({
@@ -43,7 +47,7 @@ function App() {
  
     setTimeout(() => {
       setSliderOpen(false)
-    }, 1100)
+    }, 500)
     
   }
 
@@ -61,24 +65,26 @@ function App() {
           <></>
         }
 
-          <ScrollTop>
-     
-          <Routes>
-            <Route path='*' element={<LandingPage />} />
-            <Route path='/' element={<LandingPage />} />
-            <Route path='/about' element={<AboutUs />} />
-            <Route path='/blog/*' element={<Blog />} />
-            <Route path='/services' element={<Service />} />
-            <Route path='/services/2' element={<Service_2 />} />
-            <Route path='/sustainability' element={<Sustainability />} />
-            <Route path='/contact' element={<Contact />} />
-            <Route path='/contact/2' element={<Contact_2 />} />
-            <Route path='/quote/*' element={<Quote />} />
-            <Route path='/admin/*' element={<Admin />} />
-          </Routes>
 
-          </ScrollTop>
+          <Suspense fallback={<Loader />}>
+            <ScrollTop>
+            
+            <Routes>
+              <Route path='*' element={<LandingPage />} />
+              <Route path='/' element={<LandingPage />} />
+              <Route path='/about' element={<AboutUs />} />
+              <Route path='/blog/*' element={<Blog />} />
+              <Route path='/services' element={<Service />} />
+              <Route path='/services/2' element={<Service_2 />} />
+              <Route path='/sustainability' element={<Sustainability />} />
+              <Route path='/contact' element={<Contact />} />
+              <Route path='/contact/2' element={<Contact_2 />} />
+              <Route path='/quote/*' element={<Quote />} />
+              <Route path='/admin/*' element={<Admin />} />
+            </Routes>
 
+            </ScrollTop>
+          </Suspense>
 
         <Footer />
        </div>

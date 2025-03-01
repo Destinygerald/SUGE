@@ -72,7 +72,7 @@
 		z-index: 4;
 		color: var(--text);
 		gap: 48px;
-		animation: slide-in 1.2s ease-in-out;
+		animation: slide-in .6s ease-in-out;
 	}
 
 	@keyframes slide-in {
@@ -86,7 +86,7 @@
 	}
 
 	.mobile-slider-exit-animation {
-		animation: slide-out 1.2s ease-in-out;
+		animation: slide-out .6s ease-in-out;
 	}
 
 	@keyframes slide-out {
@@ -106,9 +106,17 @@
 		align-items: center;
 	}
 
+	.light-theme .mobile-slider-hdr > .logo {
+		filter: invert(100%);
+	}
+
 	.mobile-slider-extras {
 		display: flex;
 		gap: 24px;
+	}
+
+	.mobile-slider-extras > .theme-switch {
+		display: flex;
 	}
 
 	.mobile-slider-search {

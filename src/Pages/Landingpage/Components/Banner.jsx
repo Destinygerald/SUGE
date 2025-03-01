@@ -1,6 +1,5 @@
 import '../style.css'
 import '../style.mobile.css'
-import Truck from '/images/New truck.webp'
 import { PrimaryButton } from '../../../Components/Buttons.jsx'
 import { useNavigate } from 'react-router-dom'
 
@@ -26,7 +25,6 @@ export function Banner () {
 			</div>
 
 			<div className='bck-img'>
-				{/*<img src={Truck} />*/}
 			</div>
 		</div>
 	)

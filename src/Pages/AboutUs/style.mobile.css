@@ -94,4 +94,8 @@
 		width: 240px;
 		height: 240px;
 	}
+
+	.suge-heroes-card:nth-child(2) > img {
+		translate: -50%  10%;
+	}
 }
