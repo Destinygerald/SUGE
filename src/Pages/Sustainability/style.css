@@ -29,6 +29,7 @@
 	color: transparent;
 	background-clip: text;
 	font-size: 1.6rem;
+	font-size: clamp(1.2rem , 2.2vw, 2rem);
 }
 
 
@@ -37,6 +38,7 @@
 	color: transparent;
 	background-clip: text;
 	font-size: 3rem;
+	font-size: clamp(2.6rem , 3.2vw, 3rem);
 }
 
 .light-theme .sustainability-stat-left > div:last-child {
@@ -59,12 +61,12 @@
 }
 
 .sustainability-stat-card > div:first-child {
-	font-size: 6.8rem;
+	font-size: clamp(3rem, 7.2vw, 6.8rem);
 }
 
 .sustainability-stat-card > div:last-child {
 	width: 40.7%;
-	font-size: clamp(1rem , 1.2vw, 1.2rem);
+	font-size: clamp(.72rem , 1.27vw, 1.2rem);
 }
 
 
@@ -142,6 +144,6 @@
 	/*background: red;*/
 	display: flex;
 	flex-direction: column;
-	font-size: 3.2rem;
+	font-size: clamp(2rem, 3.4vw, 3.2rem);
 	gap: 24px;
 }

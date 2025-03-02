@@ -21,8 +21,6 @@
 	mix-blend-mode: screen;
 }
 
-.quote-flash > img {
-}
 
 .quote-blur {
 	position: absolute;
@@ -43,13 +41,13 @@
 }
 
 .quote-hdr > div:first-child {
-	font-size: 3.56rem;
+	font-size: clamp(2.2rem, 3.8vw ,3.56rem);
 	line-height: 4rem;
 }
 
 .quote-hdr > div:last-child {
 	line-height: 2rem;
-	font-size: clamp(1rem , 1.2vw, 1.2rem);
+	font-size: clamp(.8rem , 1.4vw, 1.28rem);
 }
 
 .quote-cnt {
@@ -83,7 +81,6 @@
 }
 
 .quote-id > span:first-child {
-	font-size: ;
 	width: 24px;
 	height: 24px;
 	display: flex;
@@ -153,13 +150,13 @@
 }
 
 .quote-1-hdr > div:first-child {
-	font-size: 1.6rem;
+	font-size: clamp(1.2rem, 1.7vw, 1.6rem);
 	font-weight: 500;
 }
 
 .quote-1-hdr > div:last-child {
 	line-height: 2rem;
-	font-size: clamp(1rem , 1.2vw, 1.2rem);
+	font-size: clamp(.8rem , 1.4vw, 1.28rem);
 }
 
 .quote-1-imgs {
@@ -176,7 +173,7 @@
 	position: relative;
 	aspect-ratio: 212 / 247;
 	/*height: 247px;*/
-	border-radius: 30px;
+	border-radius: clamp(12px, 2.6vw, 30px);
 	overflow: clip;
 	cursor: pointer;
 	box-sizing: border-box;
@@ -207,7 +204,7 @@
 	bottom: 0;
 	left: 0;
 	/*font-size: clamp(.7rem, .17vw + .1rem, 1rem);*/
-	font-size: .8rem;
+	font-size: clamp( .64rem, .85vw, .8rem);
 	line-height: 1.2rem;
 	padding: 4.8% 1.2% 0 6.6%;
 	/*height: 76px;*/
@@ -343,7 +340,7 @@
 	flex-direction: column;
 	align-items: center;
 	position: relative;
-	border-radius: 30px;
+	border-radius: clamp(12px, 2.6vw, 30px);
 	background: linear-gradient(rgb(47, 47, 47, .3), rgb(47, 47, 47, .12));
 	font-weight: 600;
 	overflow: hidden;
@@ -365,7 +362,7 @@
 	mask-composite: exclude;
 	left: 0;
 	top: 0;
-	border-radius: 30px;
+	border-radius: clamp(12px, 2.6vw, 30px);
 	z-index: 0;
 }
 
@@ -380,12 +377,17 @@
 .quote-3-card > div:first-child {
 	width: 72%;
 	text-align: center;
+	font-size: clamp( .8rem, 1.28vw, 1rem);
 	line-height: 1.48rem;
 }
 
 .quote-3-card > img {
 	position: absolute;
 	bottom: 0;
+}
+
+.quote-3-card-check {
+	background: linear-gradient(120deg, #9ceca0 ,#2cb933);
 }
 
 .quote-form {
@@ -403,7 +405,7 @@
 }
 
 .quote-confirmation > span:first-child {
-	font-size: 1.4rem;
+	font-size: clamp(1.12rem, 1.5vw, 1.4rem);
 	font-weight: 500;
 }
 
@@ -421,10 +423,12 @@
 
 .quote-confirmation-text > span:first-child {
 	font-size: .8rem;
+	font-size: clamp(.72rem, .9vw, .8rem);
 }
 
 .quote-confirmation-text > span:nth-child(2) {
 	font-size: 1.28rem;
+	font-size: clamp(1rem, 1.35vw, 1.28rem);
 	font-weight: 500;
 }
 

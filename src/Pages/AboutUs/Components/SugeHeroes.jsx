@@ -7,9 +7,9 @@ import img4 from '/images/SUGE CEOs/SUGE STAFF.webp'
 import img5 from '/images/SUGE CEOs/Yos 1.webp'
 import img6 from '/images/SUGE CEOs/Asset 5300 4.webp'
 
-function SugeHeroesCard ({ imgSource, text }) {
+function SugeHeroesCard ({ imgSource, text, action }) {
 	return (
-		<div className='suge-heroes-card'>
+		<div className='suge-heroes-card' onClick={action}>
 
 			{
 				text
@@ -25,6 +25,15 @@ function SugeHeroesCard ({ imgSource, text }) {
 }
 
 export function SugeHeroes () {
+
+	function noClick () {
+		return;
+	}
+
+	function JoinOurTeam () {
+		window.open('https://forms.gle/SfFsJXLgDfaAPg6i6', '', 'rel=noopener noreferrer');
+	}
+
 	return (
 		<div className='suge-heroes'>
 			<div className='suge-heroes-cnt'>
@@ -33,12 +42,12 @@ export function SugeHeroes () {
 			</div>
 
 			<div className='suge-heroes-grid'>
-				<SugeHeroesCard imgSource={img2} />
-				<SugeHeroesCard imgSource={img1} />
-				<SugeHeroesCard imgSource={img4} />
-				<SugeHeroesCard imgSource={img3} />
-				<SugeHeroesCard imgSource={img5} />
-				<SugeHeroesCard imgSource={img6} text='Join Our Team' />
+				<SugeHeroesCard imgSource={img2} action={noClick} />
+				<SugeHeroesCard imgSource={img1} action={noClick} />
+				<SugeHeroesCard imgSource={img4} action={noClick} />
+				<SugeHeroesCard imgSource={img3} action={noClick} />
+				<SugeHeroesCard imgSource={img5} action={noClick} />
+				<SugeHeroesCard imgSource={img6} text='Join Our Team' action={JoinOurTeam}  />
 			</div>
 
 			<div className='suge-heroes-blur' />

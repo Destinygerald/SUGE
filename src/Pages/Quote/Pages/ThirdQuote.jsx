@@ -21,19 +21,8 @@ function ThirdQuoteCard ({ imgSource, text }) {
 	}
 
 	return (
-		<div className={frequency == text ? 'quote-3-card quote-1-card-selected' : 'quote-3-card'} onClick={handleClick}>
+		<div className={frequency == text ? 'quote-3-card quote-3-card-check' : 'quote-3-card'} onClick={handleClick}>
 			<div>{text}</div>
-
-			{
-				frequency == text
-				?
-				<div className='quote-1-card-check'>
-					<IoIosCheckmark />
-				</div>
-				:
-				<></>
-			}
-
 			<img src={imgSource} />
 		</div>
 	)

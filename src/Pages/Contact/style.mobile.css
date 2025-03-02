@@ -1,4 +1,4 @@
-@media(max-width: 480px) {
+@media(max-width: 600px) {
 	.contact-cnt {
 		flex-direction: column;
 		gap: 16px;

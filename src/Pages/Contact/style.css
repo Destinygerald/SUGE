@@ -80,10 +80,10 @@
 	left: 50%;
 	top: 50%;
 	translate: -50% -50%;
-	filter: ;
 	width: 100%;
 	background-image: url('../../assets/SMALL/2.1 Tanker in field  copy_small.webp');
 	background-size: cover;
+	object-fit: cover;
 }
 
 .contact-info-cnt {
@@ -106,7 +106,7 @@
 	height: 32px;
 	display: flex;
 	align-items: center;
-	font-size: 1.28rem;
+	font-size: clamp(.8rem , 1.4vw, 1.28rem);
 }
 
 .contact-info-details {
@@ -116,12 +116,12 @@
 }
 
 .contact-info-details > span:first-child {
-	font-size: 1rem;
+	font-size: clamp(.6rem, 1.06vw, 1rem);
 	/*line-height: 2rem;*/
 }
 
 .contact-info-details > span:last-child {
-	font-size: 1.4rem;
+	font-size: clamp(1rem , 1.5vw, 1.4rem);
 	font-weight: 600;
 	/*line-height: 2rem;*/
 }
@@ -133,7 +133,7 @@
 }
 
 .contact-time > span:first-child {
-	font-size: 1.4rem;
+	font-size: clamp(1rem , 1.5vw, 1.4rem);
 	font-weight: 600;
 }
 
@@ -144,7 +144,7 @@
 }
 
 .contact-time > div:nth-child(2) > span:last-child, .contact-time > div:nth-child(3) > span:last-child {
-	font-size: 1.4rem;
+	font-size: clamp(1rem , 1.5vw, 1.4rem);
 	font-weight: 600;
 }
 
@@ -163,12 +163,13 @@
 }
 
 .contact-form > div:first-child > div:first-child {
-	font-size: 2.2rem;
+	font-size: clamp(1.4rem , 2.5vw, 2.2rem);
 	font-weight: 600;
 }
 
 .contact-form > div:first-child > div:last-child {
 	line-height: 1.48rem;
+	font-size: clamp(.72rem , 1.28vw, 1rem);
 }
 
 .contact-form > form {
@@ -183,6 +184,7 @@
 	display: flex;
 	flex-direction: column;
 	gap: 24px;
+	font-size: clamp(.72rem , 1.28vw, 1rem);
 }
 
 .contact-form-input {
@@ -213,6 +215,7 @@
 	color: var(--text);
 	outline: none;
 	font-size: .88rem;
+	font-size: clamp(.66rem , .9vw, .88rem);
 	padding: 12px;
 	border-radius: 6px;
 	background-color: transparent;
@@ -220,7 +223,7 @@
 }
 
 .contact-form-input > input::placeholder {
-	font-size: .88rem;
+	font-size: clamp(.66rem , .9vw, .88rem);
 	font-weight: 400;
 	color: #c2c2c2;
 }

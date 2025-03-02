@@ -141,7 +141,8 @@
 }
 
 .footer-main-item > div:first-child  {
-	font-size: .8rem;
+	/* font-size: .8rem; */
+	font-size: clamp(.5rem , 1vw, .8rem);
 	line-height: 1.28rem;
 }
 
@@ -158,14 +159,16 @@
 
 .footer-nav > span {
 	padding: 8px 10px;
-	font-size: .8rem;
+	/* font-size: .8rem; */
+	font-size: clamp(.5rem , 1vw, .8rem);
 	cursor: pointer;
 }
 
 .footer-contact {
 	display: flex;
 	gap: 39px;
-	font-size: .8rem;
+	/* font-size: .8rem; */
+	font-size: clamp(.5rem , 1vw, .8rem);
 }
 
 .contact-separator {
@@ -197,7 +200,8 @@
 
 
 .footer-copyright {
-	font-size: .8rem;
+	/* font-size: .8rem; */
+	font-size: clamp(.5rem , 1vw, .8rem);
 	color: var(--text);
 	width: 100%;
 	display: flex;
@@ -220,6 +224,7 @@
 .banner-x > div:first-child {
 	margin-top: 317px;
 	font-size: 4rem;
+	font-size: clamp(2.88rem, 4.4vw, 4rem);
 	font-weight: 600;
 	z-index: 1;
 	position: relative;
@@ -270,7 +275,8 @@
 	padding: 16px 24px;
 	border-radius: 32px;
 	border: none;
-	font-size: 1rem;
+	/* font-size: 1rem; */
+	font-size: clamp(.6rem , 1.12vw, 1rem);
 	color: white;
 	cursor: pointer;
 	height: fit-content;
@@ -311,7 +317,8 @@
 	border-radius: 32px;
 	border: none;
 	font-family: Gotham;
-	font-size: 1rem;
+	/* font-size: 1rem; */
+	font-size: clamp(.6rem , 1.12vw, 1rem);
 	cursor: pointer;
 	background: transparent;
 	height: fit-content;
@@ -354,7 +361,7 @@
 	justify-content: flex-end;
 	width: 100%;
 	height: 202px;
-	font-size: 2.8rem;
+	font-size: clamp(2rem, 3vw, 2.8rem);
 	font-weight: 600;
 	line-height: 3.2rem;
 	background: var(--primary-gradient);
@@ -387,13 +394,14 @@
 
 .success-popup-cnt > div:first-child {
 	font-size: 1rem;
+	font-size: clamp(.72rem, 1.08vw, 1rem);
 	line-height: 1.48rem;
 }
 
 
 .load-popup {
 	width: 70%;
-	height: 80vh;
+	height: 82vh;
 	z-index: 3;
 	top: 50%;
 	left: 50%;
@@ -491,6 +499,7 @@
 .load-popup-main {
 	padding: 60px 40px;
 	padding-right: 80px;
+	padding-bottom: 60px;
 	display: flex;
 	flex-direction: column;
 	gap: 52px;
@@ -500,15 +509,16 @@
 	display: flex;
 	flex-direction: column;
 	gap: 48px;
+	gap: clamp(18px, 3.15vw, 48px);
 }
 
 .load-popup-main > div:first-child > div:first-child {
-	font-size: 3.28rem;
+	font-size: clamp(2.4rem, 3.5vw, 3.28rem);
 	line-height: 3rem;
 }
 
 .load-popup-main > div:first-child > div:last-child {
-	font-size: 1rem;
+	font-size: clamp(.6rem, 1.16vw, 1rem);
 	line-height: 1.48rem;
 }
 
