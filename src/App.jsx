@@ -21,6 +21,8 @@ import Contact from './Pages/Contact/Page.jsx'
 import Contact_2 from './Pages/Contact_2/Page.jsx'
 import Quote from './Pages/Quote/Page.jsx'
 
+import CookieConsent from 'react-cookie-consent'
+
 const Blog = lazy(() => import('./Pages/Blog/Page.jsx'))
 
 import Admin from './Pages/Admin/Page.jsx'
@@ -85,6 +87,18 @@ function App() {
 
             </ScrollTop>
           </Suspense>
+
+        <CookieConsent 
+          style={{   fontSize: 'clamp(.8rem, 1.08vw, 1rem)', backgroundColor: '#0A0A0A'}} 
+          location='bottom' 
+          declineButtonText='Reject Cookies' 
+          declineButtonStyle={{ background: '#fffff', padding: '10px 28px', fontSize: 'clamp(.72rem, 1.08vw, 1rem)' }}
+          buttonText='Accept all Cookies'  
+          buttonStyle={{ background: '#2cb933', padding: '10px 28px', fontSize: 'clamp(.66rem, .9vw, .88rem)' }}
+          cookieName='Suge_accept_cookie' 
+          expires={150}>
+            <span>This website uses cookies to help you have a superior and more admissible browsing experience on the website.</span>
+        </CookieConsent>
 
         <Footer />
        </div>
