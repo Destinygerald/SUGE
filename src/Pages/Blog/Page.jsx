@@ -1,12 +1,31 @@
 import './style.css'
 import './style.1600.css'
 import './style.mobile.css'
+import { useEffect, useState } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import img1 from  '/images/SUGE ASSETS/Lighting Black.webp'
 import { BlogCard } from './Components/BlogCard.jsx'
 import { BlogPage } from './Components/BlogPage.jsx'
+import { fetchBlogs } from '../../Api/FetchData.js'
 
 function Index () {
+
+	const [blogList, setBlogList] =  useState([])
+
+	async function handleBlog() {
+		const blog = await fetchBlogs()
+
+		if (!blog?.responses) return;
+
+		setBlogList(blog.responses)
+	}
+
+	useEffect(() => {
+		handleBlog()
+	}, [])
+
+	console.log(blogList)
+
 	return (
 		<div className='blog-index'>
 			<div className='blog-index-hdr'>
@@ -19,8 +38,8 @@ function Index () {
 
 			<div className='blog-index-grid'>
 				{
-					Array.from(Array(6)).map((_,i) => (
-						<BlogCard key={i} id={i} />
+					blogList.map((item,i) => (
+						<BlogCard key={i} id={item?.responseId} title={item?.answers['1cc11b4c'].textAnswers.answers[0].value} readtime={item?.answers["59fe0f02"]?.textAnswers.answers[0].value} content={item?.answers["3dfaead8"]?.textAnswers.answers[0].value} date={item?.createTime} />
 					))
 				}
 			</div>

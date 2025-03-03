@@ -23,6 +23,8 @@ import Quote from './Pages/Quote/Page.jsx'
 
 import CookieConsent from 'react-cookie-consent'
 
+import {fetchBlogs} from './Api/FetchData.js'
+
 const Blog = lazy(() => import('./Pages/Blog/Page.jsx'))
 
 import Admin from './Pages/Admin/Page.jsx'
@@ -52,6 +54,8 @@ function App() {
     }, 500)
     
   }
+
+  fetchBlogs()
 
   return (
     <Provider store={store}>
@@ -89,10 +93,10 @@ function App() {
           </Suspense>
 
         <CookieConsent 
-          style={{   fontSize: 'clamp(.8rem, 1.08vw, 1rem)', backgroundColor: '#0A0A0A'}} 
+          style={{   fontSize: 'clamp(.8rem, 1.08vw, 1rem)', borderTop:'1px solid rgb(120, 120, 120)', backgroundColor: '#0A0A0A'}} 
           location='bottom' 
           declineButtonText='Reject Cookies' 
-          declineButtonStyle={{ background: '#fffff', padding: '10px 28px', fontSize: 'clamp(.72rem, 1.08vw, 1rem)' }}
+          declineButtonStyle={{ background: '#fffff', padding: '10px 28px', fontSize: 'clamp(.72rem, 1.08vw, 1rem)', marginRight: '0px' }}
           buttonText='Accept all Cookies'  
           buttonStyle={{ background: '#2cb933', padding: '10px 28px', fontSize: 'clamp(.66rem, .9vw, .88rem)' }}
           cookieName='Suge_accept_cookie' 

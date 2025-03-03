@@ -1,13 +1,14 @@
 import '../style.css'
 import '../style.mobile.css'
 import { useState, useEffect } from 'react'
-import { Route, Routes, useLocation } from 'react-router-dom'
+import { Route, Routes, useLocation, useNavigate } from 'react-router-dom'
 import { CiSearch, CiMenuFries } from 'react-icons/ci'
 import { MdHistory } from 'react-icons/md'
 import { FaRegNewspaper } from 'react-icons/fa'
 import Logo from '/images/SUGE LOGO.webp'
 import { QuoteHistory } from './QuoteHistory.jsx'
 import { QuoteInfo } from './QuoteInfo.jsx'
+import { Blog } from './Blog.jsx'
 
 
 function Topbar () {
@@ -34,19 +35,17 @@ function Topbar () {
 	)
 }
 
-function SidebarItem ({ text, icon, nav }) {
+function SidebarItem ({ text, icon, nav, classCheck }) {
 
-	const { pathname } = useLocation()
-
-	// console.log(pathname.split('/'))
+	const navigate = useNavigate()
 
 	return (
-		<div className={pathname.split('/')[2] == nav ? 'admin-sidebar-item admin-sidebar-item-active' : 'admin-sidebar-item' }>
+		<div className={ classCheck ? 'admin-sidebar-item admin-sidebar-item-active' : 'admin-sidebar-item' } onClick={() => {navigate(nav)}}>
 			<span>{icon}</span>
 			<span>{text}</span>
 
 			{
-				pathname.split('/')[2] == nav
+				classCheck
 				?
 				<div className='active-side' />
 				:
@@ -57,13 +56,17 @@ function SidebarItem ({ text, icon, nav }) {
 }
 
 function Sidebar () {
+
+	
+	const { pathname } = useLocation()
+
 	return (
 		<div className='admin-sidebar'>
 			<img src={Logo} />
 
 			<div className='admin-sidebar-cnt'>
-				<SidebarItem text='Order History' icon={<MdHistory />} nav='dashboard' />
-				<SidebarItem text='Blogs' icon={<FaRegNewspaper />} />
+				<SidebarItem text='Order History' icon={<MdHistory />} nav='' classCheck={pathname.split('/')[2] == 'dashboard' && pathname.split('/')[3] != 'blog'} />
+				<SidebarItem text='Blogs' icon={<FaRegNewspaper />} nav='blog' classCheck={pathname.split('/')[3] == 'blog'} />
 			</div>
 		</div>
 	)
@@ -97,6 +100,7 @@ export function Dashboard () {
 					<Routes>
 						<Route index element={<QuoteHistory />} />
 						<Route path='/:id' element={<QuoteInfo />} />
+						<Route path='/blog/*' element={<Blog />} />
 					</Routes>
 				</div>
 			</div>

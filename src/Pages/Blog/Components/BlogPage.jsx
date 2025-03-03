@@ -1,9 +1,11 @@
 import '../style.css'
 import '../style.mobile.css'
 import '../style.1600.css'
+import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { IoCalendarOutline } from 'react-icons/io5'
 import { GoClock } from 'react-icons/go'
+import { fetchBlogContent } from '../../../Api/FetchData'
 
 const List = [
 	{
@@ -24,6 +26,14 @@ const List = [
 	}
 ]
 
+const DAYS = [
+	'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'
+]
+
+const MONTH = [
+	'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
+]
+
 function ParagraphWithListNoImage ({ list, hdr }) {
 	return (
 		<div className='paragraph-list-with-no-img'>
@@ -36,7 +46,7 @@ function ParagraphWithListNoImage ({ list, hdr }) {
 				}
 
 				<div className='paragraph-list'>
-					{
+					{/* {
 						list?.map((item, i) => (
 							<div className='paragraph-list-item'>
 								
@@ -53,13 +63,14 @@ function ParagraphWithListNoImage ({ list, hdr }) {
 								</div>
 							</div>
 						))
-					}
+					} */}
 				</div>
 		</div>
 	)
 }
 
 function ParagraphWithImageAndList ({ list, hdr, img }) {
+	// console.log(list.split('\n'))
 	return (
 		<div className='paragraph-with-list-and-img'>
 			<div className='paragraph-list-with-img'>
@@ -73,22 +84,26 @@ function ParagraphWithImageAndList ({ list, hdr, img }) {
 
 				<div className='paragraph-list'>
 					{
-						list?.map((item, i) => (
-							<div className='paragraph-list-item'>
+						list
+						?
+						list?.split('\n')?.map((item, i) => (
+							<div className='paragraph-list-item' key={i}>
 								
 								<span>{i + 1}.</span>
 
 								<div className='paragraph-list-item-cnt'>
-									<div>
-										{item?.title}
-									</div>
+									{/* <div>
+										{item}
+									</div> */}
 
 									<div>
-										{item?.cnt}
+										{item}
 									</div>
 								</div>
 							</div>
 						))
+						:
+						<></>
 					}
 				</div>
 			</div>
@@ -100,45 +115,52 @@ function ParagraphWithImageAndList ({ list, hdr, img }) {
 	)	
 }
 
-function Paragraph ({ cnt, hasImg, hasList, hdr, img }) {
+function Paragraph ({ cnt, hdr }) {
+
 	return (
 		<div className='paragraph'>
-			
 			{
-				!hasImg && !hasList
-				?
-				<>
-					{
-						hdr
-						?
-						<div className='paragraph-hdr'> {hdr} </div>
-						:
-						<></>
-					}
+					hdr
+					?
+					<div className='paragraph-hdr'> {hdr} </div>
+					:
+					<></>
+				}
 
-					<div className='paragraph-noimg-nolist'>
-						{cnt}
-					</div>
-				</>
-				:
-				hasImg && hasList
-				?
-				<ParagraphWithImageAndList list={cnt} hdr={hdr} img={img} />
-				:
-				<></>
-			}
+				<div className='paragraph-noimg-nolist'>
+					{cnt}
+				</div>
 		</div>
 	)
 }
 
 export function BlogPage () {
 
+	const [ blogData, setBlogData ] = useState({})
+
 	const { id } = useParams()
+
+	async function fetchDataInfo() {
+		const info = await fetchBlogContent(id)
+
+		console.log(info)
+
+		setBlogData({...info})
+	}
+
+	useEffect(() => {
+		fetchDataInfo()
+	}, [])
+
+	// title={item?.answers['1cc11b4c'].textAnswers.answers[0].value}
+	// readtime={item?.answers["59fe0f02"].textAnswers.answers[0].value} 
+	// content={item?.answers["2e2da32f"].textAnswers.answers[0].value} 
+	// date={item?.createTime}
 
 	return (
 		<div className='blog-page'>
 			<div className='blog-page-hdr'>
-				<div>Understanding Waste Sorting: A Key to Effective Recycling</div>
+				<div>{ blogData?.answers ? blogData?.answers['1cc11b4c']?.textAnswers.answers[0].value : 'Understanding Waste Sorting: A Key to Effective Recycling'}</div>
 
 				<div>
 					<div>
@@ -150,22 +172,26 @@ export function BlogPage () {
 
 					<div>
 						<span> <GoClock /> </span>
-						<span>{'3 min'}</span>
+						<span>{ blogData?.answers ? blogData?.answers["59fe0f02"]?.textAnswers.answers[0].value : 3} min</span>
 					</div>
 				</div>
 			</div>
 
+
+
 			<div className='blog-paragraphs'>
-				<Paragraph hasImg={false} hasList={false} cnt='Recycling is one of the simplest yet most effective ways to reduce waste and minimize our environmental impact. But did you know that the success of recycling largely depends on how we sort our waste? Waste sorting—separating recyclables from non-recyclables and organizing materials for proper disposal—is a crucial first step in ensuring that valuable resources don’t end up in landfills.
-Why Waste Sorting Matters
-When waste is mixed, recyclables like paper, plastic, glass, and metal can’t be processed efficiently. This results in contamination, making it difficult or even impossible for recycling facilities to extract usable materials. By sorting waste correctly, we increase the likelihood that these materials will be properly recycled and repurposed, rather than being discarded as trash.' />
-			
-				<Paragraph hasImg={true} hasList={true} cnt={List} hdr='How to Sort Waste Effectively'  />
+				
+					
+					<Paragraph title={blogData?.answers?.["73f8cc34"]?.textAnswers.answers[0].value}  cnt={blogData?.answers?.['3dfaead8']?.textAnswers.answers[0].value} />
 
+					<ParagraphWithImageAndList title={blogData?.answers?.["73f8cc34"]?.textAnswers.answers[0].value} list={blogData?.answers?.["293733d9"]?.textAnswers.answers[0].value} />
+					{/* <Paragraph hasImg={true} hasList={true} title={blogData?.answers?.["633b0cd6"]?.textAnswers.answers[0].value} cnt={blogData?.answers?.['293733d9']?.textAnswers.answers[0].value} /> */}
 
-				<Paragraph hasImg={false} hasList={false} cnt="Sorting waste isn’t just a responsibility—it’s an opportunity to make a difference. When done correctly, it ensures that recyclables are processed properly, reducing the need for virgin materials, saving energy, and cutting down on landfill waste. It also helps create a circular economy where products are reused and recycled, reducing our reliance on natural resources.
-By understanding the importance of waste sorting, we can all take small steps that add up to big environmental changes. So, the next time you’re about to throw something away, take a moment to think about whether it can be recycled, composted, or reused—and help make the planet a little bit greener!" hdr='The Benefits of Proper Waste Sorting' />
+					<Paragraph cnt={blogData?.answers?.['3dfaead8']?.textAnswers.answers[0].value} />	
 			</div>
 		</div>
 	)
 }
+
+
+// 293733d9

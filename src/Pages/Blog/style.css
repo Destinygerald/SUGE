@@ -59,6 +59,8 @@
 	background: linear-gradient(rgb(47, 47, 47, .3), rgb(47, 47, 47, .12));
 	border-radius: 30px;
 	overflow: clip;
+	position: relative;
+	z-index: 1;
 }
 
 .blog-card-img {
