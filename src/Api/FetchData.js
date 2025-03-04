@@ -1,5 +1,6 @@
-const URL = `https://suge-sever.onrender.com`
+// const URL = `https://suge-sever.onrender.com`
 // const URL = `http://localhost:8000`
+const URL = `https://suge-sever.vercel.app`
 
 export async function fetchBlogs() {
     const response = await fetch(`${URL}`, {
@@ -74,10 +75,15 @@ export async function deleteBlogs(id){
 }
 
 export async function profileChecker () {
+    
     const response = await fetch(`${URL}/admin/profile`, {
+        mode: 'no-cors',
         method: 'GET',
         credentials: 'include',
-        withCredentials: true
+        headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+        }
     })
 
     console.log(response)
