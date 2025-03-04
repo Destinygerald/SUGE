@@ -9,6 +9,7 @@ import Logo from '/images/SUGE LOGO.webp'
 import { QuoteHistory } from './QuoteHistory.jsx'
 import { QuoteInfo } from './QuoteInfo.jsx'
 import { Blog } from './Blog.jsx'
+import { profileChecker } from '../../../Api/FetchData.js'
 
 
 
@@ -88,6 +89,22 @@ function MobileNav () {
 
 export function Dashboard () {
 
+	const navigate = useNavigate()
+
+	async function checkForProfile() {
+		const res = await profileChecker()
+
+		if (res.status != 'Ok') {
+			navigate('/admin')	
+		}
+		
+	}
+
+	useEffect(() => {
+		checkForProfile()
+	}, [])
+
+
 	return (
 		<div className='admin-dashboard'>
 			<Sidebar />
@@ -99,10 +116,8 @@ export function Dashboard () {
 
 				<div className='admin-dashboard-cnt'>
 					<Routes>
-						{/* <Route index element={<QuoteHistory />} /> */}
-						{/* <Route path='/:id' element={<QuoteInfo />} /> */}
-						<Route index element={<Blog />} />
-						<Route path='/blog/*' element={<Blog />} />
+						<Route index element={<Blog   />} />
+						<Route path='/blog/*' element={<Blog  />} />
 					</Routes>
 				</div>
 			</div>

@@ -95,8 +95,9 @@ function App() {
         <CookieConsent 
           style={{   fontSize: 'clamp(.8rem, 1.08vw, 1rem)', borderTop:'1px solid rgb(120, 120, 120)', backgroundColor: '#0A0A0A'}} 
           location='bottom' 
+          enableDeclineButton
           declineButtonText='Reject Cookies' 
-          declineButtonStyle={{ background: '#fffff', padding: '10px 28px', fontSize: 'clamp(.72rem, 1.08vw, 1rem)', marginRight: '0px' }}
+          declineButtonStyle={{ background: '#fffff', padding: '10px 28px', fontSize: 'clamp(.72rem, 1.08vw, 1rem)', color: 'black', marginRight: '0px' }}
           buttonText='Accept all Cookies'  
           buttonStyle={{ background: '#2cb933', padding: '10px 28px', fontSize: 'clamp(.66rem, .9vw, .88rem)' }}
           cookieName='Suge_accept_cookie' 

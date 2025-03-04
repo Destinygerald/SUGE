@@ -2,8 +2,21 @@ import '../style.css'
 import '../style.mobile.css'
 import { Routes, Route, useNavigate, useLocation, useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
-import { fetchBlogs, fetchBlogContent } from '../../../Api/FetchData.js'
+import { fetchBlogs, fetchBlogContent, convertImageToBase64, addBlog, deleteBlogs } from '../../../Api/FetchData.js'
 import { BlogCard } from '../../Blog/Components/BlogCard.jsx'
+
+function MessgaeDisplay ({ msg, setMsg }) {
+
+    setTimeout(() => {
+        setMsg('')
+    }, [])
+
+    return (
+        <div className='Alert Message'>
+            {msg}
+        </div>
+    )
+}
 
 function BlogComponentHeader() {
 
@@ -12,7 +25,7 @@ function BlogComponentHeader() {
     return (
         <div className='admin-blog-hdr'>
             <span>Blogs</span>
-            <button onClick={() => {navigate('create')}}> Create New Blog </button>
+            <button onClick={() => {navigate('blog/create')}}> Create New Blog </button>
         </div>
     )
 }
@@ -51,13 +64,41 @@ function BlogIndex () {
     )
 }
 
-function BlogParagraph ({ hdr , i, handleClick, cnt, image, changeHandler}) {
+function BlogParagraph ({ hdr , i, handleClick, cnt, image, changeHandler, setBlogInfo, blogInfo}) {
+
+    function handleImage(e) {
+        // Just add the image converter here.
+    //    const res = convertImageToBase64(e)
+        
+    //    console.log(res)
+       
+    //    if (!res) {
+    //     return;
+    //    }
+
+    //    console.log(blogInfo)
+
+    //     const prevCnt = blogInfo.content.slice(0, i)
+    //     const nextCnt = blogInfo.content.slice(i + 1)
+
+    //     const editedCnt = {
+    //         ...blogInfo.content?.at(i),
+    //         img : res
+    //     }
+        
+    //     const newArray = [...prevCnt, editedCnt, ...nextCnt]
+
+    //     console.log(newArray)
+
+        // setBlogInfo({...blogInfo, content: [...newArray] })
+
+    }
 
     return (
         <div className='admin-blog-paragraph'>
             <input type='text' placeholder='Paragradh Heading' value={hdr} name='header' onChange={changeHandler} />
             <textarea placeholder='Paragradh Content' value={cnt} name='content' onChange={changeHandler}></textarea>
-            <input type="file" accept="image/png, image/jpeg" value={image} name='image' />
+            <input type="file" accept="image/png, image/jpeg" value={image} name='image' onChange={handleImage} />
 
             <span className='admin-blog-paragraph-remove' onClick={handleClick}>-</span>
         </div>
@@ -67,13 +108,13 @@ function BlogParagraph ({ hdr , i, handleClick, cnt, image, changeHandler}) {
 function CreateBlog() {
 
     const [blogInfo, setBlogInfo] = useState({
-        tile: '',
-        readTime: 0,
+        title: '',
+        readTime: '',
         content: [],
-        dateAdded: ''
     })
 
     const [blogContentNum, setBlogContentNum] = useState(1)
+    const [msg, setMsg] = useState('')
 
     const navigate = useNavigate()
     const { pathname } = useLocation()
@@ -136,6 +177,7 @@ function CreateBlog() {
         setBlogInfo({...blogInfo, content: [...newArray] })
     }
 
+
     async function fetchEditData() {
         const res = await fetchBlogContent(id)
 
@@ -144,6 +186,16 @@ function CreateBlog() {
         }
 
         setBlogContentNum(res.data.content.length)
+    }
+
+    async function createBlog() {
+        const res = await addBlog(blogInfo)
+        
+        console.log(res)
+    }
+
+    async function deleteThisBlog () {
+
     }
 
     useEffect(() => {
@@ -160,18 +212,19 @@ function CreateBlog() {
                 <span>{pathname.split('/')[4] == 'create' ? 'Create' : 'Edit'} Blog</span>
             </div>
 
+
             <div className='create-blog-main'>
                 <input type='text' placeholder='Blog Title' value={blogInfo?.title} name='title' onChange={changeHandler} />
-                <input type='number' placeholder='Read time' min={3} value={blogInfo?.readTime} name='readTime' onChange={changeHandler} />
+                <input type='number' placeholder='Read time [in minutes]' min={3} value={blogInfo?.readTime} name='readTime' onChange={changeHandler} />
                 {  
                     pathname.split('/')[4] == 'create'
                     ?
                     Array.from(Array(blogContentNum))?.map((item, i) => (
-                        <BlogParagraph i={1} handleClick={() => deleteParagrah(i)} key={i} changeHandler={(e) => paragraphChangeHandler(e, i)} />
+                        <BlogParagraph i={1} handleClick={() => deleteParagrah(i)} key={i} changeHandler={(e) => paragraphChangeHandler(e, i)} setBlogInfo={setBlogInfo} blogInfo={blogInfo} />
                     ))
                     :
                     blogInfo?.content?.map((item, i) => (
-                        <BlogParagraph i={i} handleClick={() => deleteParagrah(i)} key={i} hdr={item?.header} cnt={item?.content} image={item?.image} changeHandler={(e) => paragraphChangeHandler(e, i)} />
+                        <BlogParagraph i={i} handleClick={() => deleteParagrah(i)} key={i} hdr={item?.header} cnt={item?.content} image={item?.image} changeHandler={(e) => paragraphChangeHandler(e, i)} setBlogInfo={setBlogInfo} blogInfo={blogInfo} />
                     ))
                 }
             </div>
@@ -180,17 +233,34 @@ function CreateBlog() {
                 {  
                     pathname.split('/')[4] == 'create'
                     ?
-                    <button>Submit</button>
+                    <button onClick={createBlog}>Submit</button>
                     :
                     <button>Edit</button>
                 }
+
+                {
+                    pathname.split('/')[4] != 'create'
+                    ?
+                    <button onClick={deleteThisBlog}>Delete</button>
+                    :
+                    <></>
+                }
                 <button onClick={addParagraph}>Add Paragragh</button>
             </div>
+
+            {
+                msg
+                ?
+                <MessgaeDisplay msg={msg} setMsg={setMsg} />
+                :
+                <></>
+            }
         </div>
     )
 }
 
 export function Blog() {
+    
     return (
         <>
             <Routes>
