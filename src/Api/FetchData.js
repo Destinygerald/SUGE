@@ -76,9 +76,11 @@ export async function deleteBlogs(id){
 export async function profileChecker () {
     const response = await fetch(`${URL}/admin/profile`, {
         method: 'GET',
-        credentials: 'include'
+        credentials: 'include',
+        withCredentials: true
     })
 
+    console.log(response)
 
     const res = await response.json()
 

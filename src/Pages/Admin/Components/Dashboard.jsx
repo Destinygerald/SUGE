@@ -94,6 +94,8 @@ export function Dashboard () {
 	async function checkForProfile() {
 		const res = await profileChecker()
 
+		console.log(res)
+
 		if (res.status != 'Ok') {
 			navigate('/admin')	
 		}
