@@ -2,6 +2,7 @@ import '../style.css'
 import '../style.mobile.css'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { adminLogin } from '../../../Api/FetchData.js'
 
 export function Login () {
 
@@ -16,8 +17,19 @@ export function Login () {
 		setLogin({...login, [e.target.name]: e.target.value })
 	}
 
-	function clickHandler () {
-		navigate('/admin/dashboard')
+	async function clickHandler () {
+		const res = await adminLogin(login)
+
+		if (res.status === 'Ok') {
+			navigate('/admin/dashboard')
+		}
+
+		setLogin({
+			email: '',
+			password: ''
+		})
+
+		return;
 	}
 
 	return (

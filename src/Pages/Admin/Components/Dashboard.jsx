@@ -11,6 +11,7 @@ import { QuoteInfo } from './QuoteInfo.jsx'
 import { Blog } from './Blog.jsx'
 
 
+
 function Topbar () {
 
 	const [search, setSearch] = useState('')
@@ -65,8 +66,8 @@ function Sidebar () {
 			<img src={Logo} />
 
 			<div className='admin-sidebar-cnt'>
-				<SidebarItem text='Order History' icon={<MdHistory />} nav='' classCheck={pathname.split('/')[2] == 'dashboard' && pathname.split('/')[3] != 'blog'} />
-				<SidebarItem text='Blogs' icon={<FaRegNewspaper />} nav='blog' classCheck={pathname.split('/')[3] == 'blog'} />
+				{/* <SidebarItem text='Order History' icon={<MdHistory />} nav='' classCheck={pathname.split('/')[2] == 'dashboard' && pathname.split('/')[3] != 'blog'} /> */}
+				<SidebarItem text='Blogs' icon={<FaRegNewspaper />} nav='blog' classCheck={true} />
 			</div>
 		</div>
 	)
@@ -98,8 +99,9 @@ export function Dashboard () {
 
 				<div className='admin-dashboard-cnt'>
 					<Routes>
-						<Route index element={<QuoteHistory />} />
-						<Route path='/:id' element={<QuoteInfo />} />
+						{/* <Route index element={<QuoteHistory />} /> */}
+						{/* <Route path='/:id' element={<QuoteInfo />} /> */}
+						<Route index element={<Blog />} />
 						<Route path='/blog/*' element={<Blog />} />
 					</Routes>
 				</div>

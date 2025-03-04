@@ -1,7 +1,9 @@
 import '../style.css'
 import '../style.mobile.css'
-import { Routes, Route, useNavigate } from 'react-router-dom'
-import { useState } from 'react'
+import { Routes, Route, useNavigate, useLocation, useParams } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { fetchBlogs, fetchBlogContent } from '../../../Api/FetchData.js'
+import { BlogCard } from '../../Blog/Components/BlogCard.jsx'
 
 function BlogComponentHeader() {
 
@@ -15,17 +17,23 @@ function BlogComponentHeader() {
     )
 }
 
-function BlogCard () {
-    return (
-        <div className='admin-blog-card'>
-            <div className='blog-card-img'></div>
-
-            <div className='blog-card-cnt'></div>
-        </div>
-    )
-}
 
 function BlogIndex () {
+
+    const [ blogs, setBlogs ] = useState([])
+
+    async function getAllBlogs () {
+        const res = await fetchBlogs()
+
+        if (!res?.result) return;
+
+		setBlogs(res.result)
+    }
+
+    useEffect(() => {
+        getAllBlogs()
+    }, [])
+
     return (
         <div className="admin-blog">
             <BlogComponentHeader />
@@ -33,8 +41,8 @@ function BlogIndex () {
             <div className='admin-blog-cnt'>
                 <div className='admin-blog-grid'>
                     {
-                        Array.from(Array(18)).map((_, i) => (
-                            <BlogCard />
+                        blogs.map((item, i) => (
+                            <BlogCard key={'admin-blog-card-' + i} id={item?._id} image={item?.content[0]?.img} title={item?.title} content={item?.content[0]?.content} readtime={item?.readTime} date={item?.dateAdded} />
                         ))
                     }
                 </div>
@@ -43,13 +51,13 @@ function BlogIndex () {
     )
 }
 
-function BlogParagraph ({ hdr , i, handleClick}) {
+function BlogParagraph ({ hdr , i, handleClick, cnt, image, changeHandler}) {
 
     return (
         <div className='admin-blog-paragraph'>
-            <input type='text' placeholder='Paragradh Heading' value={hdr} name={`paragraph-hdr-${i}`} />
-            <textarea placeholder='Paragradh Content'></textarea>
-            <input type='image' placeholder='image'  />
+            <input type='text' placeholder='Paragradh Heading' value={hdr} name='header' onChange={changeHandler} />
+            <textarea placeholder='Paragradh Content' value={cnt} name='content' onChange={changeHandler}></textarea>
+            <input type="file" accept="image/png, image/jpeg" value={image} name='image' />
 
             <span className='admin-blog-paragraph-remove' onClick={handleClick}>-</span>
         </div>
@@ -61,47 +69,121 @@ function CreateBlog() {
     const [blogInfo, setBlogInfo] = useState({
         tile: '',
         readTime: 0,
-        contents: [],
-        img: ''
+        content: [],
+        dateAdded: ''
     })
 
     const [blogContentNum, setBlogContentNum] = useState(1)
 
+    const navigate = useNavigate()
+    const { pathname } = useLocation()
+    const {id} = useParams()
+
     function deleteParagrah(i) {
         
+        console.log(blogContentNum)
         if (blogContentNum <= 1) return;
 
         setBlogContentNum(blogContentNum => blogContentNum -= 1)
 
+        // console.log('ran')
+
+        let contents = [...blogInfo?.content]
+
+        contents.splice(i, i+1)
+
+
         setBlogInfo({
             ...blogInfo,
-            contents : blogInfo?.contents?.splice(i, i + 1)
+            content : [...contents]
         })
+
+        // console.log(i)
     }
 
     function addParagraph() {
+        if (pathname.split('/')[4] == 'create'){
+            setBlogContentNum(blogContentNum => blogContentNum += 1)
+        } else {
+            let addedContent = [...blogInfo.content, {
+                header: '',
+                content: '',
+                image: ''
+            }]
+
+            console.log(addedContent)
+            setBlogInfo({...blogInfo, content: addedContent})
+        }
+        
         setBlogContentNum(blogContentNum => blogContentNum += 1)
     }
+
+    function changeHandler(e) {
+        setBlogInfo({...blogInfo, [e.target.name]: e.target.value})
+    }
+
+    function paragraphChangeHandler(e, i) {
+
+        const prevCnt = blogInfo.content.slice(0, i)
+        const nextCnt = blogInfo.content.slice(i + 1)
+        const editedCnt = {
+            ...blogInfo.content?.at(i),
+            [e.target.name] : e.target.value
+        }
+
+        const newArray = [...prevCnt, editedCnt, ...nextCnt]
+
+        setBlogInfo({...blogInfo, content: [...newArray] })
+    }
+
+    async function fetchEditData() {
+        const res = await fetchBlogContent(id)
+
+        if (res.status == 'OK') {
+            setBlogInfo(res.data)
+        }
+
+        setBlogContentNum(res.data.content.length)
+    }
+
+    useEffect(() => {
+        if (pathname.split('/')[4] != 'create') {
+            fetchEditData()
+            return;
+        }
+    }, [])
 
     return (
         <div className='create-blog'>
             <div className='create-blog-hdr'>
-                <span>{'<'}</span>
-                <span>Create Blog</span>
+                <span onClick={() => navigate(-1)}>{'<'}</span>
+                <span>{pathname.split('/')[4] == 'create' ? 'Create' : 'Edit'} Blog</span>
             </div>
 
             <div className='create-blog-main'>
-                <input type='text' placeholder='Blog Title' />
-                <input type='number' placeholder='Read time' min={3} />
-                {
+                <input type='text' placeholder='Blog Title' value={blogInfo?.title} name='title' onChange={changeHandler} />
+                <input type='number' placeholder='Read time' min={3} value={blogInfo?.readTime} name='readTime' onChange={changeHandler} />
+                {  
+                    pathname.split('/')[4] == 'create'
+                    ?
                     Array.from(Array(blogContentNum))?.map((item, i) => (
-                        <BlogParagraph i={1} handleClick={() => deleteParagrah()} key={i} />
+                        <BlogParagraph i={1} handleClick={() => deleteParagrah(i)} key={i} changeHandler={(e) => paragraphChangeHandler(e, i)} />
+                    ))
+                    :
+                    blogInfo?.content?.map((item, i) => (
+                        <BlogParagraph i={i} handleClick={() => deleteParagrah(i)} key={i} hdr={item?.header} cnt={item?.content} image={item?.image} changeHandler={(e) => paragraphChangeHandler(e, i)} />
                     ))
                 }
             </div>
             
             <div className='create-blog-btn'>
-                <button>Submit</button>
+                {  
+                    pathname.split('/')[4] == 'create'
+                    ?
+                    <button>Submit</button>
+                    :
+                    <button>Edit</button>
+                }
                 <button onClick={addParagraph}>Add Paragragh</button>
             </div>
         </div>
@@ -114,6 +196,7 @@ export function Blog() {
             <Routes>
                 <Route index element={<BlogIndex />} />
                 <Route path='/create' element={<CreateBlog />} />
+                <Route path='/:id' element={<CreateBlog />} />
             </Routes>
         </>
     )

@@ -15,16 +15,14 @@ function Index () {
 	async function handleBlog() {
 		const blog = await fetchBlogs()
 
-		if (!blog?.responses) return;
+		if (!blog?.result) return;
 
-		setBlogList(blog.responses)
+		setBlogList(blog.result)
 	}
 
 	useEffect(() => {
 		handleBlog()
 	}, [])
-
-	console.log(blogList)
 
 	return (
 		<div className='blog-index'>
@@ -38,8 +36,8 @@ function Index () {
 
 			<div className='blog-index-grid'>
 				{
-					blogList.map((item,i) => (
-						<BlogCard key={i} id={item?.responseId} title={item?.answers['1cc11b4c'].textAnswers.answers[0].value} readtime={item?.answers["59fe0f02"]?.textAnswers.answers[0].value} content={item?.answers["3dfaead8"]?.textAnswers.answers[0].value} date={item?.createTime} />
+					blogList?.map((item, i) => (
+						<BlogCard key={'blog-card-' + i} id={item?._id} image={item?.content[0]?.img} title={item?.title} content={item?.content[0]?.content} readtime={item?.readTime} date={item?.dateAdded} />
 					))
 				}
 			</div>

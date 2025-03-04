@@ -4,7 +4,7 @@ import '../style.1600.css'
 import { useState, useEffect } from 'react'
 import { IoCalendarOutline } from 'react-icons/io5'
 import { GoClock } from 'react-icons/go'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 
 const DAYS = [
 	'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'
@@ -19,8 +19,13 @@ export function BlogCard ({ id, image, title, content, readtime, date }) {
 	const [ dateConvert, setDateConvert ] = useState('')
 
 	const navigate = useNavigate()
+	const { pathname } = useLocation()
 
 	function readBlog () {
+		if (pathname.includes('admin')) {
+			navigate(`/admin/dashboard/blog/${id}`)
+			return;
+		}
 		navigate(`/blog/${id}`)
 	}
 
@@ -38,7 +43,13 @@ export function BlogCard ({ id, image, title, content, readtime, date }) {
 	return (
 		<div className='blog-card' onClick={readBlog}>
 			<div className='blog-card-img'>
-				<img src={image} />
+				{
+					image
+					?
+					<img src={image} />
+					:
+					<div className='blog-img-alt'>{content.split('')[0]}</div>
+				}
 			</div>
 
 			<div className='blog-card-cnt'>
@@ -68,6 +79,10 @@ export function BlogCard ({ id, image, title, content, readtime, date }) {
 					{
 						content?.slice(0, 200)
 						?
+						pathname.includes('/admin')
+						?
+						content.slice(0, 40) + '...'
+						:
 						content?.slice(0, 200) + '...'
 						:
 						'----'
