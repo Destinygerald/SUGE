@@ -27,14 +27,14 @@ function BlogParagraph ({ hdr , i, handleClick, cnt, image, changeHandler, setBl
 
         reader.readAsDataURL(e.target.files[0]);
         
-        const prevCnt = blogInfo.content.slice(0, i - 1)
+        const prevCnt = blogInfo.content.slice(0, i)
         const nextCnt = blogInfo.content.slice(i + 1)
         
         try {
             reader.onload = () => {
                 
                 const editedCnt = {
-                    ...blogInfo.content?.at(i - 1),
+                    ...blogInfo.content?.at(i),
                     img : reader.result
                 }
 
@@ -101,14 +101,24 @@ export function CreateBlog() {
 
     function deleteParagrah(i) {
         
-        // console.log(blogContentNum)
+        console.log(i)
+        console.log(blogContentNum)
         if (blogContentNum <= 1) return;
 
         setBlogContentNum(blogContentNum => blogContentNum -= 1)
 
         let contents = [...blogInfo?.content]
 
-        contents.splice(i, i+1)
+        console.log(contents)
+
+        contents = contents.filter((content, index) => {
+            console.log(content)
+            if (i != index) {
+                return content
+            }
+        })
+
+        console.log(contents)
 
 
         setBlogInfo({
@@ -118,8 +128,17 @@ export function CreateBlog() {
     }
 
     function addParagraph() {
-        if (pathname.split('/')[4] == 'create'){
+        if (pathname.split('/').includes('create')){
             setBlogContentNum(blogContentNum => blogContentNum += 1)
+
+            let addedContent = [...blogInfo.content, {
+                header: '',
+                content: '',
+                image: ''
+            }]
+
+            setBlogInfo({...blogInfo, content: [...addedContent]})
+
         } else {
             let addedContent = [...blogInfo.content, {
                 header: '',
@@ -127,7 +146,7 @@ export function CreateBlog() {
                 image: ''
             }]
 
-            setBlogInfo({...blogInfo, content: addedContent})
+            setBlogInfo({...blogInfo, content: [...addedContent]})
             setBlogContentNum(blogContentNum => blogContentNum += 1)
         }
         
@@ -232,7 +251,7 @@ export function CreateBlog() {
     }
 
     useEffect(() => {
-        if (pathname.split('/')[4] != 'create') {
+        if (!pathname.split('/').includes('create')) {
             fetchEditData()
             return;
         }
@@ -242,7 +261,7 @@ export function CreateBlog() {
         <div className='create-blog'>
             <div className='create-blog-hdr'>
                 <span onClick={() => navigate(-1)}>{'<'}</span>
-                <span>{pathname.split('/')[4] == 'create' ? 'Create' : 'Edit'} Blog</span>
+                <span>{pathname.split('/').includes('create') ? 'Create' : 'Edit'} Blog</span>
             </div>
 
 
@@ -250,11 +269,17 @@ export function CreateBlog() {
                 <input type='text' placeholder='Blog Title' value={blogInfo?.title} name='title' onChange={changeHandler} />
                 <input type='number' placeholder='Read time [in minutes]' min={3} value={blogInfo?.readTime} name='readTime' onChange={changeHandler} />
                 {  
-                    pathname.split('/')[4] == 'create'
+                    pathname.split('/').includes('create')
                     ?
-                    Array.from(Array(blogContentNum))?.map((item, i) => (
-                        <BlogParagraph i={1} handleClick={() => deleteParagrah(i)} key={i} changeHandler={(e) => paragraphChangeHandler(e, i)} setBlogInfo={setBlogInfo} blogInfo={blogInfo} />
-                    ))
+                    blogInfo?.title || blogInfo?.readTime || blogInfo?.content[0]
+                    ?
+                        blogInfo?.content?.map((item, i) => (
+                            <BlogParagraph i={i} handleClick={() => deleteParagrah(i)} key={i} hdr={item?.header} cnt={item?.content} image={item?.img} changeHandler={(e) => paragraphChangeHandler(e, i)} setBlogInfo={setBlogInfo} blogInfo={blogInfo} />
+                        ))
+                    :
+                        Array.from(Array(blogContentNum))?.map((item, i) => (
+                            <BlogParagraph i={i} handleClick={() => deleteParagrah(i)} key={i} changeHandler={(e) => paragraphChangeHandler(e, i)} setBlogInfo={setBlogInfo} blogInfo={blogInfo} />
+                        ))
                     :
                     blogInfo?.content?.map((item, i) => (
                         <BlogParagraph i={i} handleClick={() => deleteParagrah(i)} key={i} hdr={item?.header} cnt={item?.content} image={item?.img} changeHandler={(e) => paragraphChangeHandler(e, i)} setBlogInfo={setBlogInfo} blogInfo={blogInfo} />

@@ -21,9 +21,10 @@ function BlogComponentHeader() {
 }
 
 
-function BlogIndex () {
+function BlogIndex ({ search }) {
 
     const [ blogs, setBlogs ] = useState([])
+    const [ blogSearch, setBlogSearch ] = useState([])
 
     async function getAllBlogs () {
         const res = await fetchBlogs()
@@ -37,6 +38,21 @@ function BlogIndex () {
         getAllBlogs()
     }, [])
 
+    useEffect(() => {
+
+
+
+        if (!search) {
+            setBlogSearch([])
+        };
+
+
+        const searchResult = blogs.filter(blog => blog.title.toLowerCase().includes(search.toLowerCase()));
+
+        setBlogSearch([...searchResult])
+
+    }, [search])
+
     return (
         <div className="admin-blog">
             <BlogComponentHeader />
@@ -44,7 +60,13 @@ function BlogIndex () {
             <div className='admin-blog-cnt'>
                 <div className='admin-blog-grid'>
                     {
+                        !blogSearch[0]
+                        ?
                         blogs.map((item, i) => (
+                            <BlogCard key={'admin-blog-card-' + i} id={item?._id} image={item?.content[0]?.img} title={item?.title} content={item?.content[0]?.content} readtime={item?.readTime} date={item?.dateAdded} />
+                        ))
+                        :
+                        blogSearch.map((item, i) => (
                             <BlogCard key={'admin-blog-card-' + i} id={item?._id} image={item?.content[0]?.img} title={item?.title} content={item?.content[0]?.content} readtime={item?.readTime} date={item?.dateAdded} />
                         ))
                     }
@@ -56,12 +78,12 @@ function BlogIndex () {
 
 
 
-export function Blog() {
+export function Blog({ search }) {
     
     return (
         <>
             <Routes>
-                <Route index element={<BlogIndex />} />
+                <Route index element={<BlogIndex search={search} />} />
                 <Route path='/create' element={<CreateBlog />} />
                 <Route path='/:id' element={<CreateBlog />} />
             </Routes>

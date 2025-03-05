@@ -48,10 +48,21 @@
 	.admin-nav > img {
 		filter: invert(100%);
 		width: 20%;
+		display: none;
 	}
 
 	.admin-topbar {
-		display: none;
+		/* display: none; */
+		/* right: 10px; */
+		left: auto;
+		position: absolute;
+		top: 0;
+		justify-content: flex-end;
+		padding-right: 24px;
+	}
+
+	.admin-topbar-search {
+		width: 55%;
 	}
 
 	.admin-dashboard-cnt {

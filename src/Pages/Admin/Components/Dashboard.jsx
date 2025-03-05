@@ -13,9 +13,9 @@ import { profileChecker, getCookie } from '../../../Api/FetchData.js'
 
 
 
-function Topbar () {
+function Topbar ({ search, setSearch}) {
 
-	const [search, setSearch] = useState('')
+	
 	const pathname = useLocation()
 
 	function searchHandler (e) {
@@ -89,6 +89,7 @@ function MobileNav () {
 
 export function Dashboard ({ loginCheck }) {
 
+	const [search, setSearch] = useState('')
 	const navigate = useNavigate()
 
 	
@@ -97,7 +98,6 @@ export function Dashboard ({ loginCheck }) {
 		const res = await profileChecker()
 
 		if (!res) {
-			// console.log("Profile not found")
 			return navigate('/admin')
 		}
 
@@ -131,12 +131,12 @@ export function Dashboard ({ loginCheck }) {
 			<div className='admin-dashboard-main'>
 				<MobileNav />
 
-				<Topbar />
+				<Topbar search={search} setSearch={setSearch} />
 
 				<div className='admin-dashboard-cnt'>
 					<Routes>
-						<Route index element={<Blog   />} />
-						<Route path='/blog/*' element={<Blog  />} />
+						<Route index element={<Blog search={search}  />} />
+						<Route path='/blog/*' element={<Blog search={search} />} />
 					</Routes>
 				</div>
 			</div>
