@@ -1,6 +1,6 @@
 // const URL = `https://suge-sever.onrender.com`
-const URL = `http://localhost:8000`
-// const URL = `https://suge-sever.vercel.app`
+// const URL = `http://localhost:8000`
+const URL = `https://suge-sever.vercel.app`
 
 export async function fetchBlogs() {
     const response = await fetch(`${URL}/blog`, {
