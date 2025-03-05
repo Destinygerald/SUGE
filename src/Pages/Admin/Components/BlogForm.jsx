@@ -64,8 +64,8 @@ function BlogParagraph ({ hdr , i, handleClick, cnt, image, changeHandler, setBl
 
     return (
         <div className='admin-blog-paragraph'>
-            <input type='text' placeholder='Paragradh Heading' value={hdr} name='header' onChange={changeHandler} />
-            <textarea placeholder='Paragradh Content' value={cnt} name='content' onChange={changeHandler}></textarea>
+            <input type='text' placeholder='Paragraph Heading' value={hdr} name='header' onChange={changeHandler} />
+            <textarea placeholder='Paragraph Content' value={cnt} name='content' onChange={changeHandler}></textarea>
             <input type="file" accept="image/png, image/jpeg" name='image' onChange={handleImage} />
             {
                 image
