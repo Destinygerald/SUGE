@@ -9,7 +9,7 @@ import Logo from '/images/SUGE LOGO.webp'
 import { QuoteHistory } from './QuoteHistory.jsx'
 import { QuoteInfo } from './QuoteInfo.jsx'
 import { Blog } from './Blog.jsx'
-import { profileChecker } from '../../../Api/FetchData.js'
+import { profileChecker, getCookie } from '../../../Api/FetchData.js'
 
 
 
@@ -91,10 +91,16 @@ export function Dashboard () {
 
 	const navigate = useNavigate()
 
+	
 	async function checkForProfile() {
+	
 		const res = await profileChecker()
 
-		console.log(res)
+		if (!res) {
+			// console.log("Profile not found")
+			return navigate('/admin')
+		}
+
 
 		if (res.status != 'Ok') {
 			navigate('/admin')	
@@ -103,6 +109,15 @@ export function Dashboard () {
 	}
 
 	useEffect(() => {
+
+		let admin_auth = getCookie()
+
+		if (!admin_auth) {
+			navigate('/admin')
+			return;
+		}
+
+
 		checkForProfile()
 	}, [])
 

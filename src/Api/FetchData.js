@@ -3,7 +3,7 @@
 const URL = `https://suge-sever.vercel.app`
 
 export async function fetchBlogs() {
-    const response = await fetch(`${URL}`, {
+    const response = await fetch(`${URL}/blog`, {
         method: 'GET'
     })
 
@@ -15,7 +15,7 @@ export async function fetchBlogs() {
 
 
 export async function fetchBlogContent (Id) {
-    const response = await fetch(`${URL}/${Id}`, {
+    const response = await fetch(`${URL}/blog/${Id}`, {
         method: 'GET'
     })
 
@@ -43,17 +43,37 @@ export async function adminLogin (data) {
     return request.json()
 }
 
-export async function editBlogs(){
+export async function editBlogs(id, data){
 
-}
+    const cookie = getCookie()
 
-export async function addBlog(data){
-    const response = await fetch(`${URL}/admin`, {
-        method: 'POST',
+    const response = await fetch(`${URL}/admin/${id}`, {
+        method: 'PUT',
+        mode: 'cors',
         credentials: 'include',
         headers: {
         'Accept': 'application/json',
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + cookie
+        },
+        body: JSON.stringify(data)
+    })
+    
+    return response.json()
+}
+
+export async function addBlog(data){
+
+    const cookie = getCookie()
+
+    const response = await fetch(`${URL}/admin`, {
+        method: 'POST',
+        mode: 'cors',
+        credentials: 'include',
+        headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + cookie
         },
         body: JSON.stringify(data)
     })
@@ -62,12 +82,17 @@ export async function addBlog(data){
 }
 
 export async function deleteBlogs(id){
+    
+    const cookie = getCookie()
+
     const response = await fetch(`${URL}/admin/${id}`, {
         method: 'DELETE',
         credentials: 'include',
+        mode: 'cors',
         headers: {
         'Accept': 'application/json',
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + cookie
         }
     })
 
@@ -76,39 +101,38 @@ export async function deleteBlogs(id){
 
 export async function profileChecker () {
     
+    const cookie = getCookie()
+
     const response = await fetch(`${URL}/admin/profile`, {
-        mode: 'no-cors',
+        mode: 'cors',
         method: 'GET',
         credentials: 'include',
         headers: {
         'Accept': 'application/json',
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + cookie
         }
     })
-
-    console.log(response)
 
     const res = await response.json()
 
     return res;
 }
 
-export function convertImageToBase64(e) {
-    var reader = new FileReader();
-    // console.log(e.target.files)
-    let url;
-    reader.readAsDataURL(e.target.files[0]);
-    try {
-        reader.onload = () => {
-            url = reader.result
-        };
-        return url;
-    } catch (err) {
-        // return ("err", err)
-    }
-    reader.onerror = () => {
-        console.log("Error : ", error)
-    }
 
-    return url
+export function getCookie() {
+    try {
+        const allCookies = document.cookie.split(' ')
+        const authCookie = allCookies.find(item => item.includes('admin_auth_token'))
+        return authCookie.split('=')[1]
+    } catch(e) {
+        return
+    }
+}
+
+export function cookieChecker(nav) {
+    const allCookies = document.cookie.split(' ')
+
+    const authCookie = allCookies.find(item => item.includes('admin_auth_token'))
+    return authCookie.split('=')[1]
 }
