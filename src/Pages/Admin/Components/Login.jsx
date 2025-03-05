@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { adminLogin } from '../../../Api/FetchData.js'
 
-export function Login () {
+export function Login ({ setLoginCheck }) {
 
 	const [login, setLogin] = useState({
 		email: '',
@@ -21,6 +21,7 @@ export function Login () {
 		const res = await adminLogin(login)
 
 		if (res.status === 'Ok') {
+			setLoginCheck(true)
 			navigate('/admin/dashboard')
 		}
 

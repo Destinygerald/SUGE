@@ -27,7 +27,8 @@ export async function fetchBlogContent (Id) {
 export async function adminLogin (data) {
     const request = await fetch(`${URL}/admin/login`, {
         method: 'POST',
-        credentials: 'include',
+        // mode: 'cors',
+        // credentials: 'include',
         headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
@@ -39,8 +40,17 @@ export async function adminLogin (data) {
         // withCredentials: true,
     })
 
+    const res = await request.json()
 
-    return request.json()
+    var date = new Date();
+    date.setTime(date.getTime() + (24*60*60*1000));
+    let expires = "; expires=" + date.toUTCString();
+
+    document.cookie = 'admin_auth_token' + "=" + (res?.auth || "")  + expires + "; path=/";
+
+    // console.log(res)
+
+    return res
 }
 
 export async function editBlogs(id, data){
@@ -121,18 +131,20 @@ export async function profileChecker () {
 
 
 export function getCookie() {
-    try {
+    // try {
         const allCookies = document.cookie.split(' ')
+        console.log(allCookies)
         const authCookie = allCookies.find(item => item.includes('admin_auth_token'))
+        console.log(authCookie)
+        console.log(authCookie.split('=')[1])
         return authCookie.split('=')[1]
-    } catch(e) {
-        return
-    }
+  
 }
 
-export function cookieChecker(nav) {
+export function cookieChecker() {
     const allCookies = document.cookie.split(' ')
 
     const authCookie = allCookies.find(item => item.includes('admin_auth_token'))
+   
     return authCookie.split('=')[1]
 }

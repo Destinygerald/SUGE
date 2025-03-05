@@ -87,7 +87,7 @@ function MobileNav () {
 	)
 }
 
-export function Dashboard () {
+export function Dashboard ({ loginCheck }) {
 
 	const navigate = useNavigate()
 
@@ -110,15 +110,17 @@ export function Dashboard () {
 
 	useEffect(() => {
 
-		let admin_auth = getCookie()
+		// let admin_auth = getCookie()
 
-		if (!admin_auth) {
-			navigate('/admin')
-			return;
-		}
+		// if (!loginCheck){ // Forgive the unnecessary nesting😣
+		// 	if (!admin_auth) {
+		// 		navigate('/admin')
+		// 		return;
+		// 	}
+		// }
 
 
-		checkForProfile()
+		// checkForProfile()
 	}, [])
 
 

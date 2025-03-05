@@ -3,14 +3,18 @@ import './style.mobile.css'
 import { Route, Routes } from 'react-router-dom'
 import { Login } from './Components/Login.jsx'
 import { Dashboard } from './Components/Dashboard.jsx'
+import { useState } from 'react'
 
 function Page () {
+
+	const [loginCheck, setLoginCheck] = useState(false) 
+
 	return (
 		<div className='admin'>
 			<Routes>
-				<Route index element={<Login />} />
-				<Route path='*' element={<Login />} />
-				<Route path='/dashboard/*' element={<Dashboard/>} />
+				<Route index element={<Login setLoginCheck={setLoginCheck} />} />
+				<Route path='*' element={<Login setLoginCheck={setLoginCheck} />} />
+				<Route path='/dashboard/*' element={<Dashboard loginCheck={loginCheck}/>} />
 			</Routes>
 		</div>
 	)
