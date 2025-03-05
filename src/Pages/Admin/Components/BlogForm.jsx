@@ -21,8 +21,6 @@ function MessgaeDisplay ({ msg, setMsg }) {
 
 function BlogParagraph ({ hdr , i, handleClick, cnt, image, changeHandler, setBlogInfo, blogInfo}) {
 
-    const [imgUrl, setImgUrl] = useState(null)
-
     function handleImage(e) {
        
         let reader = new FileReader();
@@ -30,25 +28,23 @@ function BlogParagraph ({ hdr , i, handleClick, cnt, image, changeHandler, setBl
         reader.readAsDataURL(e.target.files[0]);
         
         const prevCnt = blogInfo.content.slice(0, i - 1)
-        const nextCnt = blogInfo.content.slice(i)
+        const nextCnt = blogInfo.content.slice(i + 1)
         
         try {
             reader.onload = () => {
-                // setImgUrl(reader.result)
                 
-                // console.log(i)
-                // console.log(prevCnt)
-                // console.log(nextCnt)
-                // console.log(blogInfo.content?.at(i - 1))
-
                 const editedCnt = {
                     ...blogInfo.content?.at(i - 1),
                     img : reader.result
                 }
+
+                if (image){
+                    document.querySelector('.paragraph-img-cnt').src =  reader.result
+                }
         
                 const newArray = [...prevCnt, editedCnt, ...nextCnt]
-
-                // console.log(newArray)
+                
+                setBlogInfo({...blogInfo, content: [...newArray] })
             };
 
         } catch (err) {
@@ -64,15 +60,22 @@ function BlogParagraph ({ hdr , i, handleClick, cnt, image, changeHandler, setBl
        
 
 
-        // setBlogInfo({...blogInfo, content: [...newArray] })
-
     }
 
     return (
         <div className='admin-blog-paragraph'>
             <input type='text' placeholder='Paragradh Heading' value={hdr} name='header' onChange={changeHandler} />
             <textarea placeholder='Paragradh Content' value={cnt} name='content' onChange={changeHandler}></textarea>
-            <input type="file" accept="image/png, image/jpeg" value={image} name='image' onChange={handleImage} />
+            <input type="file" accept="image/png, image/jpeg" name='image' onChange={handleImage} />
+            {
+                image
+                ?
+                <div className="paragraph-img">
+                    <img src={image} className='paragraph-img-cnt' />
+                </div>
+                :
+                <></>
+            }
 
             <span className='admin-blog-paragraph-remove' onClick={handleClick}>-</span>
         </div>
@@ -90,6 +93,7 @@ export function CreateBlog() {
 
     const [blogContentNum, setBlogContentNum] = useState(1)
     const [msg, setMsg] = useState('')
+    const [click, setClick] = useState(false)
 
     const navigate = useNavigate()
     const { pathname } = useLocation()
@@ -152,8 +156,6 @@ export function CreateBlog() {
     async function fetchEditData() {
         const res = await fetchBlogContent(id)
 
-        // console.log(res.data)
-
         if (res.status == 'OK') {
             setBlogInfo(res.data)
         }
@@ -162,52 +164,71 @@ export function CreateBlog() {
     }
 
     async function createBlog() {
-        const res = await addBlog(blogInfo)
+        setClick(true)
         
-        // console.log(res)
+        const res = await addBlog(blogInfo)
+
+
         if (res.status == 'Created') {
             setMsg('Successfully created blog')
+
             
             setTimeout(() => {
                 navigate(-1)
+                setClick(false)
             }, 2000)
 
             return;
         }
 
         setMsg('Error creating blog; Try again')
+        setTimeout(() => {
+            setClick(false) 
+        }, 800)
     }
 
     async function deleteThisBlog () {
+        setClick(true)
         const res = await deleteBlogs(id)
+
 
         if (res.status == 'Ok') {
             setMsg('Successfully Deleted blog')
             
             setTimeout(() => {
                 navigate(-1)
+                setClick(false)
             }, 2000)
 
             return;
         }
 
         setMsg('Error deleting blog; Try again')
+        setTimeout(() => {
+            setClick(false) 
+        }, 800)
     }
 
     async function editBlogCnt() {
+        setClick(true)
         const res = await editBlogs(id, blogInfo)
 
+
         if (res.status == 'Ok') {
-            setMsg('Successfully Deleted blog')
+            setMsg('Successfully Edited blog')
             
             setTimeout(() => {
                 navigate(-1)
+                setClick(false)
             }, 2000)
 
             return;
         }
 
         setMsg('Error Editing blog; Try again')
+        setTimeout(() => {
+            setClick(false) 
+        }, 800)
     }
 
     useEffect(() => {
@@ -236,7 +257,7 @@ export function CreateBlog() {
                     ))
                     :
                     blogInfo?.content?.map((item, i) => (
-                        <BlogParagraph i={i} handleClick={() => deleteParagrah(i)} key={i} hdr={item?.header} cnt={item?.content} image={item?.image} changeHandler={(e) => paragraphChangeHandler(e, i)} setBlogInfo={setBlogInfo} blogInfo={blogInfo} />
+                        <BlogParagraph i={i} handleClick={() => deleteParagrah(i)} key={i} hdr={item?.header} cnt={item?.content} image={item?.img} changeHandler={(e) => paragraphChangeHandler(e, i)} setBlogInfo={setBlogInfo} blogInfo={blogInfo} />
                     ))
                 }
             </div>
@@ -245,25 +266,38 @@ export function CreateBlog() {
                 {  
                     pathname.split('/')[4] == 'create'
                     ?
-                    <button onClick={createBlog}>Submit</button>
+                    <button disabled={click} onClick={createBlog} className='submit-btn'>Submit</button>
                     :
-                    <button onClick={editBlogCnt}>Edit</button>
+                    <button disabled={click} onClick={editBlogCnt} className='submit-btn'>Edit</button>
                 }
 
                 {
                     pathname.split('/')[4] != 'create'
                     ?
-                    <button onClick={deleteThisBlog}>Delete</button>
+                    <button disabled={click} onClick={deleteThisBlog} className='delete-btn'>Delete</button>
                     :
                     <></>
                 }
-                <button onClick={addParagraph}>Add Paragragh</button>
+                <button onClick={addParagraph} className='add-p-btn'>Add Paragragh</button>
             </div>
 
             {
                msg
                 ?
                 <MessgaeDisplay msg={msg} setMsg={setMsg} />
+                :
+                <></>
+            }
+
+
+            {
+                click
+                ?
+                <div className='loader-x'>
+                    <div className='loader-ball' />
+                    <div className='loader-ball' />
+                    <div className='loader-ball' />
+                </div>
                 :
                 <></>
             }

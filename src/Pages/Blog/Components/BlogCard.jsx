@@ -48,7 +48,7 @@ export function BlogCard ({ id, image, title, content, readtime, date }) {
 					?
 					<img src={image} />
 					:
-					<div className='blog-img-alt'>{content.split('')[0]}</div>
+					<div className='blog-img-alt'>{content?.split('')[0]}</div>
 				}
 			</div>
 

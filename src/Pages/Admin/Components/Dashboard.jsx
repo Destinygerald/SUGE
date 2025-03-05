@@ -110,17 +110,17 @@ export function Dashboard ({ loginCheck }) {
 
 	useEffect(() => {
 
-		// let admin_auth = getCookie()
+		let admin_auth = getCookie()
 
-		// if (!loginCheck){ // Forgive the unnecessary nesting😣
-		// 	if (!admin_auth) {
-		// 		navigate('/admin')
-		// 		return;
-		// 	}
-		// }
+		if (!loginCheck){ // Forgive the unnecessary nesting😣
+			if (!admin_auth) {
+				navigate('/admin')
+				return;
+			}
+		}
 
 
-		// checkForProfile()
+		checkForProfile()
 	}, [])
 
 
