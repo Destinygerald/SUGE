@@ -191,9 +191,6 @@
 		height: 96px;
 	}
 
-	.success-popup-hdr > div {
-
-	}
 
 	.success-popup-hdr > img {
 		width: 82px;
@@ -223,6 +220,10 @@
 		position: absolute;
 		top: -56px;
 		translate: 0 -100%;
+	}
+
+	.footer-nav > span {
+		font-size: .62rem;
 	}
 
 	.footer-copyright, .footer-contact  {

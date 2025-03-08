@@ -570,13 +570,44 @@
 	overflow: clip;
 }
 
-.create-blog {
+
+.create-blog, .blog-template-choice {
 	flex-direction: column;
 	width: 100%;
 	height: 100%;
 	display: flex;
 	gap: 20px;
 	position: relative;
+}
+
+.blog-template-cnt {
+	width: 100%;
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 24px;
+	max-height: 100%;
+	overflow-y: auto;
+}
+
+.blog-template-display {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	gap:12px;
+}
+
+.blog-template-display > div:first-child {
+	width: 100%;
+	height: 420px;
+	background-color: rgb(40, 40, 40, .4);
+	border-radius: 30px;
+	overflow: hidden;
+}
+
+.blog-template-display > div:first-child > img {
+	width: 100%;
+	min-height: 100%;
+	object-fit: cover;
 }
 
 .create-blog-hdr {
@@ -597,7 +628,7 @@
 	width: 100%;
 	display: flex;
 	flex-direction: column;
-	gap: 16px;
+	gap: 48px;
 	height: 95%;
 	overflow: auto;
 	padding-right: 8px;
@@ -615,7 +646,7 @@
 	cursor: pointer;
 }
 
-.create-blog-main > input, .admin-blog-paragraph > input, .admin-blog-paragraph > textarea {
+.create-blog-main > input, .admin-blog-paragraph > input, .admin-blog-paragraph > textarea, .paragraph-list-toggle > textarea , .paragraph-list-item > input, .paragraph-list-item > textarea{
 	padding: 14px 24px;
 	border: none;
 	border-radius: 4px;
@@ -625,8 +656,65 @@
 	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.admin-blog-paragraph > textarea {
+.admin-blog-paragraph > textarea, .paragraph-list-toggle > textarea {
 	height: 160px;
+}
+
+.paragraph-list-toggle {
+	position: relative;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	gap:16px;
+}
+
+.paragraph-list-toggle-btn, .add-list-btn {
+	width: fit-content;
+	padding: 8px 32px;
+	border: none;
+	font-size: .66rem;
+	align-self: flex-end;
+	margin-top: 6px;
+	margin-bottom: -10px;
+	/* position: absolute; */
+	bottom: 0;
+	right: 0;
+	background-color: rgb(140, 140, 140);
+	border-radius: 4px;
+	cursor: pointer;
+	color: white;
+	cursor: pointer;
+}
+
+.add-list-btn {
+	align-self: flex-start;
+	background:rgb(56, 56, 138);
+}
+
+.paragraph-list-container {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+}
+
+.paragraph-list-item {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	gap: 0;
+}
+
+.paragraph-list-item > input, .paragraph-list-item > textarea {
+	width: 100%;
+}
+
+.admin-blog-paragraph > input[type=file] {
+	margin-top: 12px;
+}
+
+.paragraph-list-item > textarea {
+	height: 80px;
 }
 
 .admin-blog-paragraph {
@@ -634,7 +722,7 @@
 	position: relative;
 	display: flex;
 	flex-direction: column;
-	gap: 16px;
+	gap: 8px;
 	padding-top: 12px;
 }
 
@@ -642,7 +730,7 @@
 	position: absolute;
 	top: 0;
 	right: 0;
-	translate: 0 -50%;
+	translate: 0 100%;
 
 	border-radius: 50%;
 	width: 16px;
@@ -697,9 +785,24 @@
 	overflow: hidden;
 	left: 120px;
 }
+
 .paragraph-img > img {
 	min-width: 100%;
 	height: 100%;
+}
+
+.paragraph-img-btn {
+	background-color: rgb(159, 59, 59) !important;
+	position: absolute;
+	bottom: 0;
+	translate: 0 -25%;
+	right: 10px;
+	padding: 10px 32px;
+	border: none;
+	color: white;
+	font-size: .8rem;
+	cursor: pointer;
+	border-radius: 4px;
 }
 
 .submit-btn {
@@ -755,4 +858,59 @@
 	50% {
 		translate: 0 -10px;
 	}
+}
+
+.blog-preview {
+	width: 100%;
+	min-height: 100vh;
+	background-color: #0A0A0A;
+	color: white;
+	position: absolute;
+	top: 0;
+	left: 0;
+	overflow-y: auto;
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
+.blog-preview-cnt {
+	width: 100%;
+	padding: 80px 4.6%;
+}
+
+.blog-preview .blog-flash {
+	top: -200px;
+}
+
+.preview-btns {
+	padding: 0 4.6%;
+	width: 100%;
+	display: flex;
+	padding-bottom: 40px;
+	justify-content: space-between;
+}
+
+.preview-btns > button:first-child {
+	background-color: rgb(159, 59, 59);
+	padding: 10px 32px;
+	border: none;
+	color: white;
+	font-size: .8rem;
+	cursor: pointer;
+	border-radius: 4px;
+}
+
+.preview-btns > button:last-child {
+	background-color: rgb(44, 157, 43);
+	padding: 10px 32px;
+	border: none;
+	color: white;
+	font-size: .8rem;
+	cursor: pointer;
+	border-radius: 4px;
+}
+
+.preview-btns > button:last-child > button:disabled {
+	background-color: rgb(120, 120, 120) !important;
 }

@@ -1,5 +1,9 @@
 @media (min-width: 1400px) {
 	.blog {
 		padding: 0 10%;
-	}	
+	}
+	
+	.blog-index-grid {
+		grid-template-columns: repeat(3, 1fr);
+	}
 }

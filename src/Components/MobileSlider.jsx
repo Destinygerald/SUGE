@@ -85,7 +85,6 @@ export function MobileSlider ({ sliderOpen, closeSlider }) {
 				<SliderItem nav='About Us' route='/about' clickHandler={clickHandler} />
 				<SliderItem nav='Services' route='/services' route2='/services/2' clickHandler={clickHandler} />
 				<SliderItem nav='Sustainability' route='/sustainability' clickHandler={clickHandler} />
-				<SliderItem nav='Blog' route='/blog' clickHandler={clickHandler} />
 				<SliderItem nav='Contact Us' route='/contact' route2='/contact/2' clickHandler={clickHandler} />
 			</div>
 

@@ -5,33 +5,37 @@ import { useState, useEffect } from 'react'
 import { IoCalendarOutline } from 'react-icons/io5'
 import { GoClock } from 'react-icons/go'
 import { useNavigate, useLocation } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import {  DAYS, MONTH, BlogPlaceholder } from './PlaceholderData.js'
+import { setBlogData } from '../../../Redux/Blogs.jsx'
 
-const DAYS = [
-	'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'
-]
-
-const MONTH = [
-	'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
-]
 
 export function BlogCard ({ id, image, title, content, readtime, date }) {
 
 	const [ dateConvert, setDateConvert ] = useState('')
 
 	const navigate = useNavigate()
+	const dispatch = useDispatch()
 	const { pathname } = useLocation()
 
 	function readBlog () {
 		if (pathname.includes('admin')) {
 			navigate(`/admin/dashboard/blog/${id}`)
 			return;
+		} else {
+			dispatch(setBlogData({
+                _id: '',
+                template: '',
+                readTime: 0,
+                title: '',
+                content: []
+            }))
+			navigate(`/blog/${id}`)
 		}
-		navigate(`/blog/${id}`)
 	}
 
-	useEffect(() => {
 
-		// console.log(date)
+	useEffect(() => {
 
 		if (!date) return;
 
@@ -55,9 +59,11 @@ export function BlogCard ({ id, image, title, content, readtime, date }) {
 			<div className='blog-card-cnt'>
 				<div className='blog-card-title'>
 					{
+						title.length <= 60
+						?
 						title
-						||
-						'------'
+						:
+						title.slice(0, 60) + '...'
 					}
 				</div>
 

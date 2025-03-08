@@ -6,16 +6,9 @@ import { useParams } from 'react-router-dom'
 import { IoCalendarOutline } from 'react-icons/io5'
 import { GoClock } from 'react-icons/go'
 import { fetchBlogContent } from '../../../Api/FetchData'
-
-
-const DAYS = [
-	'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'
-]
-
-const MONTH = [
-	'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
-]
-
+import { BlogPlaceholder, DAYS, MONTH } from './PlaceholderData.js'
+import { useDispatch, useSelector } from 'react-redux'
+import { setBlogData } from '../../../Redux/Blogs.jsx'
 
 function Paragraph ({ cnt, hdr, img }) {
 
@@ -52,15 +45,22 @@ function Paragraph ({ cnt, hdr, img }) {
 
 export function BlogPage () {
 
-	const [ blogData, setBlogData ] = useState({})
+	// const [ blogData, setBlogData ] = useState({})
 	const [ dateConvert, setDateConvert ] = useState('')
+	const blogData = useSelector(state => state.value.blogData)
+	const dispatch = useDispatch()
 
 	const { id } = useParams()
 
 	async function fetchDataInfo() {
-		const info = await fetchBlogContent(id)
+		// const info = await fetchBlogContent(id)
+		const info = BlogPlaceholder.find(item => item?._id == id)
 
-		setBlogData({...info?.data})
+		console.log(info)
+
+		// setBlogData({...info?.data})
+
+		dispatch(setBlogData({...info}))
 
 		let convertedDate = new Date(info?.data.dateAdded)
 

@@ -6,19 +6,30 @@ import { Route, Routes } from 'react-router-dom'
 import img1 from  '/images/SUGE ASSETS/Lighting Black.webp'
 import { BlogCard } from './Components/BlogCard.jsx'
 import { BlogPage } from './Components/BlogPage.jsx'
+import { BlogTemplate1 } from './Components/BlogTemplates/BlogTemplate1.jsx'
+import { BlogTemp } from './Components/BlogTemplates/BlogTemplateAssig.jsx'
 import { fetchBlogs } from '../../Api/FetchData.js'
+import { BlogPlaceholder } from './Components/PlaceholderData.js'
+import { useDispatch, useSelector } from 'react-redux'
+import { setBlogList } from '../../Redux/BlogList.jsx'
 
 function Index () {
+	
+		const blogList = useSelector(state => state.blogList.value)
+		const dispatch = useDispatch()
+	
+	
+		async function handleBlog() {
 
-	const [blogList, setBlogList] =  useState([])
+			if (blogList[0]) return;
 
-	async function handleBlog() {
-		const blog = await fetchBlogs()
+			const blog = await fetchBlogs()
 
-		if (!blog?.result) return;
+			dispatch(setBlogList([...blog.result]))
+			
+		}
 
-		setBlogList(blog.result)
-	}
+	
 
 	useEffect(() => {
 		handleBlog()
@@ -37,7 +48,7 @@ function Index () {
 			<div className='blog-index-grid'>
 				{
 					blogList?.map((item, i) => (
-						<BlogCard key={'blog-card-' + i} id={item?._id} image={item?.content[0]?.img} title={item?.title} content={item?.content[0]?.content} readtime={item?.readTime} date={item?.dateAdded} />
+						<BlogCard key={'blog-card-' + i} id={item?._id} image={item?.img} title={item?.title} content={item?.content} readtime={item?.readTime} date={item?.dateAdded} />
 					))
 				}
 			</div>
@@ -51,7 +62,8 @@ function Page () {
 		<div className='blog'>
 			<Routes>
 				<Route index element={<Index />} />
-				<Route path='/:id' element={<BlogPage />} />
+				<Route path='/:id' element={<BlogTemp />} />
+				<Route path="/template" element={<BlogTemp />} />
 			</Routes>
 
 			<div className='blog-flash'> <img src={img1} /> </div>

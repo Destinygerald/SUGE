@@ -10,6 +10,9 @@ import QuoteSlice from './Redux/Quote.js'
 import QuotePopupSlice from './Redux/QuotePopup.js'
 import LoadPopupSlice from './Redux/LoadPopup.js'
 import ScrollTop from './Components/ScrollToTop.jsx'
+import BlogDataSlice  from './Redux/Blogs.jsx'
+import BlogListSlice  from './Redux/BlogList.jsx'
+import BlogCreateSlice  from './Redux/AdminBlog.jsx'
 import { Loader } from './Components/Loader.jsx'
 
 import LandingPage from './Pages/Landingpage/Page.jsx'
@@ -32,9 +35,12 @@ import Admin from './Pages/Admin/Page.jsx'
 
 const store = configureStore({
   reducer: {
+    blogData: BlogDataSlice,
+    blogCreate: BlogCreateSlice,
     quote: QuoteSlice,
     quote_popup: QuotePopupSlice,
     loadPopup: LoadPopupSlice,
+    blogList: BlogListSlice
   }
 })
 
@@ -55,7 +61,7 @@ function App() {
     
   }
 
-  fetchBlogs()
+  // fetchBlogs()
 
   return (
     <Provider store={store}>

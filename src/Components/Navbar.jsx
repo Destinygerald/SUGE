@@ -77,7 +77,6 @@ export function Navbar ({ openSlider }) {
 					<NavItem nav='About Us' route='/about' clickHandler={clickHandler} />
 					<NavItem nav='Services' route='/services' route2='/services/2' clickHandler={clickHandler} />
 					<NavItem nav='Sustainability' route='/sustainability' clickHandler={clickHandler} />
-					<NavItem nav='Blog' route='/blog' clickHandler={clickHandler} />
 					<NavItem nav='Contact Us' route='/contact' route2='/contact/2' clickHandler={clickHandler} />
 				</div>
 

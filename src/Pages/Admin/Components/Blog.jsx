@@ -4,7 +4,9 @@ import { Routes, Route, useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { fetchBlogs } from '../../../Api/FetchData.js'
 import { BlogCard } from '../../Blog/Components/BlogCard.jsx'
-import {  CreateBlog } from './BlogForm.jsx'
+import { CreateBlog } from './BlogForm.jsx'
+import { BlogTemplatePick } from './BlogTemplatePick.jsx'
+import { BlogPreview } from './BlogPreview.jsx'
 
 
 
@@ -15,7 +17,7 @@ function BlogComponentHeader() {
     return (
         <div className='admin-blog-hdr'>
             <span>Blogs</span>
-            <button onClick={() => {navigate('/admin/dashboard/blog/create')}}> Create New Blog </button>
+            <button onClick={() => {navigate('/admin/dashboard/blog/template')}}> Create New Blog </button>
         </div>
     )
 }
@@ -63,11 +65,11 @@ function BlogIndex ({ search }) {
                         !blogSearch[0]
                         ?
                         blogs.map((item, i) => (
-                            <BlogCard key={'admin-blog-card-' + i} id={item?._id} image={item?.content[0]?.img} title={item?.title} content={item?.content[0]?.content} readtime={item?.readTime} date={item?.dateAdded} />
+                            <BlogCard key={'admin-blog-card-' + i} id={item?._id} image={item?.img} title={item?.title} content={item?.content} readtime={item?.readTime} date={item?.dateAdded} />
                         ))
                         :
                         blogSearch.map((item, i) => (
-                            <BlogCard key={'admin-blog-card-' + i} id={item?._id} image={item?.content[0]?.img} title={item?.title} content={item?.content[0]?.content} readtime={item?.readTime} date={item?.dateAdded} />
+                            <BlogCard key={'admin-blog-card-' + i} id={item?._id} image={item?.img} title={item?.title} content={item?.content} readtime={item?.readTime} date={item?.dateAdded} />
                         ))
                     }
                 </div>
@@ -80,12 +82,16 @@ function BlogIndex ({ search }) {
 
 export function Blog({ search }) {
     
+    const [msg, setMsg] = useState('')
+
     return (
         <>
             <Routes>
                 <Route index element={<BlogIndex search={search} />} />
-                <Route path='/create' element={<CreateBlog />} />
-                <Route path='/:id' element={<CreateBlog />} />
+                <Route path='/template' element={<BlogTemplatePick />} />
+                <Route path='/create/:id' element={<CreateBlog msg={msg} setMsg={setMsg} />} />
+                <Route path='/:id' element={<CreateBlog msg={msg} setMsg={setMsg} />} />
+                <Route path='/preview' element={<BlogPreview msg={msg} setMsg={setMsg} />} />
             </Routes>
         </>
     )

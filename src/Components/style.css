@@ -115,7 +115,7 @@
 	display: flex;
 	gap: 24px;
 	flex-direction: column;
-	padding: 64px 72px;	
+	padding: 64px 5%;	
 }
 
 .footer-main {
