@@ -42,6 +42,8 @@ export async function adminLogin (data) {
         // withCredentials: true,
     })
 
+    console.log(res)
+
     const res = await request.json()
 
     var date = new Date();
