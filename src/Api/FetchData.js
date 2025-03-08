@@ -29,8 +29,8 @@ export async function fetchBlogContent (Id) {
 export async function adminLogin (data) {
     const request = await fetch(`${URL}/admin/login`, {
         method: 'POST',
-        // mode: 'no-cors',
-        // credentials: 'include',
+        mode: 'cors',
+        credentials: 'include',
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
