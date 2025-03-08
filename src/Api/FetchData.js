@@ -30,12 +30,12 @@ export async function adminLogin (data) {
     const request = await fetch(`${URL}/admin/login`, {
         method: 'POST',
         mode: 'no-cors',
-        // credentials: 'include',
-        // headers: {
-        //     'Accept': 'application/json',
-        //     'Content-Type': 'application/json',
-        //     'Authorization': 'Bearer login' 
-        // },
+        credentials: 'include',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            // 'Conten' 
+        },
         body: JSON.stringify({
             email: data?.email,
             password: data?.password
