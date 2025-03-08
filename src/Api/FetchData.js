@@ -29,12 +29,11 @@ export async function fetchBlogContent (Id) {
 export async function adminLogin (data) {
     const request = await fetch(`${URL}/admin/login`, {
         method: 'POST',
-        mode: 'no-cors',
-        credentials: 'include',
+        // mode: 'no-cors',
+        // credentials: 'include',
         headers: {
             'Accept': 'application/json',
-            'Content-Type': 'application/json',
-            // 'Conten' 
+            'Content-Type': 'application/json'
         },
         body: JSON.stringify({
             email: data?.email,
