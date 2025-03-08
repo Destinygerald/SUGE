@@ -30,7 +30,7 @@ export async function adminLogin (data) {
     const request = await fetch(`${URL}/admin/login`, {
         method: 'POST',
         mode: 'no-cors',
-        // credentials: 'include',
+        credentials: 'include',
         headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
