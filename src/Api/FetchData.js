@@ -42,7 +42,7 @@ export async function adminLogin (data) {
         // withCredentials: true,
     })
 
-    console.log(res)
+    console.log(request)
 
     const res = await request.json()
 
