@@ -1,6 +1,6 @@
-const URL = `https://suge-sever.onrender.com`
+// const URL = `https://suge-sever.onrender.com`
 // const URL = `http://localhost:8000`
-// const URL = `https://suge-sever.vercel.app`
+const URL = `https://suge-sever.vercel.app`
 
 // const URL = `https://suge-sever-destinys-projects-34a882c6.vercel.app`
 
