@@ -210,6 +210,14 @@ function BlogParagraph ({ hdr , i, handleClick, cnt, image, changeHandler, setBl
                 ?
                 <input type="file" accept="image/png, image/jpeg" name='image' onChange={handleImage} />
                 :
+                !pathname.includes('create') && (i != 2) && (blogInfo.template == 2 || blogInfo.template == 3)
+                ?
+                <input type="file" accept="image/png, image/jpeg" name='image' onChange={handleImage} />
+                :
+                !pathname.includes('create') && (i != 2 && i != 0) && (blogInfo.template == 1 || blogInfo.template == 4)
+                ?
+                <input type="file" accept="image/png, image/jpeg" name='image' onChange={handleImage} />
+                :
                 <></>
             }
 
@@ -236,7 +244,8 @@ function BlogParagraph ({ hdr , i, handleClick, cnt, image, changeHandler, setBl
 export function CreateBlog({ msg, setMsg }) {
 
     const [blogInfo, setBlogInfo] = useState(
-        {
+        {   
+            template: '',
             title: '',
             readTime: '',
             content: [
@@ -293,17 +302,13 @@ export function CreateBlog({ msg, setMsg }) {
 
         let contents = [...blogInfo?.content]
 
-        // console.log(contents)
-
+        
         contents = contents.filter((content, index) => {
             // console.log(content)
             if (i != index) {
                 return content
             }
         })
-
-        // console.log(contents)
-
 
         setBlogInfo({
             ...blogInfo,
@@ -451,26 +456,34 @@ export function CreateBlog({ msg, setMsg }) {
 
         let template;
 
-        switch(id) {
-            case 'template-1':
-                template = 1;
-                break;
-            case 'template-2':
-                template = 2;
-                break;
-            case 'template-3':
-                template = 3;
-                break;
-            case 'template-4':
-                template = 4;
-                break;
-            case 'template-5':
-                template = 5;
-                break;
-            default:
-                template = 1;
-                break;
+        // console.log(id)
+
+        if (!blogInfo?.template) {
+            switch(id) {
+                case 'template-1':
+                    template = 1;
+                    break;
+                case 'template-2':
+                    template = 2;
+                    break;
+                case 'template-3':
+                    template = 3;
+                    break;
+                case 'template-4':
+                    template = 4;
+                    break;
+                case 'template-5':
+                    template = 5;
+                    break;
+                default:
+                    template = 1;
+                    break;
+            }
+        } else {
+            template = blogInfo?.template
         }
+
+        
 
         dispatch(setBlogData({ ...blogInfo, template: template, dateAdded: Date.now() }))
         navigate('/admin/dashboard/blog/preview')

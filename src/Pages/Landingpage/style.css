@@ -477,3 +477,28 @@
 	line-height: 2rem;
 	font-size: clamp(.8rem , 1.4vw, 1.2rem);
 }
+
+.landing-page-blogs {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	gap: 32px;
+	padding: 0 4.6%;
+}
+
+.landing-page-blogs > span:first-child {
+	font-size: clamp(1.6rem, 2.42vw, 2rem);
+}
+
+.landing-page-blogs-grid {
+	width: 100%;
+	display: grid;
+	grid-template-columns: repeat(3, calc(100% / 3));
+	position: relative;
+	column-gap: 20px;
+}
+
+.landing-page-blogs-grid .blog-card {
+	aspect-ratio: auto;
+	position: relative;
+}

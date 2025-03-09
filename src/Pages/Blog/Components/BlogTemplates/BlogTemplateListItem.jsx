@@ -8,7 +8,13 @@ export function BlogTemplate2ListItem({title, content, index}) {
             <span>{index}</span>
     
             <div>
-                <span>{title}</span>
+                {
+                    title
+                    ?
+                    <span>{title}</span>
+                    :
+                    <></>
+                }
                 <p>{content}</p>
             </div>
         </div>

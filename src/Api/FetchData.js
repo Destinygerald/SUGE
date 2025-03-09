@@ -17,57 +17,77 @@ export async function fetchBlogContent (Id) {
 }
 
 export async function adminLogin (data) {
-    const response = await axios.post(`${URL}/admin/login`, {
-        email: data?.email, password: data?.password
-    })
+    try {
+        const response = await axios.post(`${URL}/admin/login`, {
+            email: data?.email, password: data?.password
+        })
 
-    var date = new Date();
-    date.setTime(date.getTime() + (24*60*60*1000));
-    let expires = "; expires=" + date.toUTCString();
+        var date = new Date();
+        date.setTime(date.getTime() + (24*60*60*1000));
+        let expires = "; expires=" + date.toUTCString();
 
-    document.cookie = 'admin_auth_token' + "=" + (response.data?.auth || "")  + expires + "; path=/";
+        document.cookie = 'admin_auth_token' + "=" + (response.data?.auth || "")  + expires + "; path=/";
 
 
-    return response.data;
+        return response.data;
+    } catch (err) {
+        console.log(err)
+        return {
+            status: 400,
+            message: 'Invalid Login'
+        }
+    }
 }
 
 export async function editBlogs(id, data){
+    try {
+        const cookie = getCookie()
 
-    const cookie = getCookie()
-
-    const response = await axios.put(`${URL}/admin/${id}`, 
-        { ...data },
-        {
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + cookie
-            },
-            withCredentials: true
+        const response = await axios.put(`${URL}/admin/${id}`, 
+            { ...data },
+            {
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + cookie
+                },
+                // withCredentials: true
+            }
+        )
+        
+        return response.data
+    } catch (err) {
+        return {
+            status: 400,
+            message: 'Error, Try again'
         }
-    )
-    
-    return response.data
+    }
 }
 
 export async function addBlog(data){
+    try {
+        const cookie = getCookie()
 
-    const cookie = getCookie()
 
+        const response = await axios.post(`${URL}/admin`, 
+            { ...data },
+            {
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + cookie
+                },
+                // withCredentials: true
+            }
+        )
 
-    const response = await axios.post(`${URL}/admin`, 
-        { ...data },
-        {
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + cookie
-            },
-            withCredentials: true
+        return response.data
+    } catch (err) {
+        return {
+            status: 400,
+            message: 'Error, Try again'
         }
-    )
-
-    return response.data
+    }
 }
 
 export async function deleteBlogs(id){
@@ -81,7 +101,7 @@ export async function deleteBlogs(id){
                 'Content-Type': 'application/json',
                 'Authorization': 'Bearer ' + cookie
             },
-            withCredentials: true
+            // withCredentials: true
         }
     )
 
@@ -99,7 +119,7 @@ export async function profileChecker () {
                 'Content-Type': 'application/json',
                 'Authorization': 'Bearer ' + cookie
             },
-            withCredentials: true
+            // withCredentials: true
         }
     )
 

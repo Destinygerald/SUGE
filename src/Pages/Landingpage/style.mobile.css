@@ -165,4 +165,9 @@
 		width: 160%;
 	}
 
+	.landing-page-blogs-grid {
+		grid-template-columns: repeat(1, 100%);
+		gap: 20px;
+	}
+
 }

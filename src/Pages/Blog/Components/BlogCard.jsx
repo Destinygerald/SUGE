@@ -83,13 +83,13 @@ export function BlogCard ({ id, image, title, content, readtime, date }) {
 
 				<div className='blog-card-content'>
 					{
-						content?.slice(0, 200)
+						content?.length >= 200
 						?
 						pathname.includes('/admin')
 						?
-						content.slice(0, 40) + '...'
+						content.slice(0, 80) + '...'
 						:
-						content?.slice(0, 200) + '...'
+						content?.slice(0, 160) + '...'
 						:
 						'----'
 					}

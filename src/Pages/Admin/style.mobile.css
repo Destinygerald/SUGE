@@ -48,7 +48,7 @@
 	.admin-nav > img {
 		filter: invert(100%);
 		width: 20%;
-		display: none;
+		/* display: none; */
 	}
 
 	.admin-topbar {

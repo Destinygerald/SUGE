@@ -1,9 +1,11 @@
 import './style.css'
 import './style.mobile.css'
 import './style.1600.css'
-import { Suspense, lazy } from 'react'
+import { Suspense, lazy, useEffect } from 'react'
 import { Banner } from './Components/Banner.jsx'
 import { Patners } from './Components/Patners.jsx'
+import { fetchBlogs } from '../../Api/FetchData.js'
+import { setBlogList } from '../../Redux/BlogList.jsx'
 
 const Message = lazy(() => import('./Components/Message.jsx').then(module => {
 	return { default: module.Message }
@@ -21,13 +23,32 @@ const GreenDiv = lazy(() => import('./Components/GreenDiv.jsx').then(module => {
 	return { default: module.GreenDiv }
 }))
 
+const Blogs = lazy(() => import('./Components/Blogs.jsx').then(module => {
+	return { default: module.Blogs }
+}))
+
 import { StandIn } from '../../Components/Loader.jsx'
 import { LoadPopup } from '../../Components/LoadPopup.jsx'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 
 function Page () {
 
 	const load_popup = useSelector(state => state.loadPopup.value)
+	const blogList = useSelector(state => state.blogList.value)
+	const dispatch = useDispatch()
+
+	async function handleBlog() {
+	
+		if (blogList[0]) return;
+
+		const blog = await fetchBlogs()
+
+		dispatch(setBlogList([...blog.result]))
+	}
+
+	useEffect(() => {
+		handleBlog()
+	}, [])
 
 	return (
 		<div className='landing-page'>
@@ -38,6 +59,7 @@ function Page () {
 				<Message />
 				<Message2 />
 				<Message3 />
+				<Blogs />
 				<GreenDiv />
 			</Suspense>
 
