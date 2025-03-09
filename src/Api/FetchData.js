@@ -1,3 +1,4 @@
+import axios from 'axios'
 // const URL = `https://suge-sever.onrender.com`
 // const URL = `http://localhost:8000`
 const URL = `https://suge-sever.vercel.app`
@@ -5,10 +6,12 @@ const URL = `https://suge-sever.vercel.app`
 // const URL = `https://suge-sever-destinys-projects-34a882c6.vercel.app`
 
 export async function fetchBlogs() {
-    const response = await fetch(`${URL}/blog`, {
-        method: 'GET'
-    })
+    // const response = await fetch(`${URL}/blog`, {
+    //     method: 'GET'
+    // })
 
+
+    const response = await axios.get(`${URL}/blog`)
 
     const res = await response.json()
 
@@ -17,9 +20,11 @@ export async function fetchBlogs() {
 
 
 export async function fetchBlogContent (Id) {
-    const response = await fetch(`${URL}/blog/${Id}`, {
-        method: 'GET'
-    })
+    // const response = await fetch(`${URL}/blog/${Id}`, {
+    //     method: 'GET'
+    // })
+
+    const response = await axios.get(`${URL}/blog/${Id}`)
 
     const res = await response.json()
 
@@ -27,19 +32,23 @@ export async function fetchBlogContent (Id) {
 }
 
 export async function adminLogin (data) {
-    const request = await fetch(`${URL}/admin/login`, {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': '*'
-        },
-        body: JSON.stringify({
-            email: data?.email,
-            password: data?.password
-        }),
-        // withCredentials: true,
+    // const request = await fetch(`${URL}/admin/login`, {
+    //     method: 'POST',
+    //     mode: 'no-cors',
+    //     headers: {
+    //         'Accept': 'application/json',
+    //         'Content-Type': 'application/json',
+    //         'Access-Control-Allow-Origin': '*'
+    //     },
+    //     body: JSON.stringify({
+    //         email: data?.email,
+    //         password: data?.password
+    //     }),
+    //     // withCredentials: true,
+    // })
+
+    const response = await axios.post(`${URL}/admin/login`, {
+        email: data?.email, password: data?.password
     })
 
     console.log(request)
@@ -61,17 +70,29 @@ export async function editBlogs(id, data){
 
     const cookie = getCookie()
 
-    const response = await fetch(`${URL}/admin/${id}`, {
-        method: 'PUT',
-        mode: 'cors',
-        credentials: 'include',
-        headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + cookie
-        },
-        body: JSON.stringify(data)
-    })
+    // const response = await fetch(`${URL}/admin/${id}`, {
+    //     method: 'PUT',
+    //     mode: 'cors',
+    //     credentials: 'include',
+    //     headers: {
+    //     'Accept': 'application/json',
+    //     'Content-Type': 'application/json',
+    //     'Authorization': 'Bearer ' + cookie
+    //     },
+    //     body: JSON.stringify(data)
+    // })
+
+    const response = await axios.put(`${URL}/admin/${id}`, 
+        { data },
+        {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + cookie
+            },
+            withCredentials: true
+        }
+    )
     
     return response.json()
 }
@@ -80,17 +101,29 @@ export async function addBlog(data){
 
     const cookie = getCookie()
 
-    const response = await fetch(`${URL}/admin`, {
-        method: 'POST',
-        mode: 'cors',
-        credentials: 'include',
-        headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + cookie
-        },
-        body: JSON.stringify(data)
-    })
+    // const response = await fetch(`${URL}/admin`, {
+    //     method: 'POST',
+    //     mode: 'cors',
+    //     credentials: 'include',
+    //     headers: {
+    //     'Accept': 'application/json',
+    //     'Content-Type': 'application/json',
+    //     'Authorization': 'Bearer ' + cookie
+    //     },
+    //     body: JSON.stringify(data)
+    // })
+
+    const response = await axios.post(`${URL}/admin`, 
+        { data },
+        {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + cookie
+            },
+            withCredentials: true
+        }
+    )
 
     return response.json()
 }
@@ -99,16 +132,28 @@ export async function deleteBlogs(id){
     
     const cookie = getCookie()
 
-    const response = await fetch(`${URL}/admin/${id}`, {
-        method: 'DELETE',
-        credentials: 'include',
-        mode: 'cors',
-        headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + cookie
+    // const response = await fetch(`${URL}/admin/${id}`, {
+    //     method: 'DELETE',
+    //     credentials: 'include',
+    //     mode: 'cors',
+    //     headers: {
+    //     'Accept': 'application/json',
+    //     'Content-Type': 'application/json',
+    //     'Authorization': 'Bearer ' + cookie
+    //     }
+    // })
+
+    const response = await axios.delete(`${URL}/admin/${id}`, 
+        {},
+        {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + cookie
+            },
+            withCredentials: true
         }
-    })
+    )
 
     return response.json()
 }
@@ -117,16 +162,28 @@ export async function profileChecker () {
     
     const cookie = getCookie()
 
-    const response = await fetch(`${URL}/admin/profile`, {
-        mode: 'cors',
-        method: 'GET',
-        credentials: 'include',
-        headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + cookie
+    // const response = await fetch(`${URL}/admin/profile`, {
+    //     mode: 'cors',
+    //     method: 'GET',
+    //     credentials: 'include',
+    //     headers: {
+    //     'Accept': 'application/json',
+    //     'Content-Type': 'application/json',
+    //     'Authorization': 'Bearer ' + cookie
+    //     }
+    // })
+
+    const response = await axios.get(`${URL}/admin/profile`, 
+        {},
+        {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + cookie
+            },
+            withCredentials: true
         }
-    })
+    )
 
     const res = await response.json()
 
