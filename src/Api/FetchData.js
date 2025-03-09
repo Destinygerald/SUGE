@@ -67,8 +67,6 @@ export async function addBlog(data){
         }
     )
 
-    console.log(response)
-
     return response.data
 }
 
