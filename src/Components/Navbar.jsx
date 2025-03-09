@@ -3,7 +3,6 @@ import './style.mobile.css'
 import './style.1600.css'
 import { useLayoutEffect, useState } from 'react'
 import Logo from '/images/SUGE LOGO.webp'
-import { useSelector, useDispatch } from 'react-redux'
 import { CiSearch } from 'react-icons/ci'
 import { IoMdMoon } from 'react-icons/io'
 import { AiOutlineMenu } from 'react-icons/ai'
@@ -34,6 +33,7 @@ export function Navbar ({ openSlider }) {
 
 	const [ theme, setTheme ] = useState(localStorage.getItem('suge-dark-theme'))
 	const navigate = useNavigate()
+	const { pathname } = useLocation()
 
 	function clickHandler (arg) {
 		navigate(arg)
@@ -57,6 +57,12 @@ export function Navbar ({ openSlider }) {
 		setTheme(localStorage.getItem('suge-dark-theme'))
 	}
 
+	function backHome() {
+
+		if (pathname.includes('admin')) return;
+		navigate('/')
+	}
+
 	useLayoutEffect(() => {
 	    if ( localStorage.getItem('suge-dark-theme') == 'false') {
 	    	document.querySelector('.app').classList.add('light-theme')
@@ -70,7 +76,7 @@ export function Navbar ({ openSlider }) {
 	return (
 		<div className='navbar'>
 				
-				<div className='logo'> <img src={Logo} /> </div>
+				<div className='logo' onClick={backHome}> <img src={Logo} /> </div>
 
 				<div className='nav-items'>
 					<NavItem nav='Home' route='/' clickHandler={clickHandler} />
