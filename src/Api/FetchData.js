@@ -1,89 +1,44 @@
 import axios from 'axios'
 // const URL = `https://suge-sever.onrender.com`
-// const URL = `http://localhost:8000`
-const URL = `https://suge-sever.vercel.app`
+const URL = `http://localhost:8000`
+// const URL = `https://suge-sever.vercel.app`
 
 // const URL = `https://suge-sever-destinys-projects-34a882c6.vercel.app`
 
 export async function fetchBlogs() {
-    // const response = await fetch(`${URL}/blog`, {
-    //     method: 'GET'
-    // })
-
-
     const response = await axios.get(`${URL}/blog`)
-
-    const res = await response.json()
-
-    return res;
+    return response.data;
 }
 
 
 export async function fetchBlogContent (Id) {
-    // const response = await fetch(`${URL}/blog/${Id}`, {
-    //     method: 'GET'
-    // })
-
     const response = await axios.get(`${URL}/blog/${Id}`)
-
-    const res = await response.json()
-
-    return res;
+    return response.data;
 }
 
 export async function adminLogin (data) {
-    // const request = await fetch(`${URL}/admin/login`, {
-    //     method: 'POST',
-    //     mode: 'no-cors',
-    //     headers: {
-    //         'Accept': 'application/json',
-    //         'Content-Type': 'application/json',
-    //         'Access-Control-Allow-Origin': '*'
-    //     },
-    //     body: JSON.stringify({
-    //         email: data?.email,
-    //         password: data?.password
-    //     }),
-    //     // withCredentials: true,
-    // })
-
     const response = await axios.post(`${URL}/admin/login`, {
         email: data?.email, password: data?.password
     })
 
-    console.log(request)
-
-    const res = await request.json()
+    console.log(response)
 
     var date = new Date();
     date.setTime(date.getTime() + (24*60*60*1000));
     let expires = "; expires=" + date.toUTCString();
 
-    document.cookie = 'admin_auth_token' + "=" + (res?.auth || "")  + expires + "; path=/";
+    document.cookie = 'admin_auth_token' + "=" + (response.data?.auth || "")  + expires + "; path=/";
 
-    // console.log(res)
 
-    return res
+    return response.data;
 }
 
 export async function editBlogs(id, data){
 
     const cookie = getCookie()
 
-    // const response = await fetch(`${URL}/admin/${id}`, {
-    //     method: 'PUT',
-    //     mode: 'cors',
-    //     credentials: 'include',
-    //     headers: {
-    //     'Accept': 'application/json',
-    //     'Content-Type': 'application/json',
-    //     'Authorization': 'Bearer ' + cookie
-    //     },
-    //     body: JSON.stringify(data)
-    // })
-
     const response = await axios.put(`${URL}/admin/${id}`, 
-        { data },
+        { ...data },
         {
             headers: {
                 'Accept': 'application/json',
@@ -94,27 +49,16 @@ export async function editBlogs(id, data){
         }
     )
     
-    return response.json()
+    return response.data
 }
 
 export async function addBlog(data){
 
     const cookie = getCookie()
 
-    // const response = await fetch(`${URL}/admin`, {
-    //     method: 'POST',
-    //     mode: 'cors',
-    //     credentials: 'include',
-    //     headers: {
-    //     'Accept': 'application/json',
-    //     'Content-Type': 'application/json',
-    //     'Authorization': 'Bearer ' + cookie
-    //     },
-    //     body: JSON.stringify(data)
-    // })
 
     const response = await axios.post(`${URL}/admin`, 
-        { data },
+        { ...data },
         {
             headers: {
                 'Accept': 'application/json',
@@ -125,26 +69,16 @@ export async function addBlog(data){
         }
     )
 
-    return response.json()
+    console.log(response)
+
+    return response.data
 }
 
 export async function deleteBlogs(id){
     
     const cookie = getCookie()
 
-    // const response = await fetch(`${URL}/admin/${id}`, {
-    //     method: 'DELETE',
-    //     credentials: 'include',
-    //     mode: 'cors',
-    //     headers: {
-    //     'Accept': 'application/json',
-    //     'Content-Type': 'application/json',
-    //     'Authorization': 'Bearer ' + cookie
-    //     }
-    // })
-
     const response = await axios.delete(`${URL}/admin/${id}`, 
-        {},
         {
             headers: {
                 'Accept': 'application/json',
@@ -155,26 +89,14 @@ export async function deleteBlogs(id){
         }
     )
 
-    return response.json()
+    return response.data
 }
 
 export async function profileChecker () {
     
     const cookie = getCookie()
 
-    // const response = await fetch(`${URL}/admin/profile`, {
-    //     mode: 'cors',
-    //     method: 'GET',
-    //     credentials: 'include',
-    //     headers: {
-    //     'Accept': 'application/json',
-    //     'Content-Type': 'application/json',
-    //     'Authorization': 'Bearer ' + cookie
-    //     }
-    // })
-
     const response = await axios.get(`${URL}/admin/profile`, 
-        {},
         {
             headers: {
                 'Accept': 'application/json',
@@ -185,9 +107,7 @@ export async function profileChecker () {
         }
     )
 
-    const res = await response.json()
-
-    return res;
+    return response.data;
 }
 
 
