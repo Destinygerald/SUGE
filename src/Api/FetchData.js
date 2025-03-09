@@ -1,7 +1,7 @@
 import axios from 'axios'
 // const URL = `https://suge-sever.onrender.com`
-const URL = `http://localhost:8000`
-// const URL = `https://suge-sever.vercel.app`
+// const URL = `http://localhost:8000`
+const URL = `https://suge-sever.vercel.app`
 
 // const URL = `https://suge-sever-destinys-projects-34a882c6.vercel.app`
 
@@ -20,8 +20,6 @@ export async function adminLogin (data) {
     const response = await axios.post(`${URL}/admin/login`, {
         email: data?.email, password: data?.password
     })
-
-    console.log(response)
 
     var date = new Date();
     date.setTime(date.getTime() + (24*60*60*1000));
