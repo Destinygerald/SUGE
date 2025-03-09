@@ -28,6 +28,7 @@
 .logo {
 	width: 11.2%;
 	position: relative;
+	cursor: pointer;
 }
 
 .logo > img {
