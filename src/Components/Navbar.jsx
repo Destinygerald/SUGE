@@ -2,12 +2,12 @@ import './style.css'
 import './style.mobile.css'
 import './style.1600.css'
 import { useLayoutEffect, useState } from 'react'
-import Logo from '/images/SUGE LOGO.webp'
+import Logo from '/images/SUGE WHITE.png'
 import { CiSearch } from 'react-icons/ci'
 import { IoMdMoon } from 'react-icons/io'
 import { AiOutlineMenu } from 'react-icons/ai'
 import { IoMoonOutline } from 'react-icons/io5'
-import { useNavigate, useLocation } from 'react-router-dom'
+import { useNavigate, useLocation, createSearchParams } from 'react-router-dom'
 import { PrimaryButton } from './Buttons.jsx'
 
 
@@ -17,7 +17,7 @@ function NavItem ({ nav, clickHandler, route, route2 }) {
 
 	return (
 		<div>
-			<span className={pathname == route || pathname == route2 ? 'nav-active' : ''} onClick={() => clickHandler(route)}>{nav}</span>
+			<a className={pathname == route || pathname == route2 ? 'nav-active' : ''} href='#' onClick={(e) => clickHandler(e, route)}>{nav}</a>
 			{
 				pathname == route
 				?
@@ -35,7 +35,8 @@ export function Navbar ({ openSlider }) {
 	const navigate = useNavigate()
 	const { pathname } = useLocation()
 
-	function clickHandler (arg) {
+	function clickHandler (e, arg) {
+		e.preventDefault()
 		navigate(arg)
 	}
 
@@ -61,6 +62,15 @@ export function Navbar ({ openSlider }) {
 
 		if (pathname.includes('admin')) return;
 		navigate('/')
+	}
+
+	function startSearch () {
+		navigate({
+			pathname: "/",
+			search: createSearchParams({
+				search: ""
+			}).toString()
+		});
 	}
 
 	useLayoutEffect(() => {
@@ -97,7 +107,7 @@ export function Navbar ({ openSlider }) {
 					}
 					</span>
 					<span className='nav-mobile-menu' onClick={openSlider}> <AiOutlineMenu /> </span>
-					<span className='nav-search'> <CiSearch /> </span>
+					<span className='nav-search' onClick={startSearch}> <CiSearch /> </span>
 					<PrimaryButton text='Get a Quote' hasIcon={false} action={getQuote} />
 				</div>
 

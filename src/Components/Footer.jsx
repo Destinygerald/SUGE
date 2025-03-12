@@ -1,7 +1,7 @@
 import './style.css'
 import './style.mobile.css'
-import Logo from '/images/SUGE LOGO.webp'
-import { useNavigate } from 'react-router-dom'
+import Logo from '/images/SUGE WHITE.png'
+import { useNavigate, useLocation } from 'react-router-dom'
 import { FaFacebook } from 'react-icons/fa'
 import { FaXTwitter, FaInstagram, FaYoutube } from 'react-icons/fa6'
 import { IoLogoLinkedin } from 'react-icons/io5'
@@ -9,15 +9,21 @@ import { IoLogoLinkedin } from 'react-icons/io5'
 export function Footer () {
 
 	const navigate = useNavigate()
+	const { pathname } = useLocation()
 
 	function inNewTab (route) {
 		window.open(route, '_blank', 'rel=noopener noreferrer')
 	}
 
+	function backHome() {
+		if (pathname.includes('admin')) return;
+		navigate('/')
+	}
+
 	return (
 		<div className='footer'>
 			<div className='footer-main'>
-				<div>
+				<div onClick={backHome}>
 					<img src={Logo} />
 				</div>
 
@@ -30,12 +36,12 @@ export function Footer () {
 					</div>
 
 					<div className='footer-nav'>
-						<span onClick={() => {navigate('/')}}>Home</span>
-						<span onClick={() => {navigate('/about')}}>About us</span>
-						<span onClick={() => {navigate('/sustainability')}}>Sustainability</span>
-						<span onClick={() => {navigate('/services')}}>Services</span>
-						<span onClick={() => {navigate('/blog')}}>Blog</span>
-						<span onClick={() => {navigate('/contact')}}>Contact us</span>
+						<a href='#' onClick={(e) => {e.preventDefault();navigate('/')}}>Home</a>
+						<a href='#' onClick={(e) => {e.preventDefault();navigate('/about')}}>About us</a>
+						<a href='#' onClick={(e) => {e.preventDefault();navigate('/sustainability')}}>Sustainability</a>
+						<a href='#' onClick={(e) => {e.preventDefault();navigate('/services')}}>Services</a>
+						<a href='#' onClick={(e) => {e.preventDefault();navigate('/blog')}}>Blog</a>
+						<a href='#' onClick={(e) => {e.preventDefault();navigate('/contact')}}>Contact us</a>
 					</div>
 				</div>
 
@@ -47,11 +53,11 @@ export function Footer () {
 
 				<div className='footer-contact'>
 
-					<div>Info@sugeltd.co.uk</div>
+					<div className='contact-dail'>Info@sugeltd.co.uk</div>
 
 					<div className='contact-separator' />
 
-					<div>0330 133 5737</div>
+					<div className='contact-dail'>0330 133 5737</div>
 
 					<div className='contact-separator' />
 					

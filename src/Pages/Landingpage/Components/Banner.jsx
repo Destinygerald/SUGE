@@ -15,9 +15,9 @@ export function Banner () {
 		<div className='banner'>
 			<div className='banner-cnt'>
 				
-				<div>Got Waste? <br/> Think <span>SUGE.</span></div>
+				<h1>Got Waste? <br/> Think <span>SUGE.</span></h1>
 
-				<div> Your waste management heroes reporting for duty. <br /> Reliable, sustainable, and 100% diverted away from landfill. </div>
+				<p> Your waste management heroes reporting for duty. <br /> Reliable, sustainable, and 100% diverted away from landfill. </p>
 
 				<div className='banner-btn'>
 					<PrimaryButton text='Get a Quote' action={getQuote} />

@@ -248,4 +248,15 @@
 		line-height: 1.5rem;
 	}
 
+	.privacy-policy .logo {
+		display: none;
+	}
+
+	.privacy-policy-hdr > span:last-child {
+		font-size: .6rem;
+	}
+
+	.privacy-policy-defs > h2 {
+		width: 60%;
+	}
 }

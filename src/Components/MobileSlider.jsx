@@ -1,7 +1,7 @@
 import './style.css'
 import './style.mobile.css'
 import { useState } from 'react'
-import { useNavigate, useLocation } from 'react-router-dom'
+import { useNavigate, useLocation, createSearchParams } from 'react-router-dom'
 import { CiSearch } from 'react-icons/ci'
 import { BsX } from 'react-icons/bs'
 import { IoMdMoon } from 'react-icons/io'
@@ -44,6 +44,16 @@ export function MobileSlider ({ sliderOpen, closeSlider }) {
 		closeSlider()
 	}
 
+	function startSearch () {
+		navigate({
+			pathname: "/",
+			search: createSearchParams({
+				search: ""
+			}).toString()
+		});
+	}
+	
+
 	function toggleTheme () {
 		if (localStorage.getItem('suge-dark-theme') == 'true') {
 			localStorage.setItem('suge-dark-theme', false)
@@ -75,7 +85,7 @@ export function MobileSlider ({ sliderOpen, closeSlider }) {
 						}
 					</span>
 
-					<span className='mobile-slider-search'> <CiSearch /> </span>
+					<span className='mobile-slider-search' onClick={startSearch}> <CiSearch /> </span>
 					<span className='mobile-slider-exit' onClick={closeSlider}> <BsX /> </span>
 				</div>	
 			</div>

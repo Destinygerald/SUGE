@@ -87,3 +87,8 @@ img {
 input:focus::placeholder {
   visibility: hidden;
 }
+
+.cookies-and-privacy > a {
+  text-decoration: none;
+  color: var(--primary-green);
+}

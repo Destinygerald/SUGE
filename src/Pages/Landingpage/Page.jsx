@@ -6,6 +6,7 @@ import { Banner } from './Components/Banner.jsx'
 import { Patners } from './Components/Patners.jsx'
 import { fetchBlogs } from '../../Api/FetchData.js'
 import { setBlogList } from '../../Redux/BlogList.jsx'
+import { useLocation } from 'react-router-dom'
 
 const Message = lazy(() => import('./Components/Message.jsx').then(module => {
 	return { default: module.Message }
@@ -29,6 +30,7 @@ const Blogs = lazy(() => import('./Components/Blogs.jsx').then(module => {
 
 import { StandIn } from '../../Components/Loader.jsx'
 import { LoadPopup } from '../../Components/LoadPopup.jsx'
+import { SearchBox } from '../../Components/Search.jsx'
 import { useSelector, useDispatch } from 'react-redux'
 
 function Page () {
@@ -36,6 +38,7 @@ function Page () {
 	const load_popup = useSelector(state => state.loadPopup.value)
 	const blogList = useSelector(state => state.blogList.value)
 	const dispatch = useDispatch()
+	const { search } = useLocation()
 
 	async function handleBlog() {
 	
@@ -70,6 +73,15 @@ function Page () {
 				:
 				<></>
 			}
+			
+			{
+				search
+				?
+				<SearchBox />
+				:
+				<></>
+			}
+
 		</div>
 	)
 }

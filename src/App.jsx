@@ -1,6 +1,6 @@
 import './App.css'
 import { useState, Suspense, lazy } from 'react'
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, useNavigate } from 'react-router-dom'
 import { Navbar } from './Components/Navbar.jsx'
 import { MobileSlider } from './Components/MobileSlider.jsx'
 import { Footer } from './Components/Footer.jsx'
@@ -14,6 +14,7 @@ import BlogDataSlice  from './Redux/Blogs.jsx'
 import BlogListSlice  from './Redux/BlogList.jsx'
 import BlogCreateSlice  from './Redux/AdminBlog.jsx'
 import { Loader } from './Components/Loader.jsx'
+import { PrivacyPolicy } from './Components/PrivacyPolicy.jsx'
 
 import LandingPage from './Pages/Landingpage/Page.jsx'
 import AboutUs from './Pages/AboutUs/Page.jsx'
@@ -47,7 +48,8 @@ const store = configureStore({
 function App() {
 
   const [ sliderOpen, setSliderOpen ] = useState(false)
-
+  const navigate = useNavigate()
+  
   function openSlider () {
     setSliderOpen(true)
   }
@@ -67,8 +69,8 @@ function App() {
     <Provider store={store}>
        <div className='app'>
 
-        <Navbar openSlider={openSlider} />
-        
+        <Navbar openSlider={openSlider}  />
+
         {
           sliderOpen
           ?
@@ -93,6 +95,7 @@ function App() {
               <Route path='/contact/2' element={<Contact_2 />} />
               <Route path='/quote/*' element={<Quote />} />
               <Route path='/admin/*' element={<Admin />} />
+              <Route path='/legal/privacy-policy' element={<PrivacyPolicy />} />
             </Routes>
 
             </ScrollTop>
@@ -102,13 +105,15 @@ function App() {
           style={{   fontSize: 'clamp(.8rem, 1.08vw, 1rem)', borderTop:'1px solid rgb(120, 120, 120)', backgroundColor: '#0A0A0A'}} 
           location='bottom' 
           enableDeclineButton
+          onAccept={() => navigate('/')}
+          onDecline={() => navigate('/')}
           declineButtonText='Reject Cookies' 
           declineButtonStyle={{ background: '#fffff', padding: '10px 28px', fontSize: 'clamp(.72rem, 1.08vw, 1rem)', color: 'black', marginRight: '0px' }}
           buttonText='Accept all Cookies'  
           buttonStyle={{ background: '#2cb933', padding: '10px 28px', fontSize: 'clamp(.66rem, .9vw, .88rem)' }}
           cookieName='Suge_accept_cookie' 
           expires={150}>
-            <span>This website uses cookies to help you have a superior and more admissible browsing experience on the website.</span>
+            <span className='cookies-and-privacy'>This website uses cookies and <a href='#' onClick={() => navigate('/legal/privacy-policy')}>Privacy Policy</a> to help you have a superior and more admissible browsing experience on the website.</span>
         </CookieConsent>
 
         <Footer />
