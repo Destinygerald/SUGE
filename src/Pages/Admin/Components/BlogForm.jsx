@@ -245,6 +245,7 @@ export function CreateBlog({ msg, setMsg }) {
 
     const [blogInfo, setBlogInfo] = useState(
         {   
+            meta_data_title: '',
             template: '',
             title: '',
             readTime: '',
@@ -505,6 +506,7 @@ export function CreateBlog({ msg, setMsg }) {
 
 
             <div className='create-blog-main'>
+                <input type='text' placeholder='Meta data Title' name='meta_data_title' value={blogInfo?.meta_data_title} onChange={changeHandler} />
                 <input type='text' placeholder='Blog Title' value={blogInfo?.title} name='title' onChange={changeHandler} />
                 <input type='number' placeholder='Read time [in minutes]' min={3} value={blogInfo?.readTime} name='readTime' onChange={changeHandler} />
                 {  

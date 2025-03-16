@@ -8,12 +8,12 @@ export function Video () {
 	return (
 		<div className='yt-video'>
 			<div>
-				{/*<img src={img1} />*/}
+				{/*<img src={img1} alt='suge-video-cover' />*/}
 				<ReactPlayer url='https://youtu.be/rArvIwPmK8E?si=_Uucq1MFYdSlHAmg' contols={true} />
 			</div>
 
 			<div className='yt-flash'>
-				<img src={Flash} />
+				<img src={Flash} alt='green-flash' />
 			</div>
 
 			<div className='yt-blur' /> 

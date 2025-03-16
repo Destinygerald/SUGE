@@ -47,7 +47,6 @@ export function BlogTemp () {
                 return
             }
             setTimeout(() => {
-
                 dispatch(setBlogData({...info?.data}))
                 setLoading(false)
                 setTempType(info?.data?.template)
@@ -60,6 +59,7 @@ export function BlogTemp () {
         setTempType(blogData?.template)
 
     }
+
         
     useLayoutEffect(() => {
         if (!blogData) {

@@ -2,6 +2,7 @@ import './style.css'
 import './style.mobile.css'
 import './style.1600.css'
 import { Banner } from '../../Components/Banner.jsx'
+import { Helmet } from 'react-helmet-async'
 import { GoClock, GoMail } from 'react-icons/go'
 import { FiPhone } from 'react-icons/fi'
 import { useState } from 'react'
@@ -14,14 +15,14 @@ function ContactInfo () {
 	return (
 		<div className='contact-info'>
 			<div className='contact-info-img'>
-				<img src={img1} loading='lazy' />
+				<img src={img1} loading='lazy' alt='suge-image' />
 			</div>
 
-			<div className='contact-info-cnt'>
-				<div className='contact-info-item'>
+			<div className='contact-info-cnt' id='suge-contact-info-cnt'>
+				<div className='contact-info-item' id='suge-contact-info-cnt-frame'>
 					<span> <GoClock /> </span>
 
-					<div className='contact-time'>
+					<div className='contact-time' id='suge-contact-info-cnt-time'>
 						<span>Opening Hours</span>
 
 						<div>
@@ -36,7 +37,7 @@ function ContactInfo () {
 					</div>
 				</div>
 
-				<div className='contact-info-item'>
+				<div className='contact-info-item' id='suge-contact-info-phone'>
 					<span> <FiPhone /> </span>
 
 					<div className='contact-info-details'>
@@ -45,12 +46,12 @@ function ContactInfo () {
 					</div>
 				</div>
 
-				<div className='contact-info-item'>
+				<div className='contact-info-item' id='suge-contact-info-email'>
 					<span> <GoMail /> </span>
 
 					<div className='contact-info-details'>
 						<span>Email</span>
-						<span>info@sugeltd.co.uk</span>
+						<span>info@suge.co.uk</span>
 					</div>
 				</div>				
 			</div>
@@ -151,7 +152,7 @@ function ContactForm () {
 
 	return (
 		<div className='contact-form'>
-			<div>
+			<div id='suge-contact-info-hdr'>
 				<div>Got Waste?</div>
 				<div>Please feel free to use any of the contact methods listed on this page to get in touch with us. We look forward to hearing from you!</div>
 			</div>
@@ -174,6 +175,12 @@ function ContactForm () {
 function Page () {
 	return (
 		<div className='contact'>
+
+			<Helmet>
+				<title>Suge - Contact | Sustainable Organic Waste Collection & Management UK</title>
+				<link rel="canonical" href="https://www.suge.uk.co/" />
+			</Helmet>
+
 			<Banner page='Contact Us' />
 
 			<div className='contact-cnt'>

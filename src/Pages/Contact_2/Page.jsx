@@ -3,6 +3,7 @@ import './style.mobile.css'
 import './style.1600.css'
 import { Banner } from '../../Components/Banner.jsx'
 import { GoClock, GoMail } from 'react-icons/go'
+import { Helmet } from 'react-helmet-async'
 import { FiPhone } from 'react-icons/fi'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -11,16 +12,16 @@ import img1 from '/images/SUGE IMAGES/2.1 Tanker in field  copy.webp'
 
 function ContactInfo () {
 	return (
-		<div className='contact-2-info'>
+		<div className='contact-2-info' id='suge-contact-2-info-cnt'>
 			<div className='contact-2-info-img'>
-				<img src={img1} loading='lazy' />
+				<img src={img1} loading='lazy'  alt='suge-image' />
 			</div>
 
 			<div className='contact-2-info-cnt'>
 				<div className='contact-2-info-item'>
 					<span> <GoClock /> </span>
 
-					<div className='contact-2-time'>
+					<div className='contact-2-time' id='suge-contact-2-info-time'>
 						<span>Opening Hours</span>
 
 						<div>
@@ -38,7 +39,7 @@ function ContactInfo () {
 				<div className='contact-2-info-item'>
 					<span> <FiPhone /> </span>
 
-					<div className='contact-2-info-details'>
+					<div className='contact-2-info-details' id='suge-contact-2-info-phone'>
 						<span>Phone</span>
 						<span>0330 133 5737</span>
 					</div>
@@ -47,9 +48,9 @@ function ContactInfo () {
 				<div className='contact-2-info-item'>
 					<span> <GoMail /> </span>
 
-					<div className='contact-2-info-details'>
+					<div className='contact-2-info-details' id='suge-contact-2-info-email'>
 						<span>Email</span>
-						<span>info@sugeltd.co.uk</span>
+						<span>info@suge.co.uk</span>
 					</div>
 				</div>				
 			</div>
@@ -150,7 +151,7 @@ function ContactForm () {
 
 	return (
 		<div className='contact-form'>
-			<div>
+			<div className='suge-contact-2-hdr'>
 				<div>Need Waste?</div>
 				<div>Please feel free to use any of the contact methods listed on this page to get in touch with us. We look forward to hearing from you!</div>
 			</div>
@@ -173,6 +174,11 @@ function ContactForm () {
 function Page () {
 	return (
 		<div className='contact-2'>
+			<Helmet>
+				<title>Suge - Contact | Sustainable Organic Waste Collection & Management UK</title>
+				<link rel="canonical" href="https://www.suge.uk.co/" />
+			</Helmet>
+
 			<Banner page='Contact Us' />
 
 			<div className='contact-2-cnt'>

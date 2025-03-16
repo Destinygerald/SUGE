@@ -147,9 +147,10 @@
 	width: 53.8%;
 }
 
-.blog-page-hdr > div:first-child {
-	font-size: clamp(2.6rem, 3.8vw, 3.56rem);
+.blog-page-hdr > h1 {
 	line-height: 4.4rem;
+	font-weight: 400;
+	font-size: clamp(2.12rem, 4vw, 3.56rem) ;
 }
 
 .blog-page-hdr > div:last-child {
@@ -327,6 +328,7 @@
 	min-width: 100%;
 	height: 100%;
 	object-fit: cover;
+	object-position: center;
 }
 
 .blog-template-2-paragraph {
@@ -399,8 +401,8 @@
 }
 
 .blog-template-2-frame-img > img {
-	width: 100%;
-	min-height: 100%;
+	min-width: 100%;
+	height: 100%;
 	object-fit: cover;
 	object-position: center;
 }

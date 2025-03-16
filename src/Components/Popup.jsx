@@ -19,7 +19,7 @@ export function Success ({ setPopup }) {
 			
 			<div className='success-popup-hdr'>
 
-				<img src={Complete} />
+				<img src={Complete} alt='quote-success' />
 				
 				<div>
 					Quote Generated 

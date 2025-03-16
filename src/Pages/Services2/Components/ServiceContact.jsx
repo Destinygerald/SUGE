@@ -4,9 +4,9 @@ import { PrimaryButton } from '../../../Components/Buttons.jsx'
 import { useState } from 'react'
 import { emergencyExtract } from '../../../Redux/MessageFunction.js'
 
-function ServiceContactCard ({title, cnt}) {
+function ServiceContactCard ({title, cnt, index}) {
 	return (
-		<div className='service-2-contact-cnt-info'>
+		<div className='service-2-contact-cnt-info' id={`suge-service-2-contact-cnt-info-${index}`}>
 			<span>{title}</span>
 			<span>{cnt}</span>
 		</div>
@@ -124,25 +124,25 @@ export function ServiceContact () {
 	return (
 		<div className='service-2-contact'>
 			<div className='service-2-contact-cnt'>
-				<div>
+				<div id='suge-service-2-contact-cnt'>
 					<span>Why Choose Us</span>
 
 					<div>EXPERT WASTE WATER MANAGEMENT.</div>
 				</div>
 
 				<div>
-					<ServiceContactCard title='Liquid Waste Recycling' cnt='Our team specializes in sustainable and efficient liquid waste collection and recycling, ensuring compliance with all regulations and standards.' />
-					<ServiceContactCard title='Custom Solutions' cnt='Tailored waste water management solutions to meet specific client needs and requirements.' />
-					<ServiceContactCard title='24/7 Service' cnt='We offer round-the-clock services to address any emergency waste water management needs.' />
+					<ServiceContactCard index='0' title='Liquid Waste Recycling' cnt='Our team specializes in sustainable and efficient liquid waste collection and recycling, ensuring compliance with all regulations and standards.' />
+					<ServiceContactCard index='1' title='Custom Solutions' cnt='Tailored waste water management solutions to meet specific client needs and requirements.' />
+					<ServiceContactCard index='2' title='24/7 Service' cnt='We offer round-the-clock services to address any emergency waste water management needs.' />
 				</div>
 
 
 			</div>
 
-			<div className='service-2-contact-form'>
+			<div className='service-2-contact-form' id='suge-service-2-contact-form'>
 				<div className='service-2-contact-form-glass' />
 
-				<div className='service-2-contact-form-hdr'>
+				<div className='service-2-contact-form-hdr' id='suge-service-2-contact-form-hdr'>
 					<span>EMERGENCY WASTE WATER EXTRACTION</span>
 					<span>Contact us for efficient and eco-friendly waste water tankering solutions. Fill out this simple form or call us for a quicker response</span>
 				</div>

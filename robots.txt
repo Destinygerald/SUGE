@@ -1,0 +1,18 @@
+User-agent: Slurp
+Disallow:/
+
+User-agent: Teoma
+Disallow:/
+
+User-agent: Gigabot
+Disallow:/
+
+User-agent: yahoo-mmcrawler
+Disallow:/
+
+User-agent: *
+Disallow: 
+Crawl-delay: 5
+Disallow: /cgi-bin/
+
+sitemap: https://suge.uk.co/sitemap.xml

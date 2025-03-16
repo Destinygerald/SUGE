@@ -98,6 +98,10 @@
 	cursor: pointer;
 }
 
+.admin-slider {
+	display: nones;
+}
+
 .login-loading {
 	width: 100%;
 	height: 54px;
@@ -892,6 +896,15 @@
 	animation-delay: 1.2s;
 }
 
+.blogs-loading {
+	top: 50%;
+	left: 50%;
+}
+
+.blogs-loading > span {
+	font-size: clamp(.88rem, 1.1vw, 1rem);
+}
+
 @keyframes bounce {
 	0%, 100% {
 		translate: 0 10px;
@@ -955,4 +968,12 @@
 
 .preview-btns > button:last-child > button:disabled {
 	background-color: rgb(120, 120, 120) !important;
+}
+
+.unavailable {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }

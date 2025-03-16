@@ -9,14 +9,14 @@ import img5 from '/images/website-logo.webp'
 function PatnersLogo ({ source }) {
 	return (
 		<div className='partners-logo'>
-			<img src={source} />
+			<img src={source} alt='suge-partners' />
 		</div>
 	)
 }
 
 export function Patners () {
 	return (
-		<div className='partners'>
+		<div className='partners' id='suge-partners'>
 			<span>Our Trusted Partners</span>
 
 			<div className='partners-cnt'>

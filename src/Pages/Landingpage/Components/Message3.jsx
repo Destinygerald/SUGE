@@ -18,12 +18,12 @@ export function Message3 () {
 	return (
 		<div className='message-3'>
 			
-			<div className='message-3-cnt'>
+			<div className='message-3-cnt' id='suge-message-3-cnt'>
 				<div>
 					Waste Management and Recycling that Adapts to Your Industry
 				</div>
 
-				<div className='message-3-cnt-info'>
+				<div className='message-3-cnt-info' id='suge-message-3-cnt-info'>
 					<div>Our promise to you is hassle-free recycling. Leveraging our in-house haulage system, we guarantee efficient and cost-effective recycling and waste management solutions across the UK.</div>
 					<PrimaryButton text='Get a Quote' action={getQuote} />
 				</div>
@@ -31,12 +31,12 @@ export function Message3 () {
 
 
 			<div className='message-3-img'>
-				<img src={Logo} />
+				<img src={Logo} alt='suge-logo' />
 
 				<div className='message-3-img-show'>
-					<div> <img src={img1} />  </div>
-					<div> <img src={img2} />  </div>
-					<div> <img src={img3} />  </div>
+					<div> <img src={img1} alt='suge-img' />  </div>
+					<div> <img src={img2} alt='suge-img' />  </div>
+					<div> <img src={img3} alt='suge-img' />  </div>
 				</div>
 			</div>
 

@@ -23,7 +23,7 @@ function FirstQuoteCard ({ imgSource, text }) {
 	return (
 		<div className={business_type == text ? 'quote-1-card quote-1-card-selected' : 'quote-1-card'} onClick={handleClick}>
 			<div>
-				<img src={imgSource} />
+				<img src={imgSource} alt='business-type-image' />
 			</div>
 
 			{

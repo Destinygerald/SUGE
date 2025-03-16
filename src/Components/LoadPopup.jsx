@@ -62,9 +62,9 @@ export function LoadPopup () {
 				</div>
 
 				<div className='load-popup-right'>
-					<img src={img1} />
-					<img src={img2} />
-					<img src={img3} />
+					<img src={img1} alt='suge-logo-image' />
+					<img src={img2} alt='suge-logo-image' />
+					<img src={img3} alt='suge-logo-image' />
 				</div>
 			</div>
 		</div>

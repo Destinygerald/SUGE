@@ -4,10 +4,15 @@
   box-sizing: border-box;
 }
 
+*:not(.navbar) {
+  scroll-padding-top: 100px;
+}
+
 html, body, #root {
   width: 100%;
   min-height: 100vh;
   background-color: var(--bg);
+  scroll-behavior: smooth;
 }
 
 @font-face {

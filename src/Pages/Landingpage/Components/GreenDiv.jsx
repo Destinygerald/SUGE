@@ -15,12 +15,12 @@ export function GreenDiv () {
 
 	return (
 		<div className='green-div'>
-			<img src={Logo} className='green-div-logo' />
+			<img src={Logo} className='green-div-logo' alt='suge-logo' />
 
-			<img src={Flash} className='green-div-flash' />
+			<img src={Flash} className='green-div-flash' alt='green-flash' />
 
 			<div className='green-div-cnt'>
-				<div>
+				<div id='suge-landing-page-green-div'> 
 					<div>Handle Waste the Right Way</div>
 					<div>Ready to start your journey towards efficient and responsible waste management? Contact Suge Ltd today and let us help you make a difference.</div>
 				</div>

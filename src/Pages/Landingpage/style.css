@@ -38,20 +38,20 @@
 	position: relative;
 }
 
-.banner-cnt > h1:first-child {
+.banner-cnt > h1:nth-child(2) {
 	/*font-size: 5.25rem;*/
 	font-size: clamp(3rem, 7vw , 5.5rem);
 	width: 100%;
 	font-weight: 400;
 }
 
-.banner-cnt > h1:first-child > span {
+.banner-cnt > h1:nth-child(2) > span {
 	background-image: var(--primary-gradient);
 	color: transparent;
 	background-clip: text;
 }
 
-.banner-cnt > p:nth-child(2) {
+.banner-cnt > p:nth-child(3) {
 	font-size: clamp(1rem , 1.6vw, 1.6rem);
 	line-height: 2.4rem;
 	width: 100%;
@@ -198,9 +198,6 @@
 	mix-blend-mode: screen;
 }
 
-.light-theme .message-1-flash > img {
-	/*mix-blend-mode: multiply;*/
-}
 
 .message-2 {
 	margin-top: 120px;

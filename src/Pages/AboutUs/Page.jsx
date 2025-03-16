@@ -2,6 +2,7 @@ import './style.css'
 import './style.mobile.css'
 import './style.1600.css'
 import { Suspense, lazy } from 'react'
+import { Helmet } from 'react-helmet-async'
 import { Banner } from '../../Components/Banner.jsx'
 import { Mission } from './Components/Mission.jsx'
 
@@ -22,6 +23,11 @@ import { StandIn } from '../../Components/Loader.jsx'
 function Page () {
 	return (
 		<div className='about-us'>
+			<Helmet>
+				<title>Suge - About | Sustainable Organic Waste Collection & Management UK</title>
+				<link rel="canonical" href="https://www.suge.uk.co/about" />
+			</Helmet>
+	
 			<Banner page='About Us' />
 			<Mission />
 

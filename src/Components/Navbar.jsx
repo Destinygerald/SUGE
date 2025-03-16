@@ -44,6 +44,7 @@ export function Navbar ({ openSlider }) {
 		navigate('/quote')
 	}
 
+
 	function toggleTheme () {
 		if (localStorage.getItem('suge-dark-theme') == 'true') {
 			localStorage.setItem('suge-dark-theme', false)
@@ -66,7 +67,7 @@ export function Navbar ({ openSlider }) {
 
 	function startSearch () {
 		navigate({
-			pathname: "/",
+			pathname: pathname,
 			search: createSearchParams({
 				search: ""
 			}).toString()
@@ -86,7 +87,7 @@ export function Navbar ({ openSlider }) {
 	return (
 		<div className='navbar'>
 				
-				<div className='logo' onClick={backHome}> <img src={Logo} /> </div>
+				<div className='logo' onClick={backHome}> <img src={Logo} alt='suge-logo' /> </div>
 
 				<div className='nav-items'>
 					<NavItem nav='Home' route='/' clickHandler={clickHandler} />

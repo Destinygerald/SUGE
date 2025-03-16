@@ -27,6 +27,7 @@ function BlogIndex ({ search }) {
 
     const [ blogs, setBlogs ] = useState([])
     const [ blogSearch, setBlogSearch ] = useState([])
+    const [ loadBlogs, setLoadBlogs ] = useState(false)
 
     async function getAllBlogs () {
         const res = await fetchBlogs()
@@ -34,6 +35,8 @@ function BlogIndex ({ search }) {
         if (!res?.result) return;
 
 		setBlogs(res.result)
+
+        setLoadBlogs(true)
     }
 
     useEffect(() => {
@@ -60,19 +63,30 @@ function BlogIndex ({ search }) {
             <BlogComponentHeader />
 
             <div className='admin-blog-cnt'>
-                <div className='admin-blog-grid'>
-                    {
-                        !blogSearch[0]
-                        ?
-                        blogs.map((item, i) => (
-                            <BlogCard key={'admin-blog-card-' + i} id={item?._id} image={item?.img} title={item?.title} content={item?.content} readtime={item?.readTime} date={item?.dateAdded} />
-                        ))
-                        :
-                        blogSearch.map((item, i) => (
-                            <BlogCard key={'admin-blog-card-' + i} id={item?._id} image={item?.img} title={item?.title} content={item?.content} readtime={item?.readTime} date={item?.dateAdded} />
-                        ))
-                    }
-                </div>
+                {
+                    loadBlogs
+                    ?
+                    <div className='admin-blog-grid'>
+                        {
+                            !blogSearch[0]
+                            ?
+                            blogs.map((item, i) => (
+                                <BlogCard key={'admin-blog-card-' + i} id={item?._id} image={item?.img} title={item?.title} content={item?.content} readtime={item?.readTime} date={item?.dateAdded} />
+                            ))
+                            :
+                            blogSearch.map((item, i) => (
+                                <BlogCard key={'admin-blog-card-' + i} id={item?._id} image={item?.img} title={item?.title} content={item?.content} readtime={item?.readTime} date={item?.dateAdded} />
+                            ))
+                        }
+                    </div>
+                    :
+                    <div className='loader-x blogs-loading'>
+                        <div className='loader-ball' />
+                        <div className='loader-ball' />
+                        <div className='loader-ball' />
+                        <span>Loading</span>
+                    </div>   
+                }
             </div>
         </div>
     )

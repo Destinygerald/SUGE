@@ -18,7 +18,7 @@ function BlogTemplate ({ template, nav, display }) {
     return (
     <div className='blog-template-display' onClick={handleClick}>
         <div>
-            <img src={display} />
+            <img src={display} alt='blog-template' />
         </div>
 
         <span>{template}</span>

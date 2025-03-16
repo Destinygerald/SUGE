@@ -9,7 +9,7 @@ export function Blogs () {
     const blogList = useSelector(state => state.blogList.value)
 
     return (
-        <div className='landing-page-blogs'>
+        <div className='landing-page-blogs' id='suge-landing-page-blogs'>
             <span>Our Blogs</span>
 
             <div className='landing-page-blogs-grid'>

@@ -4,11 +4,11 @@ import img1 from '/images/SUGE IMAGES/2.2 Tanker in AD1 Plant.webp'
 
 export function Mission () {
 	return (
-		<div className='mission'>
-			<div className='mission-info'>
+		<div className='mission' id='about-us-mission'>
+			<div className='mission-info' id='about-us-mission-frame'>
 				<div>Our Mission</div>
 
-				<div className='mission-info-cnt'>
+				<div className='mission-info-cnt' id='about-us-mission-content'>
 					<div>Huge Impact, Zero Waste.</div>
 					
 					<div>
@@ -19,7 +19,7 @@ export function Mission () {
 			</div>
 
 			<div className='mission-img'>
-				<img src={img1} />
+				<img src={img1} alt='suge-image' />
 			</div>
 		</div>
 	)

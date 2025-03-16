@@ -23,7 +23,7 @@ function ThirdQuoteCard ({ imgSource, text }) {
 	return (
 		<div className={frequency == text ? 'quote-3-card quote-3-card-check' : 'quote-3-card'} onClick={handleClick}>
 			<div>{text}</div>
-			<img src={imgSource} />
+			<img src={imgSource} alt='quote-frequency-type' />
 		</div>
 	)
 }

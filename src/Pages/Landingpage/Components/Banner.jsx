@@ -13,8 +13,10 @@ export function Banner () {
 
 	return (
 		<div className='banner'>
-			<div className='banner-cnt'>
+			<div className='banner-cnt' id='suge-banner-display'>
 				
+				<h1 aria-hidden='true' hidden>Got Waste? Think SUGE – The Heroes of Organic Waste Management </h1>
+
 				<h1>Got Waste? <br/> Think <span>SUGE.</span></h1>
 
 				<p> Your waste management heroes reporting for duty. <br /> Reliable, sustainable, and 100% diverted away from landfill. </p>

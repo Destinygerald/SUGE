@@ -71,7 +71,7 @@ export function MobileSlider ({ sliderOpen, closeSlider }) {
 	return (
 		<div className='mobile-slider'>
 			<div className='mobile-slider-hdr'>
-				<div className='logo'> <img src={Logo} /> </div>
+				<div className='logo'> <img src={Logo} alt='suge-logo' /> </div>
 
 				<div className='mobile-slider-extras'>
 

@@ -3,6 +3,7 @@ import './style.1600.css'
 import './style.mobile.css'
 import { useEffect, useState } from 'react'
 import { Route, Routes } from 'react-router-dom'
+import { Helmet } from 'react-helmet-async'
 import img1 from  '/images/SUGE ASSETS/Lighting Black.webp'
 import { BlogCard } from './Components/BlogCard.jsx'
 import { BlogPage } from './Components/BlogPage.jsx'
@@ -60,13 +61,18 @@ function Index () {
 function Page () {
 	return (
 		<div className='blog'>
+
+			{/* <Helmet>
+				<title>Suge - blogs</title>
+				<link rel="canonical" href="https://www.suge.uk.co/blog" />
+			</Helmet> */}
+			
 			<Routes>
 				<Route index element={<Index />} />
 				<Route path='/:id' element={<BlogTemp />} />
-				<Route path="/template" element={<BlogTemp />} />
 			</Routes>
 
-			<div className='blog-flash'> <img src={img1} /> </div>
+			<div className='blog-flash'> <img src={img1} alt='green-flash' /> </div>
 		</div>
 	)
 }

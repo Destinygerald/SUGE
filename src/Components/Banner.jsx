@@ -10,10 +10,10 @@ export function Banner ({ page }) {
 			<div> {page} </div>
 
 			<div>
-				<img src={Logo} loading='lazy' />
+				<img src={Logo} loading='lazy' alt='suge-logo' />
 			</div>
 
-			<img src={Flash} className='banner-x-flash' />
+			<img src={Flash} className='banner-x-flash' alt='green-flash' />
 
 			<div className='banner-x-line'/>
 		</div>

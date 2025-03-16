@@ -2,6 +2,7 @@ import './style.css'
 import './style.mobile.css'
 import './style.1600.css'
 import { Banner } from '../../Components/Banner.jsx'
+import { Helmet } from 'react-helmet-async'
 import Infographics from '/images/Infographics 1.webp'
 import Logo from '/images/SUGE ASSETS/Asset 5300 5.webp'
 import { PrimaryButton } from '../../Components/Buttons.jsx'
@@ -11,24 +12,24 @@ import Flash from '/images/SUGE ASSETS/Lighting (2).webp'
 function Stat () {
 	return (
 		<div className='sustainability-stat'>
-			<div className='sustainability-stat-left'>
+			<div className='sustainability-stat-left' id='suge-sustainability-stat-left'>
 				<div>Impact Statistics</div>
 
 				<div>Our sustainability in numbers</div>
 			</div>	
 
 			<div className='sustainability-stat-right'>
-				<div className='sustainability-stat-card'>
+				<div className='sustainability-stat-card' id='suge-sustainability-stat-right-1'>
 					<div>98%</div>
 					<div>Client satisfaction rate for sustainability practices.</div>
 				</div>
 
-				<div className='sustainability-stat-card'>
+				<div className='sustainability-stat-card' id='suge-sustainability-stat-right-2'>
 					<div>67k+</div>
 					<div>Tonnes of solid organic waste diverted from landfills</div>
 				</div>
 
-				<div className='sustainability-stat-card'>
+				<div className='sustainability-stat-card' id='suge-sustainability-stat-right-3'>
 					<div>21k+</div>
 					<div>Landfill CO2e emissions saved</div>
 				</div>
@@ -49,14 +50,14 @@ function SustainabilityInfo () {
 	return (
 		<div className='sustainability-info'>
 			<div>
-				<img src={Logo} />
+				<img src={Logo} alt='suge-logo' />
 			</div>
 
 			<div>
-				<img src={Flash} />
+				<img src={Flash} alt='green-flash' />
 			</div>
 
-			<div>
+			<div id='suge-sustainability-info-btn'>
 				<span>Partner with Us</span>
 				<PrimaryButton text='Contact Us' hasIcon={false} action={toContact} />
 			</div>
@@ -68,10 +69,15 @@ function SustainabilityInfo () {
 function Page () {
 	return (
 		<div className='sustainability'>
+			<Helmet>
+				<title>Suge - Sustainability | Sustainable Organic Waste Collection & Management UK</title>
+				<link rel="canonical" href="https://www.suge.uk.co/" />
+			</Helmet>
+
 			<Banner page='Sustainability' />
 			<Stat />
 			<div className='sustainability-img'>
-				<img src={Infographics} />
+				<img src={Infographics} alt='suge-infographics'/>
 			</div>
 			<SustainabilityInfo />
 			<div className='sustainability-blur'/>

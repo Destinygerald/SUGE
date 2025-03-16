@@ -4,11 +4,11 @@ import image from '/images/SUGE IMAGES/IMG_5681 a1-2.webp'
 
 export function ServiceOffered () {
 	return (
-		<div className='service-2-banner'>
+		<div className='service-2-banner' id='suge-service-2-banner'>
 			<span>Here Comes The Rains</span>
 
 			<div className='service-2-banner-main'>
-				<div className='service-2-banner-main-cnt'>
+				<div className='service-2-banner-main-cnt' id='suge-service-2-banner-cnt'>
 					<div>
 						Waste Water <br /> 
 						Tankering <br />
@@ -22,7 +22,7 @@ export function ServiceOffered () {
 				</div>
 
 				<div className='service-2-banner-img'>
-					<img src={image} />
+					<img src={image} alt='suge-image' />
 				</div>
 
 

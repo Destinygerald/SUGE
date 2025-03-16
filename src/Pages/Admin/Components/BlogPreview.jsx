@@ -64,7 +64,7 @@ export function BlogPreview ({ msg, setMsg }) {
 
     return (
         <div className='blog-preview'>
-            <div className='blog-flash'> <img src={img1} /> </div>
+            <div className='blog-flash'> <img src={img1} alt='green-flash' /> </div>
 
             <div className='blog-preview-cnt'>    
                 {

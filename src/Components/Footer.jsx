@@ -3,7 +3,7 @@ import './style.mobile.css'
 import Logo from '/images/SUGE WHITE.png'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { FaFacebook } from 'react-icons/fa'
-import { FaXTwitter, FaInstagram, FaYoutube } from 'react-icons/fa6'
+import { FaInstagram, FaYoutube } from 'react-icons/fa6'
 import { IoLogoLinkedin } from 'react-icons/io5'
 
 export function Footer () {
@@ -24,18 +24,18 @@ export function Footer () {
 		<div className='footer'>
 			<div className='footer-main'>
 				<div onClick={backHome}>
-					<img src={Logo} />
+					<img src={Logo} alt='suge-logo' />
 				</div>
 
-				<div className='footer-main-item'>
+				<div className='footer-main-item' id='suge-footer-main'>
 
-					<div>
+					<div id='suge-footer-address'>
 						Plot 754, Aaron Road Industrial Estate, <br />
 						Whittlesey Peterborough <br />
 						PE7 2EX
 					</div>
 
-					<div className='footer-nav'>
+					<div className='footer-nav' id='suge-footer-nav'>
 						<a href='#' onClick={(e) => {e.preventDefault();navigate('/')}}>Home</a>
 						<a href='#' onClick={(e) => {e.preventDefault();navigate('/about')}}>About us</a>
 						<a href='#' onClick={(e) => {e.preventDefault();navigate('/sustainability')}}>Sustainability</a>
@@ -48,12 +48,12 @@ export function Footer () {
 				
 			</div>
 
-			<div className='footer-copyright'>
+			<div className='footer-copyright' id='suge-footer-copyrigith'>
 				<span> Copyright © 2025 Suge</span>
 
-				<div className='footer-contact'>
+				<div className='footer-contact' id='suge-footer-contact'>
 
-					<div className='contact-dail'>Info@sugeltd.co.uk</div>
+					<div className='contact-dail'>Info@suge.co.uk</div>
 
 					<div className='contact-separator' />
 

@@ -1,9 +1,10 @@
 import '../style.css'
 import '../style.mobile.css'
 import { useState, useEffect, useRef } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { CiMenuKebab, CiSearch } from 'react-icons/ci'
+import { useNavigate, Routes, Route } from 'react-router-dom'
+import { CiSearch } from 'react-icons/ci'
 import { FaFilter } from 'react-icons/fa'
+import { QuoteInfo } from './QuoteInfo'
 
 function QuoteHistoryHeader ({ listFilter, setListFilter }) {
 
@@ -124,7 +125,7 @@ function QuoteList () {
 	)
 }
 
-export function QuoteHistory () {
+function QuoteIndex () {
 
 	const [ listFilter, setListFilter ] = useState('All')
 
@@ -138,5 +139,16 @@ export function QuoteHistory () {
 				<QuoteList />
 			</div>
 		</div>
+	)
+}
+
+export function QuoteHistory() {
+	return (
+		<>
+			<Routes>
+				<Route index element={<QuoteIndex />} />
+				<Route path='/:id' element={<QuoteInfo />} />
+			</Routes>
+		</>
 	)
 }

@@ -3,12 +3,12 @@ import '../style.mobile.css'
 import { useState, useEffect } from 'react'
 import { Route, Routes, useLocation, useNavigate } from 'react-router-dom'
 import { CiSearch, CiMenuFries } from 'react-icons/ci'
-import { MdHistory } from 'react-icons/md'
 import { FaRegNewspaper } from 'react-icons/fa'
+import { MdHistory } from 'react-icons/md'
+import { BsX } from 'react-icons/bs'
 import Logo from '/images/SUGE LOGO.webp'
-import { QuoteHistory } from './QuoteHistory.jsx'
-import { QuoteInfo } from './QuoteInfo.jsx'
 import { Blog } from './Blog.jsx'
+import { QuoteHistory } from './QuoteHistory.jsx'
 import { profileChecker, getCookie } from '../../../Api/FetchData.js'
 
 
@@ -16,15 +16,9 @@ import { profileChecker, getCookie } from '../../../Api/FetchData.js'
 function Topbar ({ search, setSearch}) {
 
 	
-	const pathname = useLocation()
-
 	function searchHandler (e) {
 		setSearch(e.target.value)
 	}
-
-	useEffect(() => {
-
-	}, [])
 
 	return (
 		<div className='admin-topbar'>
@@ -67,21 +61,38 @@ function Sidebar () {
 			<img src={Logo} />
 
 			<div className='admin-sidebar-cnt'>
-				{/* <SidebarItem text='Order History' icon={<MdHistory />} nav='' classCheck={pathname.split('/')[2] == 'dashboard' && pathname.split('/')[3] != 'blog'} /> */}
-				<SidebarItem text='Blogs' icon={<FaRegNewspaper />} nav='blog' classCheck={true} />
+				<SidebarItem text='Order History' icon={<MdHistory />} nav='/admin/dashboard' classCheck={!pathname.split('/').includes('blog')} />
+				<SidebarItem text='Blogs' icon={<FaRegNewspaper />} nav='blog' classCheck={pathname.split('/').includes('blog')} />
 			</div>
 		</div>
 	)
 }
 
-function MobileNav () {
+function MobileNav ({ setMenu }) {
 	return (
 		<div className='admin-nav'>
 			<img src={Logo} />
 
-			<span className='mobile-menu'>
+			<span className='mobile-menu' onClick={() => setMenu(true)}>
 				<CiMenuFries />				
 			</span>
+
+		</div>
+	)
+}
+
+function MobileSlider ({ setMenu }) {
+	
+	const { pathname } = useLocation()	
+
+	return (
+		<div className='admin-slider'>
+			<span className='admin-slider-exit' onClick={() => setMenu(false)}> <BsX /> </span>
+
+			<div className='admin-sidebar-cnt'>
+				<SidebarItem text='Order History' icon={<MdHistory />} nav='/admin/dashboard' classCheck={!pathname.split('/').includes('blog')} />
+				<SidebarItem text='Blogs' icon={<FaRegNewspaper />} nav='blog' classCheck={pathname.split('/').includes('blog')} />
+			</div>
 
 		</div>
 	)
@@ -90,6 +101,8 @@ function MobileNav () {
 export function Dashboard ({ loginCheck }) {
 
 	const [search, setSearch] = useState('')
+	const [menu, setMenu] = useState(false)
+	const { pathname } = useLocation()
 	const navigate = useNavigate()
 
 	
@@ -97,31 +110,45 @@ export function Dashboard ({ loginCheck }) {
 	
 		const res = await profileChecker()
 
+		console.log(res)
+
 		if (!res) {
-			return navigate('/admin')
+			setTimeout(() => {
+				navigate('/admin')
+			}, 200)
+			return
 		}
 
 
 		if (res.status != 'Ok') {
-			navigate('/admin')	
+			setTimeout(() => {
+				navigate('/admin')
+			}, 200)	
+		}
+		
+	}
+
+	function checkForCookies () {
+		let admin_auth = getCookie()
+
+		if (!admin_auth) {			
+			setTimeout(() => {
+				navigate('/admin')
+			}, 200)
+			
+			return;
 		}
 		
 	}
 
 	useEffect(() => {
-
-		let admin_auth = getCookie()
-
-		if (!loginCheck){ // Forgive the unnecessary nesting😣
-			if (!admin_auth) {
-				navigate('/admin')
-				return;
-			}
-		}
-
-
+		checkForCookies()
 		checkForProfile()
 	}, [])
+
+	useEffect(() => {
+		setMenu(false)
+	}, [pathname])
 
 
 	return (
@@ -129,14 +156,25 @@ export function Dashboard ({ loginCheck }) {
 			<Sidebar />
 
 			<div className='admin-dashboard-main'>
-				<MobileNav />
+				<MobileNav setMenu={setMenu} />
+				{
+					menu
+					?
+					<MobileSlider setMenu={setMenu} />
+					:
+					<></>
+				}
 
 				<Topbar search={search} setSearch={setSearch} />
 
 				<div className='admin-dashboard-cnt'>
 					<Routes>
-						<Route index element={<Blog search={search}  />} />
+						{/* <Route index element={<QuoteHistory />} /> */}
+						
+						<Route index element={<div className='unavailable'>Orders are unavailable for now.</div>} />	
+						<Route path='/*' element={<div className='unavailable'>Orders are unavailable for now.</div>} />				
 						<Route path='/blog/*' element={<Blog search={search} />} />
+						{/* <Route path='/*' element={<QuoteHistory />} /> */}
 					</Routes>
 				</div>
 			</div>

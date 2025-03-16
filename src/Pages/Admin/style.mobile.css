@@ -51,8 +51,26 @@
 		/* display: none; */
 	}
 
+	.admin-slider {
+		display: flex;
+		width: 80%;
+		height: 100vh;
+		position: fixed;
+		top: 0;
+		right: 0;
+		background: white;
+		box-shadow: 0 0 2px rgb(0, 0, 0, .32);
+	}
+
+	.admin-slider-exit {
+		position: absolute;
+		right: 4.6%;
+		top: 16px;
+		font-size: 1.2rem;
+	}
+
 	.admin-topbar {
-		/* display: none; */
+		display: none;
 		/* right: 10px; */
 		left: auto;
 		position: absolute;
@@ -94,6 +112,10 @@
 		align-items: center;
 		font-size: 1rem;
 		color: rgb(160, 160, 160);
+	}
+
+	.admin-slider .admin-sidebar-cnt{
+		margin-top: 40px;
 	}
 
 	.mobile-filter-options {

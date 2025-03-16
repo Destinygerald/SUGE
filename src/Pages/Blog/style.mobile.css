@@ -57,7 +57,7 @@
 		gap: 24px;
 	}
 
-	.blog-page-hdr > div:first-child {
+	.blog-page-hdr > h1:first-child {
 		font-size: 1.5rem;
 		line-height: 2rem;
 	}

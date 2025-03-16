@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+<url>
+<loc>http://www.suge.uk.co</loc>
+<lastmod>2025-3-12</lastmod>
+<changefreq>monthly</changefreq> [optional]
+<priority>1</priority>
+</url>
+
+<url>
+<loc>http://www.suge.uk.co/about</loc>
+<lastmod>2025-3-12</lastmod>
+<changefreq>monthly</changefreq> [optional]
+<priority>0.8</priority>
+</url>
+
+<url>
+<loc>http://www.suge.uk.co/services</loc>
+<lastmod>2025-3-12</lastmod>
+<changefreq>monthly</changefreq> [optional]
+<priority>0.8</priority>
+</url>
+
+<url>
+<loc>http://www.suge.uk.co/services/2</loc>
+<lastmod>2025-3-12</lastmod>
+<changefreq>monthly</changefreq> [optional]
+<priority>0.8</priority>
+</url>
+
+<url>
+<loc>http://www.suge.uk.co/sustainabilty</loc>
+<lastmod>2025-3-12</lastmod>
+<changefreq>monthly</changefreq> [optional]
+<priority>0.8</priority>
+</url>
+
+<url>
+<loc>http://www.suge.uk.co/contact</loc>
+<lastmod>2025-3-12</lastmod>
+<changefreq>monthly</changefreq> [optional]
+<priority>0.8</priority>
+</url>
+
+<url>
+<loc>http://www.suge.uk.co/contact/2</loc>
+<lastmod>2025-3-12</lastmod>
+<changefreq>monthly</changefreq> [optional]
+<priority>0.8</priority>
+</url>
+
+<url>
+<loc>http://www.suge.uk.co/quote</loc>
+<lastmod>2025-3-12</lastmod>
+<changefreq>monthly</changefreq> [optional]
+<priority>0.8</priority>
+</url>
+
+<url>
+<loc>http://www.suge.uk.co/quote/2</loc>
+<lastmod>2025-3-12</lastmod>
+<changefreq>monthly</changefreq> [optional]
+<priority>0.8</priority>
+</url>
+
+<url>
+<loc>http://www.suge.uk.co/quote/3</loc>
+<lastmod>2025-3-12</lastmod>
+<changefreq>monthly</changefreq> [optional]
+<priority>0.8</priority>
+</url>
+
+<url>
+<loc>http://www.suge.uk.co/quote/4</loc>
+<lastmod>2025-3-12</lastmod>
+<changefreq>monthly</changefreq> [optional]
+<priority>0.8</priority>
+</url>
+
+<url>
+<loc>http://www.suge.uk.co/quote/5</loc>
+<lastmod>2025-3-12</lastmod>
+<changefreq>monthly</changefreq> [optional]
+<priority>0.8</priority>
+</url>
+
+<url>
+<loc>http://www.suge.uk.co/quote/6</loc>
+<lastmod>2025-3-12</lastmod>
+<changefreq>monthly</changefreq> [optional]
+<priority>0.8</priority>
+</url>
+
+<url>
+<loc>http://www.suge.uk.co/legal/privacy-policy</loc>
+<lastmod>2025-3-12</lastmod>
+<changefreq>monthly</changefreq> [optional]
+<priority>0.8</priority>
+</url>
+
+</urlset>

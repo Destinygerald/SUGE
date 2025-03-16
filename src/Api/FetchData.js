@@ -130,15 +130,15 @@ export async function profileChecker () {
 export function getCookie() {
     // try {
 
-        if (!document.cookie) return;
+        if (!document.cookie) return false;
 
         const allCookies = document.cookie.split(' ')
 
-        if (allCookies.length == 0) return;
+        if (allCookies.length == 0) return false;
 
         const authCookie = allCookies.find(item => item.includes('admin_auth_token'))
         
-        if (!authCookie) return
+        if (!authCookie) return false;
 
         return authCookie.split('=')[1]
   
