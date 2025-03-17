@@ -242,6 +242,10 @@
 	translate: -50% -15% !important;	
 }
 
+.suge-heroes-card:nth-child(6) {
+	cursor: pointer;
+}
+
 .suge-heroes-card:nth-child(6) > img {
 	width: 100% !important;
 	/*rotate: -26deg;*/
