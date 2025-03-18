@@ -418,7 +418,8 @@
 
 .load-popup {
 	width: 70%;
-	height: 82vh;
+	min-height: 82vh;
+	height: fit-content;
 	z-index: 3;
 	top: 50%;
 	left: 50%;
@@ -430,6 +431,11 @@
 	animation: fade-in 1.2s ease-in;
 }
 
+@media (max-width: 1000px) {
+	.load-popup {
+		width: 88%;
+	}
+}
 
 .load-bck {
 	position: absolute;
@@ -486,7 +492,8 @@
 	width: 42%;
 	height: 100%;
 	background: var(--primary-gradient);
-	position: relative;
+	position: absolute;
+	right: 0;
 }
 
 .load-popup-right > img {
@@ -537,6 +544,8 @@
 .load-popup-main > div:first-child > div:last-child {
 	font-size: clamp(.6rem, 1.16vw, 1rem);
 	line-height: 1.48rem;
+	display: block;
+	white-space: pre-wrap;
 }
 
 

@@ -15,6 +15,7 @@ import ScrollTop from './Components/ScrollToTop.jsx'
 import BlogDataSlice  from './Redux/Blogs.jsx'
 import BlogListSlice  from './Redux/BlogList.jsx'
 import BlogCreateSlice  from './Redux/AdminBlog.jsx'
+import PopupListSlice  from './Redux/PopupList.jsx'
 import { Loader } from './Components/Loader.jsx'
 import { PrivacyPolicy } from './Components/PrivacyPolicy.jsx'
 
@@ -43,7 +44,8 @@ const store = configureStore({
     quote: QuoteSlice,
     quote_popup: QuotePopupSlice,
     loadPopup: LoadPopupSlice,
-    blogList: BlogListSlice
+    blogList: BlogListSlice,
+    admin_popups: PopupListSlice
   }
 })
 

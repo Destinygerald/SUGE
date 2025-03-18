@@ -57,7 +57,7 @@ export function BlogPage () {
 		// const info = await fetchBlogContent(id)
 		const info = BlogPlaceholder.find(item => item?._id == id)
 
-		console.log(info)
+		// console.log(info)
 
 		// setBlogData({...info?.data})
 

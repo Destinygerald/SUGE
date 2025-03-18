@@ -6,13 +6,14 @@ import img2 from '/images/LOAD_POPUP/popup_img2.webp'
 import img3 from '/images/LOAD_POPUP/popup_img3.webp'
 import { PrimaryButton } from './Buttons.jsx'
 import { closePopup } from '../Redux/LoadPopup.js'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useLayoutEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 
 export function LoadPopup () {
 
+	const active_popup = useSelector(state => state.admin_popups.value.activePopup)
 	const dispatch = useDispatch()
 	const navigate = useNavigate()
 
@@ -33,6 +34,7 @@ export function LoadPopup () {
 	useLayoutEffect(() => {
 		document.querySelector('.load-popup').classList.remove('load-popup-close')
 	}, [])
+	// console.log(active_popup)
 
 	return (
 		<div className='load-popup'>
@@ -44,16 +46,22 @@ export function LoadPopup () {
 					
 					<div>
 						<div>
-							Time to Rethink <br />
+							{/* Time to Rethink <br />
 							Your Waste <br />
-							Strategy?
+							Strategy? */}
+							{
+								active_popup?.title
+							}
 						</div>
 
 						<div>
-							It’s never too late to save more and waste less.<br />
+							{/* It’s never too late to save more and waste less.<br />
 							Claim your FREE Waste Review today. We’ll analyse your waste management and uncover cost-effective, greener solutions tailored to your business. <br /><br />
 
-							This offer won’t last forever—act now!
+							This offer won’t last forever—act now! */}
+							{
+								active_popup?.content
+							}
 						</div>
 					</div>
 

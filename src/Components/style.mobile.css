@@ -35,13 +35,13 @@
 	}
 
 	.load-popup-main > div:first-child > div:last-child {
-		font-size: .88rem;
+		font-size: .8rem;
 		font-weight: 300;
 	}
 
 	.load-popup-main > button {
 		font-weight: 400;
-		font-size: 1rem;
+		font-size: .88rem;
 		width: 100%;
 		justify-content: center;
 	}

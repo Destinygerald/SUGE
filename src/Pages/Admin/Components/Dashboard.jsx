@@ -3,11 +3,12 @@ import '../style.mobile.css'
 import { useState, useEffect } from 'react'
 import { Route, Routes, useLocation, useNavigate } from 'react-router-dom'
 import { CiSearch, CiMenuFries } from 'react-icons/ci'
-import { FaRegNewspaper } from 'react-icons/fa'
+import { FaRegNewspaper, FaPager } from 'react-icons/fa'
 import { MdHistory } from 'react-icons/md'
 import { BsX } from 'react-icons/bs'
 import Logo from '/images/SUGE LOGO.webp'
 import { Blog } from './Blog.jsx'
+import Popup from './Popups/Page.jsx'
 import { QuoteHistory } from './QuoteHistory.jsx'
 import { profileChecker, getCookie } from '../../../Api/FetchData.js'
 
@@ -61,8 +62,9 @@ function Sidebar () {
 			<img src={Logo} />
 
 			<div className='admin-sidebar-cnt'>
-				<SidebarItem text='Order History' icon={<MdHistory />} nav='/admin/dashboard' classCheck={!pathname.split('/').includes('blog')} />
+				<SidebarItem text='Order History' icon={<MdHistory />} nav='/admin/dashboard' classCheck={!pathname.split('/').includes('blog') && !pathname.split('/').includes('popups')} />
 				<SidebarItem text='Blogs' icon={<FaRegNewspaper />} nav='blog' classCheck={pathname.split('/').includes('blog')} />
+				<SidebarItem text='Popups' icon={<FaPager />} nav='popups' classCheck={pathname.split('/').includes('popups')} />
 			</div>
 		</div>
 	)
@@ -90,8 +92,9 @@ function MobileSlider ({ setMenu }) {
 			<span className='admin-slider-exit' onClick={() => setMenu(false)}> <BsX /> </span>
 
 			<div className='admin-sidebar-cnt'>
-				<SidebarItem text='Order History' icon={<MdHistory />} nav='/admin/dashboard' classCheck={!pathname.split('/').includes('blog')} />
+			<SidebarItem text='Order History' icon={<MdHistory />} nav='/admin/dashboard' classCheck={!pathname.split('/').includes('blog') && !pathname.split('/').includes('popups')} />
 				<SidebarItem text='Blogs' icon={<FaRegNewspaper />} nav='blog' classCheck={pathname.split('/').includes('blog')} />
+				<SidebarItem text='Popups' icon={<FaPager />} nav='popups' classCheck={pathname.split('/').includes('popups')} />
 			</div>
 
 		</div>
@@ -109,8 +112,6 @@ export function Dashboard ({ loginCheck }) {
 	async function checkForProfile() {
 	
 		const res = await profileChecker()
-
-		console.log(res)
 
 		if (!res) {
 			setTimeout(() => {
@@ -174,6 +175,7 @@ export function Dashboard ({ loginCheck }) {
 						<Route index element={<div className='unavailable'>Orders are unavailable for now.</div>} />	
 						<Route path='/*' element={<div className='unavailable'>Orders are unavailable for now.</div>} />				
 						<Route path='/blog/*' element={<Blog search={search} />} />
+						<Route path='/popups/*' element={<Popup />} />
 						{/* <Route path='/*' element={<QuoteHistory />} /> */}
 					</Routes>
 				</div>

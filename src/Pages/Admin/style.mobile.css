@@ -229,4 +229,21 @@
 		height: 252px;
 		border-radius: 12px;
 	}
+
+	.admin-popup-card {
+		height: fit-content;
+		row-gap: 12px;
+		padding: 8px 18px;
+		grid-template-columns: repeat(4, 1fr);
+		grid-template-rows: repeat(2, 1fr);
+	}
+
+	.admin-popup-card > span:nth-child(3) {
+		grid-column: span 3;
+		width: 100%;
+	}
+
+	.admin-popup-activate-btn {
+		width: 50%;
+	}
 }

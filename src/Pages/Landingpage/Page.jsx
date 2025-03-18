@@ -4,8 +4,9 @@ import './style.1600.css'
 import { Suspense, lazy, useEffect } from 'react'
 import { Banner } from './Components/Banner.jsx'
 import { Patners } from './Components/Patners.jsx'
-import { fetchBlogs } from '../../Api/FetchData.js'
+import { fetchBlogs, active_popups } from '../../Api/FetchData.js'
 import { setBlogList } from '../../Redux/BlogList.jsx'
+import { setActivePopup } from '../../Redux/PopupList.jsx'
 import { Helmet } from 'react-helmet-async'
 
 const Message = lazy(() => import('./Components/Message.jsx').then(module => {
@@ -36,6 +37,7 @@ function Page () {
 
 	const load_popup = useSelector(state => state.loadPopup.value)
 	const blogList = useSelector(state => state.blogList.value)
+	const active_popup = useSelector(state => state.admin_popups.value.activePopup)
 	const dispatch = useDispatch()
 
 	async function handleBlog() {
@@ -47,8 +49,18 @@ function Page () {
 		dispatch(setBlogList([...blog.result]))
 	}
 
+	async function getPopup () {
+		if (active_popup?.title && active_popup?.content) return;
+
+		const res = await active_popups()
+		if (res.status != 'Ok') return;
+
+		dispatch(setActivePopup({...res.data}))
+	}
+
 	useEffect(() => {
 		handleBlog()
+		getPopup()
 	}, [])
 
 	return (
@@ -70,7 +82,7 @@ function Page () {
 			</Suspense>
 
 			{	
-				load_popup
+				load_popup && active_popup?.title
 				?
 				<LoadPopup />
 				:

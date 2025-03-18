@@ -1,9 +1,9 @@
 import axios from 'axios'
 // const URL = `https://suge-sever.onrender.com`
 // const URL = `http://localhost:8000`
-const URL = `https://suge-sever.vercel.app`
+// const URL = `https://suge-sever.vercel.app`
 
-// const URL = `https://suge-sever-destinys-projects-34a882c6.vercel.app`
+const URL = `https://sugeserver.onrender.com`
 
 export async function fetchBlogs() {
     const response = await axios.get(`${URL}/blog`)
@@ -150,4 +150,186 @@ export function cookieChecker() {
     const authCookie = allCookies.find(item => item.includes('admin_auth_token'))
    
     return authCookie.split('=')[1]
+}
+
+export async function active_popups () {
+    try {
+        const response = await axios.get(`${URL}/blog/active-popup`)
+        return response.data;
+    } catch (err) {
+        return {
+            status: 400,
+            message: 'Error, Try again',
+            err: err
+        }
+    }
+}
+
+export async function all_popups () {
+    try {
+        const cookie = getCookie()
+
+        const response = await axios.get(`${URL}/admin/popups`, 
+            {
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + cookie
+                },
+                // withCredentials: true
+            }
+        )
+
+        return response.data
+    } catch (err) {
+        return {
+            status: 400,
+            message: 'Error, Try again',
+            err: err
+        }        
+    }
+}
+
+export async function popup_content (id) {
+    try {
+
+        const cookie = getCookie()
+
+        const response = await axios.get(`${URL}/admin/popup-message/${id}`, 
+            {
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + cookie
+                },
+                // withCredentials: true
+            })
+
+        return response.data
+    } catch (err) {
+        return {
+            status: 400,
+            message: 'Error, Try again'
+        }       
+    }
+}
+
+export async function activate_popup (id) {
+    try {
+        const cookie = getCookie()
+
+        const response = await axios.put(`${URL}/admin/activate-popup/${id}`, 
+            {},
+            {
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + cookie
+                },
+                // withCredentials: true
+            }
+        )
+
+        return response.data
+    } catch (err) {
+        return {
+            status: 400,
+            message: 'Error, Try again',
+            err: err
+        }  
+    }
+}
+
+export async function deactivate_popup (id) {
+    try {
+        
+        const cookie = getCookie()
+
+        const response = await axios.put(`${URL}/admin/deactivate-popup/${id}`, 
+            {},
+            {
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + cookie
+                },
+                // withCredentials: true
+            }
+        )
+
+        return response.data
+    } catch (err) {
+        return {
+            status: 400,
+            message: 'Error, Try again',
+            err: err
+        }  
+    }
+}
+
+export async function create_popup (data) {
+    try {
+        const cookie = getCookie()
+
+        const response = await axios.post(`${URL}/admin/popup-message`, 
+            {...data},
+            {
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + cookie
+                },
+                // withCredentials: true
+            }
+        )
+
+        return response.data
+    } catch (err) {
+        return {
+            status: 400,
+            message: 'Error, Try again'
+        }
+    }
+}
+
+export async function edit_popup (id, data) {
+    try {
+        const cookie = getCookie()
+
+        const response = await axios.put(`${URL}/admin/edit-popup/${id}`, 
+            {...data},
+            {
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + cookie
+                },
+                // withCredentials: true
+            }
+        )
+
+        return response.data
+    } catch (err) {
+        return {
+            status: 400,
+            message: 'Error, Try again'
+        }
+    }
+}
+
+export async function delete_popup (id) {
+    const cookie = getCookie()
+
+    const response = await axios.delete(`${URL}/admin/popup-message/${id}`, 
+        {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + cookie
+            },
+            // withCredentials: true
+        }
+    )
+
+    return response.data
 }
