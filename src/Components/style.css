@@ -418,7 +418,7 @@
 
 .load-popup {
 	width: 70%;
-	min-height: 82vh;
+	min-height: 70vh;
 	height: fit-content;
 	z-index: 3;
 	top: 50%;
@@ -523,7 +523,6 @@
 .load-popup-main {
 	padding: 60px 40px;
 	padding-right: 80px;
-	padding-bottom: 60px;
 	display: flex;
 	flex-direction: column;
 	gap: 52px;

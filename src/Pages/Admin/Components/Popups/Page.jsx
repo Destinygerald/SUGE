@@ -66,14 +66,20 @@ function PopupCard ({  _id, title, activated, setMsg, setLoading, setReload, loa
     }
 
     async function deletePopup () {
+        if (loading) return;
+
+        setLoading(true)
+
         const res = await delete_popup(_id)
 
         if (res.status == 'Ok' || res.status == 200) {
             setReload(reload => reload = reload + 1 )
             setMsg('Successfully Deleted')
+            setLoading(false)    
             return;
         }
 
+        setLoading(false)
         setMsg('Error, Try Again')
     }
 
@@ -202,9 +208,9 @@ function Index () {
 function PopupForm ({ form, changeHandler }) {
     return (
         <div className='admin-popup-form'>
-            <input type='text' name='title' placeholder='Popup Title' value={form?.title} onChange={changeHandler} />
-            <textarea name='content' placeholder='Popup Content' value={form?.content} onChange={changeHandler}></textarea>
-            <input name='navigation' type='text' placeholder='Link that the popup leads to [*Can be set to null]' value={form?.navigation} onChange={changeHandler} />
+            <input maxLength={40} type='text' name='title' placeholder='Popup Title' value={form?.title} onChange={changeHandler} />
+            <textarea maxLength={360} name='content' placeholder='Popup Content' value={form?.content} onChange={changeHandler}></textarea>
+            {/* <input name='navigation' type='text' placeholder='Link that the popup leads to [*Can be set to null]' value={form?.navigation} onChange={changeHandler} /> */}
         </div>
     )
 }
@@ -230,6 +236,12 @@ function PopupCreateForm () {
     }
 
     async function createPopup () {
+
+        if (!form?.content || !form?.title) {
+            setMsg('Cant submit empty details')
+            return;
+        }
+
         setLoading(true)
         const res = await create_popup({...form})
 

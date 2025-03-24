@@ -7,12 +7,14 @@ import { useState, useEffect } from 'react'
 import { DAYS, MONTH } from '../PlaceholderData.js'
 import { BlogTemplate2ListItem } from './BlogTemplateListItem.jsx'
 import { useSelector } from 'react-redux'
-import { Helmet } from 'react-helmet-async'
+import { SEO } from '../../../../Components/SEO.jsx'
+import { useParams } from 'react-router-dom'
 
 export function BlogTemplate2 () {
 
     const [ cntAsList, setCntAsList ] = useState(true)
     const [ dateConvert, setDateConvert ] = useState('')
+    const { id } = useParams()
 
     const blogData = useSelector(state => state.blogData.value.data)
 
@@ -23,18 +25,14 @@ export function BlogTemplate2 () {
     }
 
     useEffect(() => {
-        console.log(blogData)
+        // console.log(blogData)
         parseDateValue()
     }, [])
 
     return (
         <div className="blog-page">
 
-            <Helmet>
-            <meta name="description" content={`${blogData?.meta_data_title}`} data-rh='true' />
-            <title>{`${blogData?.meta_data_title}` || 'blog [---]'}</title>
-				<link rel="canonical" href={`https://www.suge.uk.co/blog/${blogData?.id}`} />
-			</Helmet>
+            <SEO title={`${blogData?.meta_data_title}` || 'blog [---]'} description={`${blogData?.meta_data_title}`} link={`https://www.suge.uk.co/blog/${id}`} />
 
             <div className='blog-page-hdr' id='suge-blog-temp-2-hdr'>
                 <h1>{ blogData?.title}</h1>
@@ -69,11 +67,19 @@ export function BlogTemplate2 () {
 
                 <div className='blog-template-2-frame' id='suge-blog-temp-2-frame'>
 
+                    
+                    
                     {
                         blogData?.content[1].list[0] && (blogData?.content[1].list[0].title || blogData?.content[1].list[0].description)
                         ?
                         <div className='blog-template-2-frame-list'>
+
+                            <div className='blog-template-2-frame-img'>
+                                <img src={blogData?.content[1]?.img || blogData?.content[2]?.img || blogData?.content[0]?.img} alt='blog-image' />
+                            </div>
+
                             <span>{blogData?.content[1].header}</span>
+
                             <div className='blog-template-2-frame-list-cnt'>
                                {
                                     blogData.content[1].list?.map((item, i) => (
@@ -86,7 +92,12 @@ export function BlogTemplate2 () {
                         :
 
                         <div className='blog-template-2-frame-paragraph' id='suge-blog-temp-2-frame-paragraph'>
+                            <div className='blog-template-2-frame-img'>
+                                <img src={blogData?.content[1]?.img || blogData?.content[2]?.img || blogData?.content[0]?.img} alt='blog-image' />
+                            </div>
+
                             <span>{blogData?.content[1].header}</span>
+
                             <p>
                                 {
                                     blogData.content[1].content
@@ -95,9 +106,7 @@ export function BlogTemplate2 () {
                         </div>
                     }
 
-                    <div className='blog-template-2-frame-img'>
-                        <img src={blogData?.content[1]?.img || blogData?.content[2]?.img || blogData?.content[0]?.img} alt='blog-image' />
-                    </div>
+                    
                 </div>
 
 

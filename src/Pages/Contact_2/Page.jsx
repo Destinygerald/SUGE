@@ -3,13 +3,12 @@ import './style.mobile.css'
 import './style.1600.css'
 import { Banner } from '../../Components/Banner.jsx'
 import { GoClock, GoMail } from 'react-icons/go'
-import { Helmet } from 'react-helmet-async'
 import { FiPhone } from 'react-icons/fi'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { contactUs } from '../../Redux/MessageFunction.js'
 import img1 from '/images/SUGE IMAGES/2.1 Tanker in field  copy.webp'
-
+import { SEO } from '../../Components/SEO.jsx'
 function ContactInfo () {
 	return (
 		<div className='contact-2-info' id='suge-contact-2-info-cnt'>
@@ -174,10 +173,7 @@ function ContactForm () {
 function Page () {
 	return (
 		<div className='contact-2'>
-			<Helmet>
-				<title>Suge - Contact | Sustainable Organic Waste Collection & Management UK</title>
-				<link rel="canonical" href="https://www.suge.uk.co/" />
-			</Helmet>
+			<SEO title={`Suge - Contact Us | Sustainable Organic Waste Collection & Management UK`} link="https://www.suge.uk.co/contact/2" />
 
 			<Banner page='Contact Us' />
 

@@ -24,6 +24,15 @@ const BlogData = createSlice({
             state.value.data.readTime = actions.payload.readTime
             state.value.data.title = actions.payload.title
             state.value.data.content = [...actions.payload.content]
+        },
+        clearBlogData : (state, actions) => {
+            state.value.data._id = ''
+            state.value.data.meta_data_title = ''
+            state.value.data.template = ''
+            state.value.data.dateAdded = ''
+            state.value.data.readTime = ''
+            state.value.data.title = ''
+            state.value.data.content = []
         }
     }
 })
@@ -31,4 +40,4 @@ const BlogData = createSlice({
 
 export default  BlogData.reducer
 
-export const { setBlogData } = BlogData.actions
+export const { setBlogData, clearBlogData } = BlogData.actions

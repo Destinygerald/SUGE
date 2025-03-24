@@ -30,6 +30,7 @@ const Blogs = lazy(() => import('./Components/Blogs.jsx').then(module => {
 }))
 
 import { StandIn } from '../../Components/Loader.jsx'
+import { SEO } from '../../Components/SEO.jsx'
 import { LoadPopup } from '../../Components/LoadPopup.jsx'
 import { useSelector, useDispatch } from 'react-redux'
 
@@ -65,10 +66,8 @@ function Page () {
 
 	return (
 		<div className='landing-page'>
-			<Helmet>
-				<title>SUGE | Sustainable Organic Waste Collection & Management UK</title>
-				<link rel="canonical" href="https://www.suge.uk.co/" />
-			</Helmet>
+		
+			<SEO title={`SUGE | Sustainable Organic Waste Collection & Management UK`} description="SUGE - One mission. Zero landfill. SUGE leads the charge in sustainable organic waste collection, turning waste into power for a greener UK. Reliable, compliant, cost-saving waste collection for food production companies & businesses across the UK." />		
 
 			<Banner />
 			<Patners />
@@ -88,7 +87,11 @@ function Page () {
 				:
 				<></>
 			}
+
 			
+			{/* <div class="trustpilot-widget" data-locale="en-GB" data-template-id="56278e9abfbbba0bdcd568bc" data-businessunit-id="67dc5b64a57f6e869ad0e8a8" data-style-height="52px" data-style-width="100%">
+				<a href="https://uk.trustpilot.com/review/suge.co.uk" target="_blank" rel="noopener">Trustpilot</a>
+			</div> */}
 			
 
 		</div>

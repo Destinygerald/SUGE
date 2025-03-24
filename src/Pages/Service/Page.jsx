@@ -3,12 +3,12 @@ import './style.mobile.css'
 import './style.1600.css'
 import { useNavigate } from 'react-router-dom'
 import { Banner } from '../../Components/Banner.jsx'
-import { Helmet } from 'react-helmet-async'
 
 import img1 from '/images/Frame 1618868296.webp'
 import img2 from '/images/Frame 1618868296-1.webp'
 import img3 from '/images/Frame 1618868296-2.webp'
 import img4 from '/images/Frame 1618868296-3.webp'
+import { SEO } from '../../Components/SEO.jsx'
 
 function ServiceCard ({ img_source, title, cnt, nav, index }) {
 
@@ -56,10 +56,7 @@ function ServiceMain () {
 function Page () {
 	return (
 		<div className='service'>
-			<Helmet>
-				<title>Suge - Service | Sustainable Organic Waste Collection & Management UK</title>
-				<link rel="canonical" href="https://www.suge.uk.co/" />
-			</Helmet>
+			<SEO title={`Suge - Services | Sustainable Organic Waste Collection & Management UK`} link="https://www.suge.uk.co/services" />
 
 			<Banner page='Services' />
 			<ServiceMain />

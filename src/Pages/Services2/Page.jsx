@@ -5,15 +5,12 @@ import { ServiceOffered } from './Components/ServiceOffered.jsx'
 import { ServicesInfo } from './Components/ServicesInfo.jsx'
 import { ServiceContact } from './Components/ServiceContact.jsx'
 import Truck from '/images/SUGE IMAGES/Truck.webp'
-import { Helmet } from 'react-helmet-async'
+import { SEO } from '../../Components/SEO.jsx'
 
 function Page () {
 	return (
 		<div className='service-2'>
-			<Helmet>
-				<title>Suge - service</title>
-				<link rel="canonical" href="https://www.suge.uk.co/" />
-			</Helmet>
+			<SEO title={`Suge - What we Offer | Sustainable Organic Waste Collection & Management UK`} link="https://www.suge.uk.co/services/2" />
 
 			<ServiceOffered />
 			<ServicesInfo />

@@ -8,23 +8,24 @@
 		aspect-ratio: auto;
 		height: fit-content;
 		padding-bottom: 98px;
-		background-size: 720px 473px;
+		background-size: 780px 540px;
 	}
 
 	.banner-cnt {
-		width: 72%;
+		width: 80%;
 		min-width: auto;
 		height: fit-content;
 	}
 
 	.banner-cnt > h1 {
-		font-size: 2.5rem !important;
+		font-size: 1.72rem !important;
+		line-height: 2.8rem;
 		width: 100%;
 	}
 
 	.banner-cnt > p {
 		font-size: clamp(1rem , 1.12vw, 1.2rem);
-		line-height: 1.65rem;
+		line-height: 1.65rem !important;
 		font-weight: 200;
 		width: 90%;
 	}	

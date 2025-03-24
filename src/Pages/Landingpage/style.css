@@ -32,29 +32,29 @@
 	display: flex;
 	flex-direction: column;
 	gap: 24px;
-	width: 42%;
+	width: 54%;
 	min-width: 620px;
 	z-index: 1;
 	position: relative;
 }
 
-.banner-cnt > h1:nth-child(2) {
+.banner-cnt > h1 {
 	/*font-size: 5.25rem;*/
-	font-size: clamp(3rem, 7vw , 5.5rem);
+	font-size: clamp(1.72rem, calc(100vw / 26) , 4rem);
 	width: 100%;
 	font-weight: 400;
 }
 
-.banner-cnt > h1:nth-child(2) > span {
+.banner-cnt > h1 > span {
 	background-image: var(--primary-gradient);
 	color: transparent;
 	background-clip: text;
 }
 
-.banner-cnt > p:nth-child(3) {
+.banner-cnt > p:nth-child(2) {
 	font-size: clamp(1rem , 1.6vw, 1.6rem);
 	line-height: 2.4rem;
-	width: 100%;
+	width: 88%;
 }
 
 .banner-btn {

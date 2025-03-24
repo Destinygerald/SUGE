@@ -19,6 +19,7 @@
 
 	.load-popup {
 		height: 60vh;
+		height: fit-content;
 		width: 64%;
 	}
 }

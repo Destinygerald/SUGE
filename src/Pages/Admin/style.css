@@ -1173,3 +1173,7 @@
 .admin-popup-create .loader-x, .admin-popup-list .loader-x {
 	top: 50%;
 }
+
+.admin-popup-create .alert-message {
+	margin-top: 32px;
+}

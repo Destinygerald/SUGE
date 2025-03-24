@@ -33,6 +33,7 @@ export function MobileSlider ({ sliderOpen, closeSlider }) {
 
 	const [ theme, setTheme ] = useState(localStorage.getItem('suge-dark-theme'))
 	const navigate = useNavigate()
+	const  { pathname } = useLocation()
 
 	function clickHandler(arg) {
 		navigate(arg)
@@ -46,7 +47,7 @@ export function MobileSlider ({ sliderOpen, closeSlider }) {
 
 	function startSearch () {
 		navigate({
-			pathname: "/",
+			pathname: pathname,
 			search: createSearchParams({
 				search: ""
 			}).toString()

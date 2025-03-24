@@ -34,6 +34,8 @@ function Index () {
 
 	useEffect(() => {
 		handleBlog()
+
+		console.log(blogList)
 	}, [])
 
 	return (

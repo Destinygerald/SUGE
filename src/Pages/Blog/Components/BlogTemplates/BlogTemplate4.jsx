@@ -7,12 +7,14 @@ import { useState, useEffect } from 'react'
 import { DAYS, MONTH } from '../PlaceholderData.js'
 import { BlogTemplate2ListItem } from './BlogTemplateListItem.jsx'
 import { useSelector } from 'react-redux'
-import { Helmet } from 'react-helmet-async'
+import { SEO } from '../../../../Components/SEO.jsx'
+import { useParams } from 'react-router-dom'
 
 export function BlogTemplate4 () {
 
     const [ cntAsList, setCntAsList ] = useState(true)
     const [ dateConvert, setDateConvert ] = useState('')
+    const { id } = useParams()
 
     const blogData = useSelector(state => state.blogData.value.data)
 
@@ -31,11 +33,7 @@ export function BlogTemplate4 () {
     return (
         <div className="blog-page">
 
-            <Helmet>
-            <meta name="description" content={`${blogData?.meta_data_title}`} data-rh='true' />
-            <title>{`${blogData?.meta_data_title}` || 'blog [---]'}</title>
-				<link rel="canonical" href={`https://www.suge.uk.co/blog/${blogData?.id}`} />
-			</Helmet>
+            <SEO title={`${blogData?.meta_data_title}` || 'blog [---]'} description={`${blogData?.meta_data_title}`} link={`https://www.suge.uk.co/blog/${id}`} />
 
             <div className='blog-page-hdr' id='suge-blog-temp-4-hdr'>
                 <h1>{ blogData?.title}</h1>

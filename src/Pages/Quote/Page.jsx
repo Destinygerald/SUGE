@@ -10,6 +10,7 @@ import { FifthQuote } from './Pages/FifthQuote.jsx'
 import { SixthQuote } from './Pages/SixthQuote.jsx'
 import { Helmet } from 'react-helmet-async'
 import img1 from  '/images/SUGE ASSETS/Lighting Black.webp'
+import { SEO } from '../../Components/SEO.jsx'
 
 
 
@@ -69,10 +70,7 @@ function Page () {
 	return (
 		<div className='quote'>
 
-			<Helmet>
-				<title>Suge - Quote | Sustainable Organic Waste Collection & Management UK</title>
-				<link rel="canonical" href="https://www.suge.uk.co/" />
-			</Helmet>
+			<SEO title={`Suge - Quotes | Sustainable Organic Waste Collection & Management UK`} link="https://www.suge.uk.co/quote" />
 
 			<Indicator type='quote-indicator-mobile' />
 

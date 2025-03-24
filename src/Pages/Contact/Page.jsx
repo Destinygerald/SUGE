@@ -9,6 +9,7 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { contactUs } from '../../Redux/MessageFunction.js'
 import img1 from '/images/SUGE IMAGES/2.1 Tanker in field  copy.webp'
+import { SEO } from '../../Components/SEO.jsx'
 
 
 function ContactInfo () {
@@ -176,10 +177,7 @@ function Page () {
 	return (
 		<div className='contact'>
 
-			<Helmet>
-				<title>Suge - Contact | Sustainable Organic Waste Collection & Management UK</title>
-				<link rel="canonical" href="https://www.suge.uk.co/" />
-			</Helmet>
+			<SEO title={`Suge - Contact | Sustainable Organic Waste Collection & Management UK`} link="https://www.suge.uk.co/contact" />
 
 			<Banner page='Contact Us' />
 

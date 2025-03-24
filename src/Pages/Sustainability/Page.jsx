@@ -2,12 +2,12 @@ import './style.css'
 import './style.mobile.css'
 import './style.1600.css'
 import { Banner } from '../../Components/Banner.jsx'
-import { Helmet } from 'react-helmet-async'
 import Infographics from '/images/Infographics 1.webp'
 import Logo from '/images/SUGE ASSETS/Asset 5300 5.webp'
 import { PrimaryButton } from '../../Components/Buttons.jsx'
 import { useNavigate } from 'react-router-dom'
 import Flash from '/images/SUGE ASSETS/Lighting (2).webp'
+import { SEO } from '../../Components/SEO.jsx'
 
 function Stat () {
 	return (
@@ -69,10 +69,7 @@ function SustainabilityInfo () {
 function Page () {
 	return (
 		<div className='sustainability'>
-			<Helmet>
-				<title>Suge - Sustainability | Sustainable Organic Waste Collection & Management UK</title>
-				<link rel="canonical" href="https://www.suge.uk.co/" />
-			</Helmet>
+			<SEO title={`Suge - Sustainability | Sustainable Organic Waste Collection & Management UK`} link="https://www.suge.uk.co/sustainability" />
 
 			<Banner page='Sustainability' />
 			<Stat />

@@ -143,8 +143,8 @@ function App() {
             style={{   fontSize: 'clamp(.8rem, 1.08vw, 1rem)', borderTop:'1px solid rgb(120, 120, 120)', backgroundColor: '#0A0A0A'}} 
             location='bottom' 
             enableDeclineButton
-            onAccept={() => navigate('/')}
-            onDecline={() => navigate('/')}
+            onAccept={() => {return; }}
+            onDecline={() => { return; }}
             declineButtonText='Reject Cookies' 
             declineButtonStyle={{ background: '#fffff', padding: '10px 28px', fontSize: 'clamp(.72rem, 1.08vw, 1rem)', color: 'black', marginRight: '0px' }}
             buttonText='Accept all Cookies'  

@@ -3,8 +3,8 @@ import '../style.mobile.css'
 import { useNavigate, useLocation, useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { fetchBlogContent, addBlog, deleteBlogs, editBlogs } from '../../../Api/FetchData.js'
-import { useDispatch } from 'react-redux'
-import { setBlogData } from '../../../Redux/Blogs.jsx'
+import { useDispatch, useSelector } from 'react-redux'
+import { setBlogData, clearBlogData } from '../../../Redux/Blogs.jsx'
 
 function MessageDisplay ({ msg, setMsg }) {
 
@@ -25,6 +25,7 @@ function BlogParagraph ({ hdr , i, handleClick, cnt, image, changeHandler, setBl
     const [ asList, setAsList ] = useState(false)
     const { id } = useParams()
     const { pathname } = useLocation()
+
 
     function handleImage(e) {
        
@@ -156,6 +157,12 @@ function BlogParagraph ({ hdr , i, handleClick, cnt, image, changeHandler, setBl
 
     }
 
+    useEffect(() => {
+        if (list[0] && (list[0].title || list[0].description) ) {
+            setAsList(true)
+        }
+    }, [])
+
     return (
         <div className='admin-blog-paragraph'>
             <span>Paragraph {i + 1}</span>
@@ -174,9 +181,9 @@ function BlogParagraph ({ hdr , i, handleClick, cnt, image, changeHandler, setBl
                 :
                 <>
                     <div className='paragraph-list-toggle'>
-                        <button className='paragraph-list-toggle-btn' onClick={toggleAsList}>{ !asList ? 'Switch to List' : 'Switch to Paragraph'}</button>
+                        <button className='paragraph-list-toggle-btn' onClick={toggleAsList}>{ asList || list[0].title || list[0].description ? 'Switch to Paragraph' : 'Switch to List'}</button>
                         {
-                            asList
+                            asList || list[0].title || list[0].description
                             ?
                             <div className='paragraph-list-container'>
                                 {
@@ -215,6 +222,10 @@ function BlogParagraph ({ hdr , i, handleClick, cnt, image, changeHandler, setBl
                 <input type="file" accept="image/png, image/jpeg" name='image' onChange={handleImage} />
                 :
                 !pathname.includes('create') && (i != 2 && i != 0) && (blogInfo.template == 1 || blogInfo.template == 4)
+                ?
+                <input type="file" accept="image/png, image/jpeg" name='image' onChange={handleImage} />
+                :
+                (i != 2 && i != 1) && (blogInfo.template == 1 || blogInfo.template == 5)
                 ?
                 <input type="file" accept="image/png, image/jpeg" name='image' onChange={handleImage} />
                 :
@@ -289,6 +300,8 @@ export function CreateBlog({ msg, setMsg }) {
 
     const [blogContentNum, setBlogContentNum] = useState(3)
     const [click, setClick] = useState(false)
+
+    const blogData = useSelector(state => state.blogData.value.data)
 
     const navigate = useNavigate()
     const { pathname } = useLocation()
@@ -387,8 +400,36 @@ export function CreateBlog({ msg, setMsg }) {
 
     async function createBlog() {
         setClick(true)
-        
-        const res = await addBlog(blogInfo)
+        let template;
+
+        // console.log(id)
+
+        if (!blogInfo?.template) {
+            switch(id) {
+                case 'template-1':
+                    template = 1;
+                    break;
+                case 'template-2':
+                    template = 2;
+                    break;
+                case 'template-3':
+                    template = 3;
+                    break;
+                case 'template-4':
+                    template = 4;
+                    break;
+                case 'template-5':
+                    template = 5;
+                    break;
+                default:
+                    template = 1;
+                    break;
+            }
+        } else {
+            template = blogInfo?.template
+        }
+
+        const res = await addBlog({...blogInfo, template: template})
 
 
         if (res.status == 'Created') {
@@ -399,6 +440,8 @@ export function CreateBlog({ msg, setMsg }) {
                 navigate(-1)
                 setClick(false)
             }, 2000)
+
+            dispatch(clearBlogData())
 
             return;
         }
@@ -422,6 +465,7 @@ export function CreateBlog({ msg, setMsg }) {
                 setClick(false)
             }, 2000)
 
+            dispatch(clearBlogData())
             return;
         }
 
@@ -443,6 +487,8 @@ export function CreateBlog({ msg, setMsg }) {
                 navigate(-1)
                 setClick(false)
             }, 2000)
+
+            dispatch(clearBlogData())
 
             return;
         }
@@ -490,7 +536,17 @@ export function CreateBlog({ msg, setMsg }) {
         navigate('/admin/dashboard/blog/preview')
     }
 
+    function goBack () {
+        dispatch(clearBlogData())
+        navigate(-1)
+    }
+
     useEffect(() => {
+
+        if (blogData?.title) {
+            setBlogInfo({...blogData})
+        }
+
         if (!pathname.split('/').includes('create')) {
             fetchEditData()
             return;
@@ -500,7 +556,7 @@ export function CreateBlog({ msg, setMsg }) {
     return (
         <div className='create-blog'>
             <div className='create-blog-hdr'>
-                <span onClick={() => navigate(-1)}>{'<'}</span>
+                <span onClick={goBack}>{'<'}</span>
                 <span>{pathname.split('/').includes('create') ? 'Create' : 'Edit'} Blog</span>
             </div>
 

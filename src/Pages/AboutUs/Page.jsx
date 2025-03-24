@@ -19,14 +19,13 @@ const SugeHeroes = lazy(() => import('./Components/SugeHeroes.jsx').then(module 
 }))
 
 import { StandIn } from '../../Components/Loader.jsx'
+import { SEO } from '../../Components/SEO.jsx'
 
 function Page () {
 	return (
 		<div className='about-us'>
-			<Helmet>
-				<title>Suge - About | Sustainable Organic Waste Collection & Management UK</title>
-				<link rel="canonical" href="https://www.suge.uk.co/about" />
-			</Helmet>
+
+			<SEO title={`Suge - About | Sustainable Organic Waste Collection & Management UK`} link="https://www.suge.uk.co/about" description="SUGE - One mission. Zero landfill. SUGE leads the charge in sustainable organic waste collection, turning waste into power for a greener UK. Reliable, compliant, cost-saving waste collection for food production companies & businesses across the UK." />
 	
 			<Banner page='About Us' />
 			<Mission />
