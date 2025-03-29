@@ -476,6 +476,10 @@
 	animation: load 1.2s linear infinite; 
 }
 
+.blog-paragraph-frame {
+	white-space: pre-wrap;
+}
+
 @keyframes load {
 	from	{
 		rotate: 0deg

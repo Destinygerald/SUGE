@@ -52,8 +52,9 @@ export function BlogTemplate3 () {
             </div>
 
 
+
             <div className='blog-template-2' id='suge-blog-temp-3-cnt'>
-                <p className='blog-template-2-paragraph' id='suge-blog-temp-3-cnt-paragraph'>
+                <p className='blog-template-2-paragraph blog-paragraph-frame' id='suge-blog-temp-3-cnt-paragraph'>
                     {
                         blogData?.content[0]?.content
                     }
@@ -90,7 +91,7 @@ export function BlogTemplate3 () {
 
                         <div className='blog-template-3-frame-paragraph' id='suge-blog-temp-3-frame-paragraph-cnt'>
                             <span>{blogData?.content[1].header}</span>
-                            <p>
+                            <p className='blog-paragraph-frame'>
                                 {
                                     blogData.content[1].content
                                 }
@@ -124,7 +125,7 @@ export function BlogTemplate3 () {
                         </div>
                         :
                         
-                        <p id='suge-blog-temp-3-second-frame-paragraph'>
+                        <p id='suge-blog-temp-3-second-frame-paragraph'  className='blog-paragraph-frame'>
                             {
                                 blogData?.content[2]?.content
                         }

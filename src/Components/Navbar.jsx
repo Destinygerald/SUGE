@@ -2,7 +2,7 @@ import './style.css'
 import './style.mobile.css'
 import './style.1600.css'
 import { useLayoutEffect, useState } from 'react'
-import Logo from '/images/SUGE WHITE.png'
+import Logo from '/images/SUGE BLACK.png'
 import { CiSearch } from 'react-icons/ci'
 import { IoMdMoon } from 'react-icons/io'
 import { AiOutlineMenu } from 'react-icons/ai'
@@ -83,7 +83,6 @@ export function Navbar ({ openSlider }) {
 
 	}, [localStorage.getItem('suge-dark-theme')])
 
-
 	return (
 		<div className='navbar'>
 				
@@ -100,7 +99,7 @@ export function Navbar ({ openSlider }) {
 				<div className='nav-extras'>
 					<span className='theme-switch' onClick={toggleTheme}> 
 					{ 
-						theme == 'true'
+						theme == 'true' || !theme
 						?
 						<IoMdMoon />
 						:

@@ -54,11 +54,17 @@ export function BlogTemplate2 () {
 
 
             <div className='blog-template-2'>
-                <div className='blog-template-2-hdr-img'>
-                    <img src={blogData?.content[0]?.img || blogData?.content[1]?.img || blogData?.content[2]?.img} alt='blog-image' />
-                </div>
+                {
+                    blogData?.content[0]?.img || blogData?.content[1]?.img || blogData?.content[2]?.img
+                    ?
+                    <div className='blog-template-2-hdr-img'>
+                        <img src={blogData?.content[0]?.img || blogData?.content[1]?.img || blogData?.content[2]?.img} alt='blog-image' />
+                    </div>
+                    :
+                    <></>
+                }
 
-                <p className='blog-template-2-paragraph' id='suge-blog-temp-2-paragraph'>
+                <p className='blog-template-2-paragraph blog-paragraph-frame' id='suge-blog-temp-2-paragraph'>
                     {
                         blogData?.content[0]?.content
                     }
@@ -73,10 +79,16 @@ export function BlogTemplate2 () {
                         blogData?.content[1].list[0] && (blogData?.content[1].list[0].title || blogData?.content[1].list[0].description)
                         ?
                         <div className='blog-template-2-frame-list'>
-
-                            <div className='blog-template-2-frame-img'>
-                                <img src={blogData?.content[1]?.img || blogData?.content[2]?.img || blogData?.content[0]?.img} alt='blog-image' />
-                            </div>
+                            
+                            {
+                                blogData?.content[0]?.img || blogData?.content[1]?.img || blogData?.content[2]?.img
+                                ?
+                                <div className='blog-template-2-frame-img'>
+                                    <img src={blogData?.content[1]?.img || blogData?.content[2]?.img || blogData?.content[0]?.img} alt='blog-image' />
+                                </div>
+                                :
+                                <></>
+                            }
 
                             <span>{blogData?.content[1].header}</span>
 
@@ -92,13 +104,20 @@ export function BlogTemplate2 () {
                         :
 
                         <div className='blog-template-2-frame-paragraph' id='suge-blog-temp-2-frame-paragraph'>
-                            <div className='blog-template-2-frame-img'>
-                                <img src={blogData?.content[1]?.img || blogData?.content[2]?.img || blogData?.content[0]?.img} alt='blog-image' />
-                            </div>
+                            
+                            {
+                                blogData?.content[0]?.img || blogData?.content[1]?.img || blogData?.content[2]?.img
+                                ?
+                                <div className='blog-template-2-frame-img'>
+                                    <img src={blogData?.content[1]?.img || blogData?.content[2]?.img || blogData?.content[0]?.img} alt='blog-image' />
+                                </div>
+                                :
+                                <></>
+                            }
 
                             <span>{blogData?.content[1].header}</span>
 
-                            <p>
+                            <p className='blog-paragraph-frame'>
                                 {
                                     blogData.content[1].content
                                 }
@@ -124,7 +143,7 @@ export function BlogTemplate2 () {
                         </div>
                         :
                         
-                        <p id='suge-blog-temp-2-paragraph-frame'>
+                        <p id='suge-blog-temp-2-paragraph-frame' className='blog-paragraph-frame'>
                             {
                                 blogData?.content[2]?.content
                         }

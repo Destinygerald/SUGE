@@ -32,20 +32,32 @@
 	display: flex;
 	flex-direction: column;
 	gap: 24px;
-	width: 54%;
+	width: 52%;
 	min-width: 620px;
 	z-index: 1;
 	position: relative;
 }
 
+@media (max-width: 800px) {
+	.banner-cnt {
+		min-width: none;
+	}
+}
+
 .banner-cnt > h1 {
 	/*font-size: 5.25rem;*/
 	font-size: clamp(1.72rem, calc(100vw / 26) , 4rem);
-	width: 100%;
+	/* width: 100%; */
+	/* width: fit-content; */
 	font-weight: 400;
 }
 
 .banner-cnt > h1 > span {
+	width: fit-content;
+}
+
+
+.h1-green {
 	background-image: var(--primary-gradient);
 	color: transparent;
 	background-clip: text;

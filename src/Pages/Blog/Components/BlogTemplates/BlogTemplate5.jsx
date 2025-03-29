@@ -64,7 +64,7 @@ export function BlogTemplate5 () {
                     <></>
                 }
                 
-                <p className='blog-template-2-paragraph' id='suge-blog-temp-5-paragraph'>
+                <p className='blog-template-2-paragraph blog-paragraph-frame' id='suge-blog-temp-5-paragraph'>
                     {
                         blogData?.content[0]?.content
                     }
@@ -112,7 +112,7 @@ export function BlogTemplate5 () {
                         </div>
                         :
                         
-                        <p id='suge-blog-temp-5-second-frame-cnt'>
+                        <p id='suge-blog-temp-5-second-frame-cnt' className='blog-paragraph-frame'>
                             {
                                 blogData?.content[2]?.content
                         }

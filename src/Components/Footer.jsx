@@ -1,6 +1,6 @@
 import './style.css'
 import './style.mobile.css'
-import Logo from '/images/SUGE WHITE.png'
+import Logo from '/images/SUGE BLACK.png'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { FaFacebook } from 'react-icons/fa'
 import { FaInstagram, FaYoutube } from 'react-icons/fa6'

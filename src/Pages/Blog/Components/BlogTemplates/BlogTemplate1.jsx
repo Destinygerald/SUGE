@@ -52,7 +52,7 @@ export function BlogTemplate1 () {
 
             <div className='blog-template-2' id='suge-blog-temp-1-paragraph'>
 
-                <p className='blog-template-2-paragraph'>
+                <p className='blog-template-2-paragraph blog-paragraph-frame'>
                     {
                         blogData?.content[0]?.content
                     }
@@ -98,7 +98,7 @@ export function BlogTemplate1 () {
                             }
 
                             <span>{blogData?.content[1].header}</span>
-                            <p>
+                            <p className='blog-paragraph-frame'>
                                 {
                                     blogData.content[1].content
                                 }
@@ -124,7 +124,7 @@ export function BlogTemplate1 () {
                         </div>
                         :
                         
-                        <p>
+                        <p className='blog-paragraph-frame'>
                             {
                                 blogData?.content[2]?.content
                         }
