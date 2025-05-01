@@ -16,7 +16,7 @@ export function Banner () {
 			<div className='banner-cnt' id='suge-banner-display'>
 				
 				<h1>
-					<span> Got Waste? Think <span className='h1-green'> SUGE. </span>  </span><br /> 
+					<span> Got Waste? <span className='h1-green'> Think SUGE. </span>  </span><br /> 
 					<span> The Heroes of Organic <br /> Waste Management </span>
 				</h1> 
 

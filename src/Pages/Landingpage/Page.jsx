@@ -7,7 +7,6 @@ import { Patners } from './Components/Patners.jsx'
 import { fetchBlogs, active_popups } from '../../Api/FetchData.js'
 import { setBlogList } from '../../Redux/BlogList.jsx'
 import { setActivePopup } from '../../Redux/PopupList.jsx'
-import { Helmet } from 'react-helmet-async'
 
 const Message = lazy(() => import('./Components/Message.jsx').then(module => {
 	return { default: module.Message }
@@ -47,6 +46,8 @@ function Page () {
 
 		const blog = await fetchBlogs()
 
+		// console.log(blog)
+
 		dispatch(setBlogList([...blog.result]))
 	}
 
@@ -76,7 +77,7 @@ function Page () {
 				<Message />
 				<Message2 />
 				<Message3 />
-				<Blogs />
+				{/* <Blogs /> */}
 				<GreenDiv />
 			</Suspense>
 
@@ -88,10 +89,6 @@ function Page () {
 				<></>
 			}
 
-			
-			{/* <div class="trustpilot-widget" data-locale="en-GB" data-template-id="56278e9abfbbba0bdcd568bc" data-businessunit-id="67dc5b64a57f6e869ad0e8a8" data-style-height="52px" data-style-width="100%">
-				<a href="https://uk.trustpilot.com/review/suge.co.uk" target="_blank" rel="noopener">Trustpilot</a>
-			</div> */}
 			
 
 		</div>

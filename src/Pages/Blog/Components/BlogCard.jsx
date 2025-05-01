@@ -6,9 +6,10 @@ import { IoCalendarOutline } from 'react-icons/io5'
 import { GoClock } from 'react-icons/go'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import {  DAYS, MONTH, BlogPlaceholder } from './PlaceholderData.js'
+import {  DAYS, MONTH } from './PlaceholderData.js'
 import { setBlogData } from '../../../Redux/Blogs.jsx'
-
+import { parseCode } from './BlogTemplates/CodeParser.jsx'
+import { fetch_image } from '../../../Api/FetchData.js'
 
 export function BlogCard ({ id, image, title, content, readtime, date }) {
 
@@ -34,10 +35,21 @@ export function BlogCard ({ id, image, title, content, readtime, date }) {
 		}
 	}
 
+	async function getImage () {
+		const res = await fetch_image(image)
+	}
+
+	useEffect (() => {
+		// console.log(image)
+		getImage()
+	}, [image])
+
 
 	useEffect(() => {
 
-		if (!date) return;
+		if (!date) {
+			setDateConvert('')
+		};
 
 		let convertedDate = new Date(date)
 
@@ -50,27 +62,35 @@ export function BlogCard ({ id, image, title, content, readtime, date }) {
 				{
 					image
 					?
-					<img src={image} alt='blog-image' />
+					<img src={`http://localhost:8000/blog/blog-image/${image}`} alt='blog-image' />
 					:
-					<div className='blog-img-alt'>{content?.split('')[0]}</div>
+					<div className='blog-img-alt'>{ title?.split('')[0]}</div>
 				}
 			</div>
 
 			<div className='blog-card-cnt'>
 				<div className='blog-card-title'>
 					{
-						title.length <= 60
-						?
 						title
+						?
+						<>
+						{
+							title.length <= 60
+							?
+							title
+							:
+							title.slice(0, 60) + '...'
+						}
+						</>
 						:
-						title.slice(0, 60) + '...'
+						'----'
 					}
 				</div>
 
-				<div className='blog-card-datetime'>
+				<div className='blog-card-datetime'>					
 					<div>
 						<span> <IoCalendarOutline /> </span>
-						<span>{ dateConvert ? `${DAYS[dateConvert.getDay()]} ${MONTH[dateConvert.getMonth()]} ${dateConvert.getFullYear()} ` : '10 Jan 2025'}</span>
+						<span>{ date ? (dateConvert ? `${DAYS[dateConvert.getDay()]} ${MONTH[dateConvert.getMonth()]} ${dateConvert.getFullYear()} ` : '----') : '----'}</span>
 					</div>
 
 					<div />
@@ -83,15 +103,7 @@ export function BlogCard ({ id, image, title, content, readtime, date }) {
 
 				<div className='blog-card-content'>
 					{
-						content?.length >= 200
-						?
-						pathname.includes('/admin')
-						?
-						content.slice(0, 80) + '...'
-						:
-						content?.slice(0, 160) + '...'
-						:
-						'----'
+						parseCode(content)
 					}
 				</div>
 			</div>

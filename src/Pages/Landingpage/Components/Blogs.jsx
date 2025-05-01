@@ -8,6 +8,8 @@ export function Blogs () {
 
     const blogList = useSelector(state => state.blogList.value)
 
+    // console.log(blogList)
+
     return (
         <div className='landing-page-blogs' id='suge-landing-page-blogs'>
             <span>Our Blogs</span>
@@ -21,7 +23,7 @@ export function Blogs () {
                     ))
                     :
                     Array.from(Array(3)).map((_, i) => (
-                        <BlogCard key={'blog-card-' + i} id={i} image={''} title={''} content={''} readtime={Date.now()} date={'---'} />
+                        <BlogCard key={'blog-card-' + i} id={i} image={''} title={''} content={''} readtime={''} date={''} />
                     ))
                 }
             </div>

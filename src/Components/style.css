@@ -156,6 +156,26 @@
 	width: 18.62%;
 }
 
+.trustpilot-widget { 
+	align-self: flex-end;
+}
+
+.trustpilot-widget > a {
+	/* color: var(--primary-green) !important; */
+	color: white;
+	text-decoration: none;
+	font-weight: 400;
+	cursor: pointer;
+	font-size: clamp(.6rem, 1vw, .72rem);
+	display: flex;
+	align-items: center;
+	gap: 12px;
+}
+
+.trustpilot-widget > a > span {
+	display: flex;
+}
+
 .footer-main-item > div:first-child  {
 	/* font-size: .8rem; */
 	font-size: clamp(.5rem , 1vw, .8rem);

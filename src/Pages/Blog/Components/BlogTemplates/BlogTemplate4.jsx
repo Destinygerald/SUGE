@@ -5,18 +5,17 @@ import { IoCalendarOutline } from 'react-icons/io5'
 import { GoClock } from 'react-icons/go'
 import { useState, useEffect } from 'react'
 import { DAYS, MONTH } from '../PlaceholderData.js'
-import { BlogTemplate2ListItem } from './BlogTemplateListItem.jsx'
-import { useSelector } from 'react-redux'
 import { SEO } from '../../../../Components/SEO.jsx'
 import { useParams } from 'react-router-dom'
+import { imageProcessor, parseCode } from './CodeParser.jsx'
+import { useContextSelector } from '../../../../context/Contexts.jsx'
 
 export function BlogTemplate4 () {
 
-    const [ cntAsList, setCntAsList ] = useState(true)
     const [ dateConvert, setDateConvert ] = useState('')
     const { id } = useParams()
 
-    const blogData = useSelector(state => state.blogData.value.data)
+    const blogData = useContextSelector('blogData')?.value
 
 
     function parseDateValue() {
@@ -28,7 +27,9 @@ export function BlogTemplate4 () {
         parseDateValue()
     }, [])
 
-    // console.log(blogData)
+    useEffect(() => {    
+        imageProcessor(blogData?.content[1].img, 'blog-paragraph-img-1')
+    }, [blogData?.content[1].img])
 
     return (
         <div className="blog-page">
@@ -57,7 +58,7 @@ export function BlogTemplate4 () {
             <div className='blog-template-2' id='suge-blog-temp-4-body'>
                 <p className='blog-template-2-paragraph blog-paragraph-frame' id='suge-blog-temp-4-paragraph'>
                     {
-                        blogData?.content[0]?.content
+                        parseCode(blogData?.content[0]?.content)
                     }
                 </p>
                 
@@ -65,7 +66,7 @@ export function BlogTemplate4 () {
                     blogData?.content[0]?.img || blogData?.content[1]?.img || blogData?.content[2]?.img
                     ?
                     <div className='blog-template-2-hdr-img'>
-                        <img src={blogData?.content[0]?.img || blogData?.content[1]?.img || blogData?.content[2]?.img} alt='blog-image' />
+                        <img src='' alt='blog-image' id='blog-paragraph-img-1' />
                     </div>
                     :
                     <></>
@@ -74,54 +75,27 @@ export function BlogTemplate4 () {
 
                 <div className='blog-template-3-frame' id='suge-blog-temp-4-frame'>
 
-                    {
-                        blogData?.content[1].list[0] && (blogData?.content[1].list[0].title || blogData?.content[1].list[0].description)
-                        ?
-                        <div className='blog-template-3-frame-list'>
-                            <span>{blogData?.content[1].header}</span>
-                            <div className='blog-template-2-frame-list-cnt' id='suge-blog-temp-4-frame-list-cnt'>
-                                {
-                                    blogData.content[1].list?.map((item, i) => (
-                                        <BlogTemplate2ListItem key={i} index={i + 1} title={item?.title} content={item?.description} />
-                                    ))
-                                }
-                            </div>
-                        </div>
-
-                        :
-
-                        <div className='blog-template-3-frame-paragraph' id='suge-blog-temp-4-frame-paragraph-2'>
-                            <span>{blogData?.content[1].header}</span>
-                            <p className='blog-paragraph-frame'>
-                                {
-                                    blogData.content[1].content
-                                }
-                            </p>
-                        </div>
-                    }
+                    <div className='blog-template-3-frame-paragraph' id='suge-blog-temp-4-frame-paragraph-2'>
+                        <span>{blogData?.content[1].header}</span>
+                        <p className='blog-paragraph-frame'>
+                            {
+                                parseCode(blogData.content[1].content)
+                            }
+                        </p>
+                    </div>
+                    
                 </div>
 
 
                 <div className='blog-template-2-frame-2'>
                     <span>{blogData?.content[2]?.header}</span>
-                    {
-                        blogData?.content[2].list[0] && (blogData?.content[2].list[0].title || blogData?.content[2].list[0].description)
-                        ?
-                        <div className='blog-template-2-frame-list-cnt' id='suge-blog-temp-4-frame-list-cnt_'>
-                            {
-                                blogData.content[2].list?.map((item, i) => (
-                                    <BlogTemplate2ListItem key={i} index={i + 1} title={item?.title} content={item?.description} />
-                                ))
-                            }
-                        </div>
-                        :
-                        
-                        <p id='suge-blog-temp-4-last-paragraph' className='blog-paragraph-frame'>
-                            {
-                                blogData?.content[2]?.content
-                           }
-                        </p>
-                    }
+                
+                    <p id='suge-blog-temp-4-last-paragraph' className='blog-paragraph-frame'>
+                        {
+                            parseCode(blogData?.content[2]?.content)
+                        }
+                    </p>
+                    
                 </div>
             </div>
 

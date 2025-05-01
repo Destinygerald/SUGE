@@ -33,7 +33,7 @@ export function BlogTemplatePick () {
     return (
         <div className='blog-template-choice'>
             <div className='create-blog-hdr'>
-                <span onClick={() => navigate(-1)}> {'<'} </span>
+                <span onClick={() => navigate('/admin/dashboard/blog')}> {'<'} </span>
                 <span>Choose a Template</span>
             </div>
 

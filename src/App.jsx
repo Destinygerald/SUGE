@@ -18,6 +18,7 @@ import BlogCreateSlice  from './Redux/AdminBlog.jsx'
 import PopupListSlice  from './Redux/PopupList.jsx'
 import { Loader } from './Components/Loader.jsx'
 import { PrivacyPolicy } from './Components/PrivacyPolicy.jsx'
+import { ContextProvider } from './context/Contexts.jsx'
 
 import LandingPage from './Pages/Landingpage/Page.jsx'
 import AboutUs from './Pages/AboutUs/Page.jsx'
@@ -101,69 +102,71 @@ function App() {
   return (
     <HelmetProvider>  
       <Provider store={store}>
-        <div className='app'>
+        <ContextProvider>
+          <div className='app light-theme'>
 
-          <Helmet>
-            <link rel="canonical" href="https://www.suge.uk.co/" />
-          </Helmet>
+            <Helmet>
+              <link rel="canonical" href="https://www.suge.uk.co/" />
+            </Helmet>
 
-          <Navbar openSlider={openSlider}  />
+            <Navbar openSlider={openSlider}  />
 
-          {
-            sliderOpen
-            ?
-            <MobileSlider sliderOpen={sliderOpen} closeSlider={closeSlider} />
-            :
-            <></>
-          }
+            {
+              sliderOpen
+              ?
+              <MobileSlider sliderOpen={sliderOpen} closeSlider={closeSlider} />
+              :
+              <></>
+            }
 
 
-            <Suspense fallback={<Loader />}>
-              <ScrollTop>
-              
-              <Routes>
-                <Route path='*' element={<LandingPage />} />
-                <Route path='/' element={<LandingPage />} />
-                <Route path='/about' element={<AboutUs />} />
-                <Route path='/blog/*' element={<Blog />} />
-                <Route path='/services' element={<Service />} />
-                <Route path='/services/2' element={<Service_2 />} />
-                <Route path='/sustainability' element={<Sustainability />} />
-                <Route path='/contact' element={<Contact />} />
-                <Route path='/contact/2' element={<Contact_2 />} />
-                <Route path='/quote/*' element={<Quote />} />
-                <Route path='/admin/*' element={<Admin />} />
-                <Route path='/legal/privacy-policy' element={<PrivacyPolicy />} />
-              </Routes>
+              <Suspense fallback={<Loader />}>
+                <ScrollTop>
+                
+                <Routes>
+                  <Route path='*' element={<LandingPage />} />
+                  <Route path='/' element={<LandingPage />} />
+                  <Route path='/about' element={<AboutUs />} />
+                  {/* <Route path='/blog/*' element={<Blog />} /> */}
+                  <Route path='/services' element={<Service />} />
+                  <Route path='/services/2' element={<Service_2 />} />
+                  <Route path='/sustainability' element={<Sustainability />} />
+                  <Route path='/contact' element={<Contact />} />
+                  <Route path='/contact/2' element={<Contact_2 />} />
+                  <Route path='/quote/*' element={<Quote />} />
+                  <Route path='/admin/*' element={<Admin />} />
+                  <Route path='/legal/privacy-policy' element={<PrivacyPolicy />} />
+                </Routes>
 
-              </ScrollTop>
-            </Suspense>
+                </ScrollTop>
+              </Suspense>
 
-          <CookieConsent 
-            style={{   fontSize: 'clamp(.8rem, 1.08vw, 1rem)', borderTop:'1px solid rgb(120, 120, 120)', backgroundColor: '#0A0A0A'}} 
-            location='bottom' 
-            enableDeclineButton
-            onAccept={() => {return; }}
-            onDecline={() => { return; }}
-            declineButtonText='Reject Cookies' 
-            declineButtonStyle={{ background: '#fffff', padding: '10px 28px', fontSize: 'clamp(.72rem, 1.08vw, 1rem)', color: 'black', marginRight: '0px' }}
-            buttonText='Accept all Cookies'  
-            buttonStyle={{ background: '#2cb933', padding: '10px 28px', fontSize: 'clamp(.66rem, .9vw, .88rem)' }}
-            cookieName='Suge_accept_cookie' 
-            expires={150}>
-              <span className='cookies-and-privacy'>This website uses cookies and <a href='#' onClick={() => navigate('/legal/privacy-policy')}>Privacy Policy</a> to help you have a superior and more admissible browsing experience on the website.</span>
-          </CookieConsent>
+            <CookieConsent 
+              style={{   fontSize: 'clamp(.8rem, 1.08vw, 1rem)', borderTop:'1px solid rgb(120, 120, 120)', backgroundColor: '#0A0A0A'}} 
+              location='bottom' 
+              enableDeclineButton
+              onAccept={() => {return; }}
+              onDecline={() => { return; }}
+              declineButtonText='Reject Cookies' 
+              declineButtonStyle={{ background: '#fffff', padding: '10px 28px', fontSize: 'clamp(.72rem, 1.08vw, 1rem)', color: 'black', marginRight: '0px' }}
+              buttonText='Accept all Cookies'  
+              buttonStyle={{ background: '#2cb933', padding: '10px 28px', fontSize: 'clamp(.66rem, .9vw, .88rem)' }}
+              cookieName='Suge_accept_cookie' 
+              expires={150}>
+                <span className='cookies-and-privacy'>This website uses cookies and <a href='#' onClick={() => navigate('/legal/privacy-policy')}>Privacy Policy</a> to help you have a superior and more admissible browsing experience on the website.</span>
+            </CookieConsent>
 
-          {
-            search
-            ?
-            <SearchBox closeSlider={closeSlider} />
-            :
-            <></>
-          }
+            {
+              search
+              ?
+              <SearchBox closeSlider={closeSlider} />
+              :
+              <></>
+            }
 
-          <Footer />
-        </div>
+            <Footer />
+          </div>
+        </ContextProvider>
       </Provider>
     </HelmetProvider>
   )

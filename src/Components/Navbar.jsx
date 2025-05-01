@@ -75,10 +75,10 @@ export function Navbar ({ openSlider }) {
 	}
 
 	useLayoutEffect(() => {
-	    if ( localStorage.getItem('suge-dark-theme') == 'false') {
-	    	document.querySelector('.app').classList.add('light-theme')
-	    } else {
+	    if ( localStorage.getItem('suge-dark-theme') == 'true') {
 	    	document.querySelector('.app').classList.remove('light-theme')
+	    } else {
+	    	document.querySelector('.app').classList.add('light-theme')
 	    }
 
 	}, [localStorage.getItem('suge-dark-theme')])

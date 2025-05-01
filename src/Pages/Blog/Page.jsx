@@ -1,16 +1,12 @@
 import './style.css'
 import './style.1600.css'
 import './style.mobile.css'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { Route, Routes } from 'react-router-dom'
-import { Helmet } from 'react-helmet-async'
 import img1 from  '/images/SUGE ASSETS/Lighting Black.webp'
 import { BlogCard } from './Components/BlogCard.jsx'
-import { BlogPage } from './Components/BlogPage.jsx'
-import { BlogTemplate1 } from './Components/BlogTemplates/BlogTemplate1.jsx'
 import { BlogTemp } from './Components/BlogTemplates/BlogTemplateAssig.jsx'
 import { fetchBlogs } from '../../Api/FetchData.js'
-import { BlogPlaceholder } from './Components/PlaceholderData.js'
 import { useDispatch, useSelector } from 'react-redux'
 import { setBlogList } from '../../Redux/BlogList.jsx'
 
@@ -34,8 +30,6 @@ function Index () {
 
 	useEffect(() => {
 		handleBlog()
-
-		console.log(blogList)
 	}, [])
 
 	return (

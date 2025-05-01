@@ -1,17 +1,20 @@
 import '../style.css'
 import '../style.mobile.css'
 import { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 
 import { BlogTemplate1 } from '../../Blog/Components/BlogTemplates/BlogTemplate1'
 import { BlogTemplate2 } from '../../Blog/Components/BlogTemplates/BlogTemplate2'
 import { BlogTemplate3 } from '../../Blog/Components/BlogTemplates/BlogTemplate3'
 import { BlogTemplate4 } from '../../Blog/Components/BlogTemplates/BlogTemplate4'
 import { BlogTemplate5 } from '../../Blog/Components/BlogTemplates/BlogTemplate5'
-import { useNavigate } from 'react-router-dom'
-import { addBlog } from '../../../Api/FetchData.js'
+import { useNavigate, useLocation } from 'react-router-dom'
+import { add_image, addBlog } from '../../../Api/FetchData.js'
+
+import { useContextSelector } from '../../../context/Contexts.jsx'
 
 import img1 from  '/images/SUGE ASSETS/Lighting Black.webp'
+import { clearBlogData } from '../../../Redux/Blogs.jsx'
 
 function MessageDisplay ({ msg, setMsg }) {
 
@@ -29,31 +32,69 @@ function MessageDisplay ({ msg, setMsg }) {
 export function BlogPreview ({ msg, setMsg }) {
 
     const [ click, setClick ] = useState(false)
-    const blogPreview = useSelector(state => state.blogData.value.data)
+    const blogPreview = useContextSelector('blogData')?.value
+    // const blogPreview = useSelector(state => state.blogData.value.data)
     const navigate = useNavigate()
+    const location = useLocation()
+    const dispatch = useDispatch()
+
+    let reqData;
+    let img_ids = []
+
+    function handleReqData () {
+        let reqContents = blogPreview?.content        
+
+        img_ids?.forEach(data => {
+            reqContents[data.id].img = data.img
+        })
+
+        reqData = {...blogPreview, content: [...reqContents]}
+    }
 
     async function createBlog() {
         setClick(true)
 
-        const res = await addBlog({...blogPreview})
+        for (let i = 0; i < 3; i++) {
+            if (blogPreview.content[i].img) {
+                const res = await add_image(blogPreview.content[i].img)
 
-
-        if (res.status == 'Created') {
-            setMsg('Successfully created blog')
-
-            
-            setTimeout(() => {
-                navigate(-1)
-                setClick(false)
-            }, 2000)
-
-            return;
+                img_ids.push({
+                    id: i,
+                    img: res.data.id
+                })
+            }
         }
 
-        setMsg('Error creating blog; Try again')
-        
-        setClick(false) 
-        
+
+        handleReqData()
+
+        setTimeout(async() => {
+            const res = await addBlog({ ...reqData, template: blogPreview.template})
+
+            if (res.status == 'Created') {
+                setMsg('Successfully created blog')
+                
+                setTimeout(() => {
+                    navigate(`/admin/dashboard/blog`)
+                    setClick(false)
+                }, 2000)
+
+                return;
+            }
+
+            setMsg('Error creating blog; Try again')
+            
+            setClick(false) 
+        }, 1200)
+    }
+
+    function cancel () {
+        if (!location?.state?.history) {
+            navigate(`/admin/dashboard/blog`)
+            dispatch(clearBlogData())
+        } else {
+                navigate(location.state.history)
+            }
     }
 
     useEffect(() => {
@@ -93,7 +134,7 @@ export function BlogPreview ({ msg, setMsg }) {
             </div>
 
             <div className='preview-btns'>
-                <button onClick={() => navigate(-1)}>Cancel</button>
+                <button onClick={cancel}>Cancel</button>
                 <button disabled={click} onClick={createBlog}>Submit</button>
             </div>
 

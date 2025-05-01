@@ -9,12 +9,11 @@ import { BlogTemplate3 } from './BlogTemplate3'
 import { BlogTemplate4 } from './BlogTemplate4'
 import { BlogTemplate5 } from './BlogTemplate5'
 import { useDispatch, useSelector } from 'react-redux'
-import { setBlogData } from '../../../../Redux/Blogs.jsx'
+import { setBlogData, setBlogImage } from '../../../../Redux/Blogs.jsx'
 
-import { BlogPlaceholder } from '../PlaceholderData.js'
 
 import { useNavigate, useParams } from 'react-router-dom'
-import { fetchBlogContent } from '../../../../Api/FetchData.js'
+import { fetch_image, fetchBlogContent } from '../../../../Api/FetchData.js'
 
 function WaitingLoad () {
     return (
@@ -35,17 +34,53 @@ export function BlogTemp () {
     const dispatch = useDispatch()
 
 
+    const arrayBufferToBase64 = buffer => {
+        let binary = '';
+        let bytes = new Uint8Array(buffer);
+        let len = bytes.byteLength;
+        
+        for (let i = 0; i < len; i++) {
+          binary += String.fromCharCode(bytes[i]);
+        }
+    
+        return window.btoa(binary);
+    };
+
+    async function getImage (id, no) {
+        if (id) {
+            const res = await fetch_image(id)
+
+            console.log("id: ", id)
+            console.log(res.data.img)
+
+            
+            
+            if (res.data.img) {
+
+                console.log('trying')
+
+                const base64 = arrayBufferToBase64(res.data.img.data)
+                console.log(base64)
+
+                dispatch(setBlogImage({ index: no, img: `image/png;base64,${base64String}` }))
+            }
+        }
+    }
+
     
     async function fetchDataInfo() {
 
         if (!blogData?.title || blogData?._id != id) {
             const info = await fetchBlogContent(id)
 
+            // console.log(info)
+
             if (info.status != 'OK') {
                 console.error('Try Again')
                 navigate('/blog')
                 return
             }
+
             setTimeout(() => {
                 dispatch(setBlogData({...info?.data}))
                 setLoading(false)
@@ -53,7 +88,7 @@ export function BlogTemp () {
             }, 100)
 
             
-            return;
+            return info;
         }
 
         setTempType(blogData?.template)
@@ -67,6 +102,15 @@ export function BlogTemp () {
             return;
         }
         fetchDataInfo()
+        .then((res) => {
+            setTimeout(() => {
+                getImage(res.data?.content[0]?.img, 0)
+                getImage(res.data?.content[1]?.img, 1)
+                getImage(res.data?.content[2]?.img, 2)
+            }, 1200)
+        })
+
+
     }, [])
 
     return (

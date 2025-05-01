@@ -14,7 +14,7 @@ const Privacy_Policy_Definitions = [
     },
     {
         word: `Company `,
-        meaning: `(referred to as either "the Company", "We", "Us" or "Our" in this Agreement) refers to SUGE, Plot 754, Aaron Road Industrial Estate, Whittlesey Peterborough PE7 2EX.`
+        meaning: `(referred to as either "the Company", "We", "Us" or "Our" in this Agreement) refers to SUGE, Plot 25, Aaron Road Industrial Estate, Whittlesey Peterborough PE7 2EX.`
     },
     {
         word: `Cookies `,

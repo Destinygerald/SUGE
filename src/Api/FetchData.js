@@ -1,9 +1,9 @@
 import axios from 'axios'
-// const URL = `https://suge-sever.onrender.com`
-// const URL = `http://localhost:8000`
-// const URL = `https://suge-sever.vercel.app`
+// export const URL = `https://suge-sever.onrender.com`
+// export const URL = `http://localhost:8000`
+// export const URL = `https://suge-sever.vercel.app`
 
-const URL = `https://sugeserver.onrender.com`
+export const URL = `https://sugeserver.onrender.com`
 
 export async function fetchBlogs() {
     const response = await axios.get(`${URL}/blog`)
@@ -54,6 +54,8 @@ export async function editBlogs(id, data){
                 // withCredentials: true
             }
         )
+
+        console.log(response)
         
         return response.data
     } catch (err) {
@@ -66,8 +68,8 @@ export async function editBlogs(id, data){
 
 export async function addBlog(data){
     try {
-        const cookie = getCookie()
 
+        const cookie = getCookie()
 
         const response = await axios.post(`${URL}/admin`, 
             { ...data },
@@ -85,7 +87,8 @@ export async function addBlog(data){
     } catch (err) {
         return {
             status: 400,
-            message: 'Error, Try again'
+            message: 'Error, Try again',
+            error: err
         }
     }
 }
@@ -332,4 +335,46 @@ export async function delete_popup (id) {
     )
 
     return response.data
+}
+
+export async function add_image (imgData) {
+    try {
+        const response = await axios.post(`${URL}/admin/add-image`,
+            imgData,
+            {
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'multipart/form-data'
+                }
+            }
+        )
+
+        return response.data
+
+
+    } catch (err) {
+        return {
+            status: 400,
+            message: 'Error, Try again',
+            err: err
+        } 
+    }
+}
+
+export async function fetch_image(id) {
+    try {
+        const response = await axios.get(`${URL}/blog/blog-image/${id}`, {}, {
+            headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'multipart/form-data'
+                }
+        })
+        return response.data;
+    } catch (err) {
+        return {
+            status: 400,
+            message: 'Error, Try again',
+            err: err
+        }
+    }
 }

@@ -33,6 +33,9 @@ const BlogData = createSlice({
             state.value.data.readTime = ''
             state.value.data.title = ''
             state.value.data.content = []
+        },
+        setBlogImage: (state, actions) => {
+            state.value.data.content[actions.payload.index].img = actions.payload.img
         }
     }
 })
@@ -40,4 +43,4 @@ const BlogData = createSlice({
 
 export default  BlogData.reducer
 
-export const { setBlogData, clearBlogData } = BlogData.actions
+export const { setBlogData, clearBlogData, setBlogImage } = BlogData.actions

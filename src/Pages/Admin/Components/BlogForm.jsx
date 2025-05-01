@@ -2,9 +2,11 @@ import '../style.css'
 import '../style.mobile.css'
 import { useNavigate, useLocation, useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
-import { fetchBlogContent, addBlog, deleteBlogs, editBlogs } from '../../../Api/FetchData.js'
-import { useDispatch, useSelector } from 'react-redux'
-import { setBlogData, clearBlogData } from '../../../Redux/Blogs.jsx'
+import { fetchBlogContent, addBlog, deleteBlogs, editBlogs, add_image, URL } from '../../../Api/FetchData.js'
+import { useDispatch } from 'react-redux'
+import { useContextSelector } from '../../../context/Contexts.jsx'
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 
 function MessageDisplay ({ msg, setMsg }) {
 
@@ -20,37 +22,57 @@ function MessageDisplay ({ msg, setMsg }) {
 }
 
 
-function BlogParagraph ({ hdr , i, handleClick, cnt, image, changeHandler, setBlogInfo, blogInfo, list}) {
+function returnInput (pathname, i, id, handleImage, blogInfo) {
+    if (pathname.includes('create') && (i == 1) && (id == 'template-1' || id == 'template-4')) {
+        return (
+            <input type="file" accept="image/png, image/jpeg" name='image' onChange={handleImage} />
+        )
+    } else if (pathname.includes('create') && i != 2 && (id == 'template-2' || id == 'template-3')) {
+        return (
+            <input type="file" accept="image/png, image/jpeg" name='image' onChange={handleImage} />
+        )
+    } else if (pathname.includes('create') && i == 0  && id == 'template-5') {
+        return (
+            <input type="file" accept="image/png, image/jpeg" name='image' onChange={handleImage} />
+        )
+    } else if (!pathname.includes('create') && (i != 2) && (blogInfo.template == 2 || blogInfo.template == 3)) {
+        return (
+            <input type="file" accept="image/png, image/jpeg" name='image' onChange={handleImage} />
+        )
+    } else if (!pathname.includes('create') && (i == 1) && (blogInfo.template == 1 || blogInfo.template == 4)) {
+        return (
+            <input type="file" accept="image/png, image/jpeg" name='image' onChange={handleImage} />
+        )
+    } else if (!pathname.includes('create') && (i == 0) && (blogInfo.template == 5)) {
+        // check later - Semms incomplete
+        return (
+            <input type="file" accept="image/png, image/jpeg" name='image' onChange={handleImage} />
+        )
+    } else {
+        return (
+            <></>
+        )
+    }
+}
 
-    const [ asList, setAsList ] = useState(false)
+
+function BlogParagraph ({ hdr , i, cnt, image, changeHandler, setBlogInfo, blogInfo, list, textEditorChange}) {
+
     const { id } = useParams()
     const { pathname } = useLocation()
 
+    const formData = new FormData()
 
-    function handleImage(e) {
-       
+    function display_image (data) {
         let reader = new FileReader();
 
-        reader.readAsDataURL(e.target.files[0]);
-        
-        const prevCnt = blogInfo.content.slice(0, i)
-        const nextCnt = blogInfo.content.slice(i + 1)
-        
-        try {
-            reader.onload = () => {
-                
-                const editedCnt = {
-                    ...blogInfo.content?.at(i),
-                    img : reader.result
-                }
+        reader.readAsDataURL(data);
 
-                if (image){
-                    document.querySelector('.paragraph-img-cnt').src =  reader.result
-                }
-        
-                const newArray = [...prevCnt, editedCnt, ...nextCnt]
-                
-                setBlogInfo({...blogInfo, content: [...newArray] })
+        try {
+            reader.onload = () => {               
+                if (reader.result){
+                    document.querySelector(`#paragraph-img-cnt-${i}`).src =  reader.result
+                }               
             };
 
         } catch (err) {
@@ -60,86 +82,26 @@ function BlogParagraph ({ hdr , i, handleClick, cnt, image, changeHandler, setBl
         reader.onerror = () => {
             console.log("Error : ", error)
         }
-            
-    //    console.log(blogInfo)
     }
-    
-    function paragraphListChangeHandler(e, index) {
+
+    function handleImage(e) {
+
+        formData.append('image', e.target.files[0])
+        
         const prevCnt = blogInfo.content.slice(0, i)
         const nextCnt = blogInfo.content.slice(i + 1)
-
-
-        const listPrevCnt = blogInfo.content?.at(i)?.list.slice(0, index)
-        const listNextCnt= blogInfo.content?.at(i)?.list.slice(index + 1)
-
-        const listEditedCnt = {   
-            ...blogInfo.content?.at(i)?.list?.at(index),
-            [e.target.name] : e.target.value
-        }
         
         const editedCnt = {
             ...blogInfo.content?.at(i),
-            list : [
-                ...listPrevCnt, listEditedCnt, ...listNextCnt
-            ]
+            img : formData
         }
 
         const newArray = [...prevCnt, editedCnt, ...nextCnt]
-
-        setBlogInfo({...blogInfo, content: [...newArray] })
-    }
-
-
-    function addList () {
-        const prevCnt = blogInfo.content.slice(0, i)
-        const nextCnt = blogInfo.content.slice(i + 1)
-
-        
-        const editedCnt = {
-            ...blogInfo.content?.at(i),
-            list : [
-                ...blogInfo.content?.at(i)?.list,
-                {
-                    title: '',
-                    description: ''
-                }
-            ]
-        }
-
-        const newArray = [...prevCnt, editedCnt, ...nextCnt]
-
-        setBlogInfo({...blogInfo, content: [...newArray] })
-    }
-
-    function toggleAsList () {
-
-        const prevCnt = blogInfo.content.slice(0, i)
-        const nextCnt = blogInfo.content.slice(i + 1)
-        
-        let editedCnt;
-        
-        if (asList) {
-            editedCnt = {
-                ...blogInfo.content?.at(i),
-                list: [
-                    {
-                        title: '',
-                        description: ''
-                    }
-                ]
-            }
-        } else {
-            editedCnt = {
-                ...blogInfo.content?.at(i),
-                content: ''
-            }
-        }
-
-        const newArray = [...prevCnt, editedCnt, ...nextCnt]
-        
+                
         setBlogInfo({...blogInfo, content: [...newArray] })
         
-        setAsList(!asList)
+        // console.log('called')
+        display_image(formData.get('image'))
     }
 
     function removeImage () {
@@ -158,10 +120,15 @@ function BlogParagraph ({ hdr , i, handleClick, cnt, image, changeHandler, setBl
     }
 
     useEffect(() => {
-        if (list[0] && (list[0].title || list[0].description) ) {
-            setAsList(true)
+
+        // console.log(typeof blogInfo?.content[i].img)
+
+        if (blogInfo?.content[i]?.img && typeof blogInfo?.content[i]?.img == 'object' ) {
+            display_image(blogInfo?.content[i].img?.get('image'))
         }
-    }, [])
+
+    }, [blogInfo?.content[i].img])
+
 
     return (
         <div className='admin-blog-paragraph'>
@@ -177,67 +144,44 @@ function BlogParagraph ({ hdr , i, handleClick, cnt, image, changeHandler, setBl
             {
                 i == 0
                 ?
-                <textarea placeholder='Paragraph Content' value={cnt} name='content' onChange={changeHandler}></textarea>
+                <>
+                    <ReactQuill name='content' value={cnt} onChange={textEditorChange} />
+                </>
                 :
                 <>
                     <div className='paragraph-list-toggle'>
-                        <button className='paragraph-list-toggle-btn' onClick={toggleAsList}>{ asList || list[0].title || list[0].description ? 'Switch to Paragraph' : 'Switch to List'}</button>
-                        {
-                            asList || list[0].title || list[0].description
-                            ?
-                            <div className='paragraph-list-container'>
-                                {
-                                    list.map((listItem, index) => (
-                                        <div className='paragraph-list-item' key={`list-item-${index}`}>
-                                            <input type='text' placeholder={'List Item ' + (index+1) }  value={list[index]?.title} name='title' onChange={(e) => paragraphListChangeHandler(e, index)} />
-                                            <textarea value={list[index]?.description} name='description' placeholder={'List Content ' + (index+1)} onChange={(e) => paragraphListChangeHandler(e, index)}></textarea>
-                                        </div>
-                                    ))
-                                }
 
-                                <button className='add-list-btn' onClick={addList}>Add List Item</button>
-                            </div>
-                            :
-                            <textarea placeholder='Paragraph Content' value={cnt} name='content' onChange={changeHandler}></textarea>
+                        {
+                            <>
+                                <ReactQuill name='content' value={cnt} onChange={textEditorChange} />
+                            </>
                         }
                     </div>
                 </>
             }
             
-            {
-                pathname.includes('create') && (i != 0 && i != 2) && (id == 'template-1' || id == 'template-4')
-                ?
-                <input type="file" accept="image/png, image/jpeg" name='image' onChange={handleImage} />
-                :
-                pathname.includes('create') && i != 2 && (id == 'template-2' || id == 'template-3')
-                ?
-                <input type="file" accept="image/png, image/jpeg" name='image' onChange={handleImage} />
-                :
-                pathname.includes('create') && i == 0  && id == 'template-5'
-                ?
-                <input type="file" accept="image/png, image/jpeg" name='image' onChange={handleImage} />
-                :
-                !pathname.includes('create') && (i != 2) && (blogInfo.template == 2 || blogInfo.template == 3)
-                ?
-                <input type="file" accept="image/png, image/jpeg" name='image' onChange={handleImage} />
-                :
-                !pathname.includes('create') && (i != 2 && i != 0) && (blogInfo.template == 1 || blogInfo.template == 4)
-                ?
-                <input type="file" accept="image/png, image/jpeg" name='image' onChange={handleImage} />
-                :
-                (i != 2 && i != 1) && (blogInfo.template == 1 || blogInfo.template == 5)
-                ?
-                <input type="file" accept="image/png, image/jpeg" name='image' onChange={handleImage} />
-                :
-                <></>
-            }
+            <>
+                {
+                    returnInput(pathname, i, id, handleImage, blogInfo)
+                }
+            </>
 
             {
-                image
+                typeof image == 'object'
+                ?
+                <>
+                   <div className="paragraph-img">
+                        <img src='' className='paragraph-img-cnt' id={`paragraph-img-cnt-${i}`} />
+                    </div>
+
+                    <button className='paragraph-img-btn' onClick={removeImage}>Remove</button>
+                </>
+                :
+                image && !image.includes('undefined') && typeof image != 'object' && image != `${URL}/blog/blog-image/`
                 ?
                 <>
                     <div className="paragraph-img">
-                        <img src={image} className='paragraph-img-cnt' />
+                        <img src={`${URL}/blog/blog-image/${image}`} className='paragraph-img-cnt' />
                     </div>
 
                     <button className='paragraph-img-btn' onClick={removeImage}>Remove</button>
@@ -245,8 +189,6 @@ function BlogParagraph ({ hdr , i, handleClick, cnt, image, changeHandler, setBl
                 :
                 <></>
             }
-
-            {/* <span className='admin-blog-paragraph-remove' onClick={handleClick}>-</span> */}
         </div>
     )
 }
@@ -264,35 +206,17 @@ export function CreateBlog({ msg, setMsg }) {
                 {
                     header: '',
                     content: '',
-                    image: '',
-                    list: [
-                        {
-                            title: '',
-                            description: ''
-                        }
-                    ]
+                    img: ''
                 },
                 {
                     header: '',
                     content: '',
-                    image: '',
-                    list: [
-                        {
-                            title: '',
-                            description: ''
-                        }
-                    ]
+                    img: ''
                 },
                 {
                     header: '',
                     content: '',
-                    image: '',
-                    list: [
-                        {
-                            title: '',
-                            description: ''
-                        }
-                    ]
+                    img: ''
                 }
             ],
         }
@@ -301,77 +225,33 @@ export function CreateBlog({ msg, setMsg }) {
     const [blogContentNum, setBlogContentNum] = useState(3)
     const [click, setClick] = useState(false)
 
-    const blogData = useSelector(state => state.blogData.value.data)
+    const blogData = useContextSelector('blogData')?.value
+    const { actions }  = useContextSelector('blogData')
 
     const navigate = useNavigate()
     const { pathname } = useLocation()
     const { id } = useParams()
     const dispatch = useDispatch()
-
-    function deleteParagrah(i) {
-        
-        if (blogContentNum <= 1) return;
-
-        setBlogContentNum(blogContentNum => blogContentNum -= 1)
-
-        let contents = [...blogInfo?.content]
-
-        
-        contents = contents.filter((content, index) => {
-            // console.log(content)
-            if (i != index) {
-                return content
-            }
-        })
-
-        setBlogInfo({
-            ...blogInfo,
-            content : [...contents]
-        })
-    }
-
-    function addParagraph() {
-        if (pathname.split('/').includes('create')){
-            setBlogContentNum(blogContentNum => blogContentNum += 1)
-
-            
-
-            let addedContent = [...blogInfo.content, {
-                header: '',
-                content: '',
-                image: '',
-                list: [
-                    {
-                        title: '',
-                        description: ''
-                    }
-                ]
-            }]
-
-            setBlogInfo({...blogInfo, content: [...addedContent]})
-
-        } else {
-            let addedContent = [...blogInfo.content, {
-                header: '',
-                content: '',
-                image: '',
-                list: [
-                    {
-                        title: '',
-                        description: ''
-                    }
-                ]
-            }]
-
-            setBlogInfo({...blogInfo, content: [...addedContent]})
-            setBlogContentNum(blogContentNum => blogContentNum += 1)
-        }
-        
-        
-    }
+    
+    const img_ids = []
+    let reqData = {}
 
     function changeHandler(e) {
         setBlogInfo({...blogInfo, [e.target.name]: e.target.value})
+    }
+
+    function textEditorChange (e, i) {
+
+        const prevCnt = blogInfo.content.slice(0, i)
+        const nextCnt = blogInfo.content.slice(i + 1)
+        const editedCnt = {
+            ...blogInfo.content?.at(i),
+            content : e
+        }
+        
+        const newArray = [...prevCnt, editedCnt, ...nextCnt]
+
+        setBlogInfo({...blogInfo, content: [...newArray] })
     }
 
     function paragraphChangeHandler(e, i) {
@@ -398,11 +278,19 @@ export function CreateBlog({ msg, setMsg }) {
         setBlogContentNum(res.data.content.length)
     }
 
+    function handleReqData () {
+        let reqContents = blogInfo?.content        
+
+        img_ids?.forEach(data => {
+            reqContents[data.id].img = data.img
+        })
+
+        reqData = {...blogInfo, content: [...reqContents]}
+    }
+
     async function createBlog() {
         setClick(true)
         let template;
-
-        // console.log(id)
 
         if (!blogInfo?.template) {
             switch(id) {
@@ -429,27 +317,45 @@ export function CreateBlog({ msg, setMsg }) {
             template = blogInfo?.template
         }
 
-        const res = await addBlog({...blogInfo, template: template})
 
+        for (let i = 0; i < 3; i++) {
+            if (blogInfo.content[i].img) {
+               const res = await add_image(blogInfo.content[i].img)
 
-        if (res.status == 'Created') {
-            setMsg('Successfully created blog')
-
-            
-            setTimeout(() => {
-                navigate(-1)
-                setClick(false)
-            }, 2000)
-
-            dispatch(clearBlogData())
-
-            return;
+               img_ids.push({
+                    id: i,
+                    img: res.data.id
+                })
+            }
         }
 
-        setMsg('Error creating blog; Try again')
-        setTimeout(() => {
-            setClick(false) 
-        }, 800)
+        handleReqData()
+
+        setTimeout(async() => {
+    
+
+            const res = await addBlog({...reqData, template: template})
+
+            if (res.status == 'Created') {
+                setMsg('Successfully created blog')
+
+                
+                setTimeout(() => {
+                    navigate('/admin/dashboard/blog')
+                    setClick(false)
+                }, 2000)
+
+                actions.clearBlogData()
+
+                return;
+            }
+
+            setMsg('Error creating blog; Try again')
+            setTimeout(() => {
+                setClick(false) 
+            }, 800)
+        }, 1200)
+        
     }
 
     async function deleteThisBlog () {
@@ -461,11 +367,11 @@ export function CreateBlog({ msg, setMsg }) {
             setMsg('Successfully Deleted blog')
             
             setTimeout(() => {
-                navigate(-1)
+                navigate('/admin/dashboard/blog')
                 setClick(false)
             }, 2000)
 
-            dispatch(clearBlogData())
+            actions.clearBlogData()
             return;
         }
 
@@ -477,33 +383,77 @@ export function CreateBlog({ msg, setMsg }) {
 
     async function editBlogCnt() {
         setClick(true)
-        const res = await editBlogs(id, blogInfo)
 
+        for (let i = 0; i < 3; i++) {
+            if (blogInfo.content[i].img) {
+               const res = await add_image(blogInfo.content[i].img)
 
-        if (res.status == 'Ok') {
-            setMsg('Successfully Edited blog')
-            
-            setTimeout(() => {
-                navigate(-1)
-                setClick(false)
-            }, 2000)
-
-            dispatch(clearBlogData())
-
-            return;
+               img_ids.push({
+                    id: i,
+                    img: res.data.id
+                })
+            }
         }
 
-        setMsg('Error Editing blog; Try again')
-        setTimeout(() => {
-            setClick(false) 
-        }, 800)
+        handleReqData()
+
+        setTimeout(async() => {
+            const res = await editBlogs(id, blogInfo)
+
+
+            if (res.status == 'Ok') {
+                setMsg('Successfully Edited blog')
+                
+                setTimeout(() => {
+                    navigate(-1)
+                    setClick(false)
+                }, 2000)
+
+                dispatch(clearBlogData())
+
+                return;
+            }
+
+            setMsg('Error Editing blog; Try again')
+            setTimeout(() => {
+                setClick(false) 
+            }, 400)
+        }, 1200)
     }
     
     function preview () {
 
-        let template;
+        if (!blogInfo?.meta_data_title) {
+            setMsg('Meta data title is missing!')
 
-        // console.log(id)
+            setTimeout(() => {
+                setMsg('')
+            }, 800)
+
+            return;
+        }
+
+        if (!blogInfo?.title) {
+            setMsg('Title is missing!')
+
+            setTimeout(() => {
+                setMsg('')
+            }, 800)
+
+            return;
+        }
+
+        if (!blogInfo?.readTime) {
+            setMsg('Read time is missing!')
+
+            setTimeout(() => {
+                setMsg('')
+            }, 800)
+
+            return;
+        }
+
+        let template;
 
         if (!blogInfo?.template) {
             switch(id) {
@@ -530,21 +480,27 @@ export function CreateBlog({ msg, setMsg }) {
             template = blogInfo?.template
         }
 
-        
+        actions.setBlogData({  ...blogInfo, template: template, dateAdded: Date.now() })
 
-        dispatch(setBlogData({ ...blogInfo, template: template, dateAdded: Date.now() }))
-        navigate('/admin/dashboard/blog/preview')
+        navigate('/admin/dashboard/blog/preview', 
+            { state: 
+                {history : pathname} 
+            }
+        )
     }
 
     function goBack () {
-        dispatch(clearBlogData())
-        navigate(-1)
+        actions.clearBlogData()
+        navigate('/admin/dashboard/blog/template')
     }
 
     useEffect(() => {
 
         if (blogData?.title) {
-            setBlogInfo({...blogData})
+            
+            setTimeout(() => {
+                setBlogInfo({...blogData})
+            }, 800)
         }
 
         if (!pathname.split('/').includes('create')) {
@@ -552,6 +508,7 @@ export function CreateBlog({ msg, setMsg }) {
             return;
         }
     }, [])
+
 
     return (
         <div className='create-blog'>
@@ -562,24 +519,28 @@ export function CreateBlog({ msg, setMsg }) {
 
 
             <div className='create-blog-main'>
-                <input type='text' placeholder='Meta data Title' name='meta_data_title' value={blogInfo?.meta_data_title} onChange={changeHandler} />
-                <input type='text' placeholder='Blog Title' value={blogInfo?.title} name='title' onChange={changeHandler} />
-                <input type='number' placeholder='Read time [in minutes]' min={3} value={blogInfo?.readTime} name='readTime' onChange={changeHandler} />
+                <input type='text' placeholder='Meta data Title' name='meta_data_title' value={blogInfo?.meta_data_title} onChange={changeHandler} className='create-blog-main-input' />
+                <input type='text' placeholder='Blog Title' value={blogInfo?.title} name='title' onChange={changeHandler} className='create-blog-main-input' />
+                <input type='number' placeholder='Read time [in minutes]' min={3} value={blogInfo?.readTime} name='readTime' onChange={changeHandler} className='create-blog-main-input' />
                 {  
                     pathname.split('/').includes('create')
                     ?
-                    blogInfo?.title || blogInfo?.readTime || blogInfo?.content[0]
-                    ?
+                    <>
+                    {
+                        blogInfo?.title || blogInfo?.readTime || blogInfo?.content[0]
+                        ?
                         blogInfo?.content?.map((item, i) => (
-                            <BlogParagraph i={i} key={i} handleClick={() => deleteParagrah(i)}  list={item?.list} hdr={item?.header} cnt={item?.content} image={item?.img} changeHandler={(e) => paragraphChangeHandler(e, i)} setBlogInfo={setBlogInfo} blogInfo={blogInfo} />
+                            <BlogParagraph i={i} key={i}  list={item?.list} hdr={item?.header} cnt={item?.content} image={item?.img} changeHandler={(e) => paragraphChangeHandler(e, i)} setBlogInfo={setBlogInfo} blogInfo={blogInfo} textEditorChange={(e) => textEditorChange(e, i)} />
                         ))
-                    :
+                        :
                         Array.from(Array(blogContentNum))?.map((item, i) => (
-                            <BlogParagraph i={i} key={i} handleClick={() => deleteParagrah(i)} changeHandler={(e) => paragraphChangeHandler(e, i)} setBlogInfo={setBlogInfo} blogInfo={blogInfo} />
+                            <BlogParagraph i={i} key={i} changeHandler={(e) => paragraphChangeHandler(e, i)} setBlogInfo={setBlogInfo} blogInfo={blogInfo} textEditorChange={(e) => textEditorChange(e, i)} />
                         ))
+                    }
+                    </>
                     :
                     blogInfo?.content?.map((item, i) => (
-                        <BlogParagraph i={i} key={i} handleClick={() => deleteParagrah(i)}  list={item?.list} hdr={item?.header} cnt={item?.content} image={item?.img} changeHandler={(e) => paragraphChangeHandler(e, i)} setBlogInfo={setBlogInfo} blogInfo={blogInfo} />
+                        <BlogParagraph i={i} key={i}  list={item?.list} hdr={item?.header} cnt={item?.content} image={item?.img} changeHandler={(e) => paragraphChangeHandler(e, i)} setBlogInfo={setBlogInfo} blogInfo={blogInfo} textEditorChange={(e) => textEditorChange(e, i)} />
                     ))
                 }
             </div>
@@ -600,8 +561,7 @@ export function CreateBlog({ msg, setMsg }) {
                     :
                     <></>
                 }
-                {/* <button onClick={addParagraph} className='add-p-btn'>Add Paragraph</button> */}
-
+                
                 <button className='add-p-btn' onClick={preview}>Preview</button>
             </div>
 
