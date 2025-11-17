@@ -261,4 +261,12 @@
 	.admin-popup-card > span:nth-child(1) {
 		width: 80%;
 	}
+
+	.control-group {
+		display: grid;
+		column-gap: auto;
+		justify-content: space-between;
+		row-gap: 4px;
+		grid-template-columns: repeat(7, 1fr);
+	}
 }

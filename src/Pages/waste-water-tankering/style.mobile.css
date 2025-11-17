@@ -1,0 +1,98 @@
+@media screen and (max-width: 600px) {
+  .waste-water-tankering-page {
+    padding-top: 118px;
+  }
+
+  .waste-water-tankering-main-cnt {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .waste-water-tankering-main-cnt-text {
+    width: 100%;
+  }
+
+  .waste-water-tankering-main-cnt-img {
+    width: 100%;
+    border-radius: 30px;
+    background-color: rgba(176, 176, 176, 0.148);
+
+    overflow: hidden;
+    position: relative;
+    height: 280px;
+  }
+
+  .waste-water-tankering-review-img {
+    display: none;
+  }
+
+  .waste-water-tankering-desc {
+    width: 100%;
+  }
+
+  .waste-water-tankering-msg1,
+  .waste-water-tankering-msg2 {
+    flex-direction: column-reverse;
+    gap: 20px;
+  }
+
+  .waste-water-tankering-msg1-img {
+    width: 100%;
+    height: 240px;
+    border-radius: 20px;
+  }
+
+  .waste-water-tankering-msg1-cnt,
+  .waste-water-tankering-msg2-cnt {
+    width: 100%;
+  }
+
+  .waste-water-tankering-case-study-main {
+    flex-direction: column-reverse;
+    gap: 20px;
+  }
+
+  .waste-water-tankering-case-study-hdr {
+    text-align: center;
+  }
+
+  .waste-water-tankering-case-study-main-cnt,
+  .waste-water-tankering-case-study-main-img {
+    width: 100%;
+  }
+
+  .waste-water-tankering-case-study-main-img {
+    height: 200px;
+  }
+
+  .waste-water-tankering-who-we-are-cnt {
+    flex-direction: column;
+    gap: 28px;
+    align-items: center;
+  }
+
+  .waste-water-tankering-faq-main {
+    flex-direction: column;
+
+    gap: 28px;
+    width: 100%;
+    align-items: flex-start;
+  }
+
+  .waste-water-tankering-faq-text,
+  .waste-water-tankering-faq-list {
+    width: 100%;
+  }
+
+  .waste-water-tankering-review-cnt {
+    width: 100%;
+  }
+}
+
+/* .waste-water-tankering-main,
+.waste-water-tankering-desc,
+.waste-water-tankering-msg1,
+.waste-water-tankering-msg2,
+.waste-water-tankering-case-study,
+.waste-water-tankering-who-we-are,
+.waste-water-tankering-faq { */

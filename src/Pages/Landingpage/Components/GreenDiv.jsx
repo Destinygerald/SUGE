@@ -21,7 +21,7 @@ export function GreenDiv () {
 
 			<div className='green-div-cnt'>
 				<div id='suge-landing-page-green-div'> 
-					<div>Handle Waste the Right Way</div>
+					<h2>Handle Waste the Right Way</h2>
 					<div>Ready to start your journey towards efficient and responsible waste management? Contact Suge Ltd today and let us help you make a difference.</div>
 				</div>
 

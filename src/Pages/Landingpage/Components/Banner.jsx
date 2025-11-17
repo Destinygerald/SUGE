@@ -20,8 +20,6 @@ export function Banner () {
 					<span> The Heroes of Organic <br /> Waste Management </span>
 				</h1> 
 
-				{/* <h1>Got Waste? <br/> Think <span>SUGE.</span></h1> */}
-
 				<p> Your waste management heroes reporting for duty. <br /> Reliable, sustainable, and 100% diverted away from landfill. </p>
 
 				<div className='banner-btn'>

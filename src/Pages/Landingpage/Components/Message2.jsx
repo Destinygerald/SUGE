@@ -12,7 +12,7 @@ function Message2Card ({ icon, title, cnt, index }) {
 			<div> <img src={icon} alt='suge-icon' /> </div>
 
 			<div className='message-2-card-main' id={`suge-message-2-card-${index}`}>
-				<div>{title}</div>
+				<h3>{title}</h3>
 				<div>{cnt}</div>
 			</div>
 		</div>

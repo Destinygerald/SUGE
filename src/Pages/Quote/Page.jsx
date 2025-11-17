@@ -17,8 +17,6 @@ import { SEO } from '../../Components/SEO.jsx'
 function Indicator ({ type }) {
 	const params = useParams()
 
-	// console.log(params['*'])
-
 	return (
 		<div className={type}>
 			<div className='quote-id' id='suge-quote-id-business'> 

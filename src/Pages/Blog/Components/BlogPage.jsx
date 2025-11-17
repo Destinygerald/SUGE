@@ -5,8 +5,6 @@ import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { IoCalendarOutline } from 'react-icons/io5'
 import { GoClock } from 'react-icons/go'
-import { Helmet } from 'react-helmet-async'
-// import { fetchBlogContent } from '../../../Api/FetchData'
 import { BlogPlaceholder, DAYS, MONTH } from './PlaceholderData.js'
 import { useDispatch, useSelector } from 'react-redux'
 import { setBlogData } from '../../../Redux/Blogs.jsx'
@@ -46,7 +44,6 @@ function Paragraph ({ cnt, hdr, img }) {
 
 export function BlogPage () {
 
-	// const [ blogData, setBlogData ] = useState({})
 	const [ dateConvert, setDateConvert ] = useState('')
 	const blogData = useSelector(state => state.value.blogData)
 	const dispatch = useDispatch()
@@ -54,13 +51,7 @@ export function BlogPage () {
 	const { id } = useParams()
 
 	async function fetchDataInfo() {
-		// const info = await fetchBlogContent(id)
 		const info = BlogPlaceholder.find(item => item?._id == id)
-
-		// console.log(info)
-
-		// setBlogData({...info?.data})
-
 		dispatch(setBlogData({...info}))
 
 		let convertedDate = new Date(info?.data.dateAdded)
@@ -110,6 +101,3 @@ export function BlogPage () {
 		</div>
 	)
 }
-
-
-// 293733d9

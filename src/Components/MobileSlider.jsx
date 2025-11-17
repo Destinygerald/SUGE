@@ -58,10 +58,8 @@ export function MobileSlider ({ sliderOpen, closeSlider }) {
 	function toggleTheme () {
 		if (localStorage.getItem('suge-dark-theme') == 'true') {
 			localStorage.setItem('suge-dark-theme', false)
-			// setTheme('false')
 			document.querySelector('.app').classList.add('light-theme')
 		} else {
-			// setTheme('true')
 			localStorage.setItem('suge-dark-theme', true)
 			document.querySelector('.app').classList.remove('light-theme')
 		}

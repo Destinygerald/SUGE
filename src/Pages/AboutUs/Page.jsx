@@ -35,6 +35,14 @@ function Page () {
 				<Video />
 				<SugeHeroes />
 			</Suspense>
+
+			<div className='credibility'>
+				<iframe style={{border: "1px solid #dddddd", overflow: "hidden" }}
+				width="50%" 
+				height="209" 
+				src="https://environment.data.gov.uk/public-register/waste-carriers-brokers/widget/CBDU446067" 
+				title="Widget for CBDU446067"></iframe>
+			</div>
 		</div>
 	)
 }

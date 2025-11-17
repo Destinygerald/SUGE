@@ -1,0 +1,520 @@
+.waste-water-tankering-page {
+  /* padding: 0 4.6%; */
+  padding-top: 161px;
+  padding-bottom: 138px;
+  color: var(--text);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 100px;
+}
+
+.waste-water-tankering-main,
+.waste-water-tankering-desc,
+.waste-water-tankering-msg1,
+.waste-water-tankering-msg2,
+.waste-water-tankering-case-study,
+.waste-water-tankering-who-we-are,
+.waste-water-tankering-faq {
+  padding: 0 4.6%;
+}
+
+.waste-water-tankering-main {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  height: fit-content;
+}
+
+.waste-water-tankering-main > span:first-child {
+  font-size: clamp(1.4rem, 2.18vw, 2.0625rem);
+  font-weight: 400;
+  background-image: var(--primary-gradient);
+  color: transparent;
+  background-clip: text;
+}
+
+.waste-water-tankering-main-cnt {
+  display: flex;
+  justify-content: space-between;
+  height: fit-content;
+}
+
+.waste-water-tankering-main-cnt-text {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  width: 38.75%;
+}
+
+.waste-water-tankering-main-cnt-img {
+  width: 44.775%;
+  border-radius: 30px;
+  background-color: rgba(176, 176, 176, 0.148);
+  margin-top: 0 auto;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 0 auto;
+}
+
+.waste-water-tankering-main-cnt-img > img {
+  min-width: 100%;
+  height: 100%;
+  position: absolute;
+  object-fit: cover;
+  object-position: center center;
+}
+
+.waste-water-tankering-main-cnt-text-hdr {
+  font-size: clamp(2.14rem, 3.17vw, 3rem);
+  font-weight: 400;
+}
+
+.waste-water-tankering-main-cnt-text-cnt,
+.waste-water-tankering-desc-cnt,
+.waste-water-tankering-msg1-cnt-desc,
+.waste-water-tankering-msg2-cnt-desc,
+.waste-water-tankering-case-study-main-cnt {
+  font-size: clamp(0.92rem, 1.256vw, 1.1875rem);
+  font-weight: 400;
+  line-height: clamp(1.4rem, 2.116vw, 2rem);
+}
+
+.waste-water-tankering-main-cnt-text > button {
+  background: var(--primary-gradient);
+  color: white;
+  border: none;
+  cursor: pointer;
+  padding: 16px 24px;
+  font-size: clamp(0.8rem, 1.058vw, 1rem);
+  font-weight: 500;
+  width: fit-content;
+  border-radius: 60px;
+}
+
+.waste-water-tankering-desc {
+  width: 44.11%;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.waste-water-tankering-desc-title,
+.waste-water-tankering-msg1-cnt-hdr,
+.waste-water-tankering-msg2-cnt-hdr {
+  font-weight: 700;
+  font-size: clamp(1.4rem, 2.183vw, 2.0625rem);
+}
+
+.waste-water-tankering-msg1,
+.waste-water-tankering-msg2 {
+  position: relative;
+  overflow: visible;
+
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.green-blur {
+  background: conic-gradient(
+    from 195deg at 50% 50%,
+    #004429 0deg,
+    #2cb933 360deg
+  );
+  border-radius: 50% 0 0 50%;
+  right: 0;
+  filter: unset;
+  filter: blur(78.2px);
+  /* translate: 30% 0; */
+  left: unset;
+  height: 60%;
+  width: unset;
+  position: absolute;
+  top: 0;
+  aspect-ratio: 2 / 3;
+}
+
+.waste-water-tankering-msg1-img,
+.waste-water-tankering-msg2-img {
+  width: 42.7%;
+  margin-top: 0 auto;
+  margin-bottom: 0 auto;
+  position: relative;
+  border-radius: 30px;
+  overflow: hidden;
+  background-color: rgba(176, 176, 176, 0.148);
+}
+
+.waste-water-tankering-msg1-img > img,
+.waste-water-tankering-msg2-img > img,
+.waste-water-tankering-case-study-main-img > img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  right: 0%;
+}
+
+.waste-water-tankering-msg1-cnt,
+.waste-water-tankering-msg2-cnt {
+  width: 43.58%;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.waste-water-tankering-msg1-cnt-desc > ul {
+  list-style-position: inside;
+}
+
+.waste-water-tankering-desc li {
+  display: flex;
+}
+
+.waste-water-tankering-msg2-cnt-desc > ul {
+  list-style-type: none;
+}
+
+.waste-water-tankering-case-study {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 64px;
+  align-items: center;
+}
+
+.waste-water-tankering-case-study-hdr,
+.waste-water-tankering-who-we-are-hdr {
+  font-size: clamp(2.4rem, 3.77vw, 3.5625rem);
+}
+
+.waste-water-tankering-case-study-main {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.waste-water-tankering-case-study-main-cnt {
+  width: 42.6%;
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+}
+
+.waste-water-tankering-case-study-main-cnt ul {
+  list-style-position: inside;
+}
+
+.waste-water-tankering-case-study-main-img {
+  width: 40.61%;
+  margin-top: 0 auto;
+  margin-bottom: 0 auto;
+  border-radius: 30px 30px 0 0;
+  background-color: rgba(176, 176, 176, 0.148);
+  overflow: hidden;
+  position: relative;
+}
+
+.waste-water-tankering-who-we-are {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 40px;
+  overflow: hidden;
+  position: relative;
+
+  margin-bottom: -100px;
+  padding-bottom: 100px;
+  padding-top: 100px;
+  margin-top: -100px;
+}
+
+.waste-water-tankering-who-we-are-main {
+  width: 100%;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.waste-water-tankering-who-we-are-hdr {
+  font-weight: 300;
+}
+
+.waste-water-tankering-who-we-are-cnt {
+  width: 66.5%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.waste-water-tankering-who-we-are-card {
+  width: 25.17%;
+  min-width: 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  align-items: center;
+}
+
+.waste-water-tankering-who-we-are-card-img {
+  width: 75%;
+  aspect-ratio: 1 / 1;
+  border-radius: 30px;
+  overflow: hidden;
+  z-index: 1;
+  position: relative;
+}
+
+.waste-water-tankering-who-we-are-card-img::before {
+  position: absolute;
+  content: "";
+  border-radius: 30px;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(rgba(31, 131, 36, 0.3), rgba(230, 239, 235, 0.2))
+    border-box;
+  border: 1px solid transparent !important;
+  mask: linear-gradient(#000 0 0) padding-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  left: 0;
+  top: 0;
+}
+
+.waste-water-tankering-who-we-are-card-img > img {
+  width: 100%;
+  object-fit: cover;
+}
+
+.waste-water-tankering-who-we-are-card-txt {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.waste-water-tankering-who-we-are-card-title {
+  font-weight: 700;
+  font-size: clamp(1rem, 1.52vw, 1.4375rem);
+}
+
+.waste-water-tankering-who-we-are-card-desc {
+  font-size: clamp(0.92rem, 1.256vw, 1.1875rem);
+  font-weight: 400;
+  line-height: clamp(1.4rem, 2.116vw, 2rem);
+}
+
+.waste-water-tankering-faq {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+  width: 100%;
+  margin-bottom: -100px;
+  padding-bottom: 100px;
+}
+
+.waste-water-tankering-faq-main {
+  width: 80%;
+  align-self: center;
+  display: flex;
+  position: relative;
+  z-index: 2;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.waste-water-tankering-faq-text {
+  width: 32%;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.waste-water-tankering-faq-text-hdr {
+  font-size: clamp(0.92rem, 1.256vw, 1.1875rem);
+  font-weight: 400;
+  line-height: clamp(1.4rem, 2.116vw, 2rem);
+}
+
+.waste-water-tankering-faq-text-cnt {
+  font-size: clamp(2.4rem, 3.77vw, 3.5625rem);
+  font-weight: 700;
+}
+
+.waste-water-tankering-faq-list {
+  width: 61.3%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.waste-water-tankering-faq-card {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  font-size: clamp(0.92rem, 1.256vw, 1.1875rem);
+  font-weight: 400;
+  border-radius: 24px;
+  background: linear-gradient(
+    159.44deg,
+    rgba(47, 47, 47, 0.3) -9.44%,
+    rgba(47, 47, 47, 0.12) 91.74%
+  );
+  position: relative;
+  padding: 24px;
+}
+
+.waste-water-tankering-faq-card::before {
+  position: absolute;
+  content: "";
+  border-radius: 24px;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+      135.77deg,
+      rgba(31, 131, 36, 0.3) 1.56%,
+      rgba(230, 239, 235, 0.2) 95.92%
+    )
+    border-box;
+  border: 1px solid transparent !important;
+  mask: linear-gradient(#000 0 0) padding-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  left: 0;
+  top: 0;
+}
+
+.waste-water-tankering-faq-card-title {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  font-weight: 700;
+  align-items: center;
+}
+
+.waste-water-tankering-faq-card-title > span:last-child {
+  background: linear-gradient(195deg, #2cb933 9.18%, #004429 90.82%);
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.waste-water-tankering-faq-card-line {
+  background-color: rgba(109, 109, 109, 1);
+  width: 100%;
+  height: 1px;
+}
+
+.waste-water-tankering-review {
+  background: linear-gradient(83.98deg, #2cb933 9.55%, #0a0a0a 94.33%);
+  width: 100%;
+  padding-left: 7.4%;
+  padding-right: 17.4%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.waste-water-tankering-review-img {
+  width: 37.2%;
+  margin-top: 0 auto;
+  margin-bottom: 0 auto;
+  position: relative;
+}
+
+.waste-water-tankering-review-img > img {
+  position: absolute;
+  height: 140%;
+  top: 50%;
+  translate: 0 -50%;
+}
+
+.waste-water-tankering-review-cnt {
+  width: 28.6%;
+  padding: 67px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  font-size: clamp(0.92rem, 1.256vw, 1.1875rem);
+  font-weight: 400;
+  line-height: clamp(1.4rem, 2.116vw, 2rem);
+}
+
+.waste-water-tankering-review-cnt-top {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.waste-water-tankering-review-cnt-top > span:first-child {
+  font-size: clamp(1.2rem, 1.852vw, 1.75rem);
+  font-weight: 700;
+}
+
+.waste-water-tankering-review-cnt-top > span:last-child {
+  font-size: clamp(0.92rem, 1.256vw, 1.1875rem);
+  font-weight: 400;
+  line-height: clamp(1.4rem, 2.116vw, 2rem);
+}
+
+.waste-water-tankering-review-cnt > button {
+  background: linear-gradient(195deg, #2cb933 9.18%, #004429 90.82%);
+  color: white;
+  font-size: clamp(0.8rem, 1.058vw, 1rem);
+  font-weight: 600;
+  border-radius: 30px;
+  padding: 20px 24px;
+  border: none;
+  cursor: pointer;
+  outline: none;
+}
+
+.lightning-img {
+  position: absolute;
+}
+/* 
+.light-theme .waste-water-tankering-faq .lightning-img {
+  mix-blend-mode: overlay;
+} */
+
+.waste-water-tankering-faq .lightning-img {
+  left: -35%;
+  top: 12%;
+  width: 100%;
+  rotate: -33.84deg;
+
+  mix-blend-mode: screen;
+
+  img {
+    width: 100%;
+    position: absolute;
+    top: 0%;
+    translate: 0 -30%;
+    mix-blend-mode: screen;
+  }
+}
+
+.waste-water-tankering-who-we-are .lightning-img {
+  rotate: 18.12deg;
+  right: -15%;
+  mix-blend-mode: screen;
+  width: 100%;
+  height: 100%;
+
+  img {
+    width: 100%;
+    /* height: 100%; */
+    position: absolute;
+    top: 0%;
+    translate: 0 -30%;
+    mix-blend-mode: screen;
+  }
+}

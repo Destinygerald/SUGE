@@ -28,10 +28,11 @@
 	max-width: 520px;
 }
 
-.mission-info > div:first-child {
+.mission-info > h4:first-child {
 	background-image: var(--primary-gradient);
 	color: transparent;
 	background-clip: text;
+	font-weight: 400;
 	font-size: clamp(1.2rem , 2.2vw, 2rem);
 }
 
@@ -39,8 +40,9 @@
 	gap: 32px;
 }
 
-.mission-info-cnt > div:first-child {
+.mission-info-cnt > h2:first-child {
 	font-size: clamp(2.2rem , 3.8vw, 3.52rem);
+	font-weight: 400;
 }
 
 .mission-info-cnt > div:nth-child(2) {
@@ -273,4 +275,15 @@
 	height: 320px;
 	background: var(--primary-gradient);
 	filter: blur(50px);
+}
+
+.credibility {
+	width: 100%;
+	padding: 0 4.6%;
+	display: flex;
+	justify-content: center;
+}
+
+.credibility > iframe {
+	max-width: 512px;
 }

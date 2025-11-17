@@ -29,17 +29,8 @@ export function SearchBox ({ closeSlider }) {
         setSearchParams({ search: search })
 
         const divs = document.querySelectorAll('div')
-        
-        const p = document.querySelectorAll('p')
-
-        const h1 = document.querySelectorAll('h1')
-        
+    
         const result_divs = Array.from(divs).filter(div => div.textContent.split(' ').some(item => (item.toLowerCase() == search.toLowerCase() || item.toLowerCase().includes(search.toLowerCase()))) && (div.children.length == 0 || Array.from(div.children)?.some(item => item.nodeName == "SPAN") || Array.from(div.children)?.some(item => item.nodeName == "SPAN") || Array.from(div.children)?.some(item => item.nodeName == "H1")) && !Array.from(div.classList).includes('search-box') )
-
-
-        result_divs.forEach(item => {
-            // console.log('i. ', item?.parentElement?.className)
-        })
 
         setSearchRes([...result_divs])
     }

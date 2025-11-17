@@ -68,7 +68,7 @@
 		width: 100%;
 	}
 
-	.message-cnt > div:first-child, .message-2-cnt > div:first-child {
+	.message-cnt > h2:first-child, .message-2-cnt > div:first-child {
 		font-size: 2.1rem;
 	}
 
@@ -106,7 +106,7 @@
 		width: 100%;
 	}
 
-	.message-3-cnt > div:first-child {
+	.message-3-cnt > h2:first-child {
 		font-size: 1.625rem;
 	}
 

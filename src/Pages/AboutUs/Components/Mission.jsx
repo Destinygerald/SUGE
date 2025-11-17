@@ -6,10 +6,10 @@ export function Mission () {
 	return (
 		<div className='mission' id='about-us-mission'>
 			<div className='mission-info' id='about-us-mission-frame'>
-				<div>Our Mission</div>
+				<h4>Our Mission</h4>
 
 				<div className='mission-info-cnt' id='about-us-mission-content'>
-					<div>Huge Impact, Zero Waste.</div>
+					<h2>Huge Impact, Zero Waste.</h2>
 					
 					<div>
 						Every hero has an origin story. Ours began with one man, one truck, and one mission: to stop organic waste from ending up in landfills.<br />

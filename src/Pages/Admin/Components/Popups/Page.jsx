@@ -39,7 +39,7 @@ function PopupCard ({  _id, title, activated, setMsg, setLoading, setReload, loa
 
     async function activatePopup () {
         const res = await activate_popup(_id)
-
+        
         if (res.status == 'Ok' || res.status == 200) {
             setMsg('Successfully Activated')
 
@@ -319,15 +319,11 @@ function PopupEditForm () {
         setLoading(true)
         const res = await popup_content(id)
 
-        // console.log(res)
-
         if (res.status == 'Ok' || res.status == 200) {
             setEditForm({...res.data})
         }
 
         setLoading(false)
-
-        // setEditForm({...editForm,  })
     }
 
     async function popupEdit() {

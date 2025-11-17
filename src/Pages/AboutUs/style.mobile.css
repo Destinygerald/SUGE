@@ -98,4 +98,8 @@
 	.suge-heroes-card:nth-child(2) > img {
 		translate: -50%  10%;
 	}
+
+	.credibility > iframe {
+		width: 100%;
+	}
 }

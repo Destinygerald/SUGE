@@ -78,7 +78,6 @@
 	height: 100%;
 	min-width: 100%;
 	object-fit: cover;
-	
 	position: absolute;
 	left: 0;
 	top: 0;
@@ -143,6 +142,11 @@
 	line-clamp: 3;
 	-webkit-line-clamp: 3;
 	-webkit-box-orient: vertical;
+	color: var(--text) !important;
+}
+
+.blog-card-content p span {
+	color: var(--text) !important;	
 }
 
 .blog-page {
@@ -512,6 +516,11 @@
 .blog-paragraph-frame li > strong:first-child::after {
 	content: '\a';
 	white-space: pre;
+}
+
+.blog-paragraph-frame h1 {
+	line-height: 2.12rem;
+	padding-bottom: 8px;
 }
 
 @keyframes load {

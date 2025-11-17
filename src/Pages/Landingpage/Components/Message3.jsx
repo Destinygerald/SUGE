@@ -19,9 +19,9 @@ export function Message3 () {
 		<div className='message-3'>
 			
 			<div className='message-3-cnt' id='suge-message-3-cnt'>
-				<div>
+				<h2>
 					Waste Management and Recycling that Adapts to Your Industry
-				</div>
+				</h2>
 
 				<div className='message-3-cnt-info' id='suge-message-3-cnt-info'>
 					<div>Our promise to you is hassle-free recycling. Leveraging our in-house haulage system, we guarantee efficient and cost-effective recycling and waste management solutions across the UK.</div>

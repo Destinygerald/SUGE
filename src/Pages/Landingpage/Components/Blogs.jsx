@@ -8,8 +8,6 @@ export function Blogs () {
 
     const blogList = useSelector(state => state.blogList.value)
 
-    // console.log(blogList)
-
     return (
         <div className='landing-page-blogs' id='suge-landing-page-blogs'>
             <span>Our Blogs</span>

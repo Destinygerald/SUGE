@@ -25,16 +25,15 @@ export function LoadPopup () {
 		document.querySelector('.load-popup').classList.add('load-popup-close')
 		
 		setTimeout(() => {
-			// document.querySelector('.load-popup').classList.add('.load-popup-close')
 			dispatch(closePopup())
 		}, 1800)
 		
 	}
+	
 
 	useLayoutEffect(() => {
 		document.querySelector('.load-popup').classList.remove('load-popup-close')
 	}, [])
-	// console.log(active_popup)
 
 	return (
 		<div className='load-popup'>
@@ -45,24 +44,8 @@ export function LoadPopup () {
 				<div className='load-popup-main'>
 					
 					<div>
-						<div>
-							{/* Time to Rethink <br />
-							Your Waste <br />
-							Strategy? */}
-							{
-								active_popup?.title
-							}
-						</div>
-
-						<div>
-							{/* It’s never too late to save more and waste less.<br />
-							Claim your FREE Waste Review today. We’ll analyse your waste management and uncover cost-effective, greener solutions tailored to your business. <br /><br />
-
-							This offer won’t last forever—act now! */}
-							{
-								active_popup?.content
-							}
-						</div>
+						<div> { active_popup?.title } </div>
+						<div> { active_popup?.content } </div>
 					</div>
 
 

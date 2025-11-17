@@ -14,7 +14,7 @@ export function QuoteInfo () {
 	}
 
 	useEffect(() => {
-		// fetch data with the id
+		// fetch data with the id 
 
 	}, [])
 

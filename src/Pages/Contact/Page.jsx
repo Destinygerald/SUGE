@@ -1,194 +1,257 @@
-import './style.css'
-import './style.mobile.css'
-import './style.1600.css'
-import { Banner } from '../../Components/Banner.jsx'
-import { Helmet } from 'react-helmet-async'
-import { GoClock, GoMail } from 'react-icons/go'
-import { FiPhone } from 'react-icons/fi'
-import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { contactUs } from '../../Redux/MessageFunction.js'
-import img1 from '/images/SUGE IMAGES/2.1 Tanker in field  copy.webp'
-import { SEO } from '../../Components/SEO.jsx'
+import "./style.css";
+import "./style.mobile.css";
+import "./style.1600.css";
+import { Banner } from "../../Components/Banner.jsx";
+import { Helmet } from "react-helmet-async";
+import { GoClock, GoMail } from "react-icons/go";
+import { FiPhone } from "react-icons/fi";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { contactUs } from "../../Redux/MessageFunction.js";
+import img1 from "/images/SUGE IMAGES/2.1 Tanker in field  copy.webp";
+import { SEO } from "../../Components/SEO.jsx";
+import { useDispatch } from "react-redux";
+import { addMessage } from "../../Redux/messages.js";
 
+function ContactInfo() {
+  return (
+    <div className="contact-info">
+      <div className="contact-info-img">
+        <img src={img1} loading="lazy" alt="suge-image" />
+      </div>
 
-function ContactInfo () {
-	return (
-		<div className='contact-info'>
-			<div className='contact-info-img'>
-				<img src={img1} loading='lazy' alt='suge-image' />
-			</div>
+      <div className="contact-info-cnt" id="suge-contact-info-cnt">
+        <div className="contact-info-item" id="suge-contact-info-cnt-frame">
+          <span>
+            {" "}
+            <GoClock />{" "}
+          </span>
 
-			<div className='contact-info-cnt' id='suge-contact-info-cnt'>
-				<div className='contact-info-item' id='suge-contact-info-cnt-frame'>
-					<span> <GoClock /> </span>
+          <div className="contact-time" id="suge-contact-info-cnt-time">
+            <span>Opening Hours</span>
 
-					<div className='contact-time' id='suge-contact-info-cnt-time'>
-						<span>Opening Hours</span>
+            <div>
+              <span>Monday - Friday</span>
+              <span>06:00 - 18:00</span>
+            </div>
 
-						<div>
-							<span>Monday - Friday</span>
-							<span>06:00 - 18:00</span>
-						</div>
+            <div>
+              <span>Saturday</span>
+              <span>08:00 - 17:00</span>
+            </div>
+          </div>
+        </div>
 
-						<div>
-							<span>Saturday</span>
-							<span>08:00 - 17:00</span>
-						</div>
-					</div>
-				</div>
+        <div className="contact-info-item" id="suge-contact-info-phone">
+          <span>
+            {" "}
+            <FiPhone />{" "}
+          </span>
 
-				<div className='contact-info-item' id='suge-contact-info-phone'>
-					<span> <FiPhone /> </span>
+          <div className="contact-info-details">
+            <span>Phone</span>
+            <span>0330 133 5737</span>
+          </div>
+        </div>
 
-					<div className='contact-info-details'>
-						<span>Phone</span>
-						<span>0330 133 5737</span>
-					</div>
-				</div>
+        <div className="contact-info-item" id="suge-contact-info-email">
+          <span>
+            {" "}
+            <GoMail />{" "}
+          </span>
 
-				<div className='contact-info-item' id='suge-contact-info-email'>
-					<span> <GoMail /> </span>
-
-					<div className='contact-info-details'>
-						<span>Email</span>
-						<span>info@suge.co.uk</span>
-					</div>
-				</div>				
-			</div>
-		</div>
-	)
+          <div className="contact-info-details">
+            <span>Email</span>
+            <span>info@suge.co.uk</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 }
 
-function ContactFormInput ({ name, value, placeholder, type, changeHandler, err }) {
-	return (
-		<div className='contact-form-input'>
-			<span> {name} </span>
+function ContactFormInput({
+  name,
+  value,
+  placeholder,
+  type,
+  changeHandler,
+  err,
+}) {
+  return (
+    <div className="contact-form-input">
+      <span> {name} </span>
 
-			<input type={type} name={name} value={value} placeholder={placeholder} onChange={changeHandler} />
+      <input
+        type={type}
+        name={name}
+        value={value}
+        placeholder={placeholder}
+        onChange={changeHandler}
+      />
 
-			{
-				err
-				?
-				<span className='err'>{err}</span>
-				:
-				<></>
-			}
-
-		</div>
-	)
+      {err ? <span className="err">{err}</span> : <></>}
+    </div>
+  );
 }
 
-function ContactForm () {
+function ContactForm() {
+  const [formDetails, setFormDetails] = useState({
+    name: "",
+    email: "",
+    company: "",
+    phone: "",
+    message: "",
+  });
 
-	const [ formDetails, setFormDetails ] = useState({
-		name: '',
-		email: '',
-		company: '',
-		phone: '',
-		message: ''
-	})
+  const [formErr, setFormErr] = useState({
+    name: "",
+    email: "",
+    company: "",
+    phone: "",
+    message: "",
+  });
 
-	const [ formErr, setFormErr ] = useState({
-		name: '',
-		email: '',
-		company: '',
-		phone: '',
-		message: ''
-	})
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-	const navigate = useNavigate()
+  async function submitHandler(e) {
+    e.preventDefault();
 
-	async function submitHandler (e) {
-		e.preventDefault()
+    if (!formDetails.name) {
+      setFormErr({ ...formErr, name: "Name is empty" });
+      return;
+    }
 
-		if (!formDetails.name) {
-			setFormErr({...formErr, name : 'Name is empty'})
-			return
-		}
+    if (!formDetails.email) {
+      setFormErr({ ...formErr, email: "Email field is empty" });
+      return;
+    }
 
-		if (!formDetails.email) {
-			setFormErr({...formErr, email : 'Email field is empty'})
-			return
-		}
+    if (!formDetails.company) {
+      setFormErr({ ...formErr, company: "Company field is empty" });
+      return;
+    }
 
-		if (!formDetails.company) {
-			setFormErr({...formErr, company : 'Company field is empty'})
-			return
-		}
+    if (!formDetails.phone) {
+      setFormErr({ ...formErr, phone: "Phone field is empty" });
+      return;
+    }
 
-		if (!formDetails.phone) {
-			setFormErr({...formErr, phone : 'Phone field is empty'})
-			return
-		}
+    if (!formDetails.message) {
+      setFormErr({ ...formErr, message: "Message field is empty" });
+      return;
+    }
+    try {
+      await contactUs(formDetails);
+      dispatch(
+        addMessage({ type: "success", label: "Message sent successfully." })
+      );
+      setFormDetails({
+        name: "",
+        email: "",
+        company: "",
+        phone: "",
+        message: "",
+      });
 
-		if (!formDetails.message) {
-			setFormErr({...formErr, message : 'Message field is empty'})
-			return
-		}
+      navigate("/");
+    } catch (err) {
+      dispatch(
+        addMessage({ type: "error", label: "Error Contacting us, try again" })
+      );
+    }
+  }
 
-		await contactUs(formDetails)
+  function changeHandler(e) {
+    setFormDetails({ ...formDetails, [e.target.name]: e.target.value });
+    setFormErr({
+      name: "",
+      email: "",
+      company: "",
+      phone: "",
+      message: "",
+    });
+  }
 
-		setFormDetails({
-			name: '',
-			email: '',
-			company: '',
-			phone: '',
-			message: ''
-		})
+  return (
+    <div className="contact-form">
+      <div id="suge-contact-info-hdr">
+        <div>Got Waste?</div>
+        <div>
+          Please feel free to use any of the contact methods listed on this page
+          to get in touch with us. We look forward to hearing from you!
+        </div>
+      </div>
 
-		navigate('/')
-	}
+      <form onSubmit={submitHandler}>
+        <div>
+          <ContactFormInput
+            type="text"
+            name="name"
+            value={formDetails.name}
+            placeholder="Enter Name"
+            changeHandler={changeHandler}
+            err={formErr.name}
+          />
+          <ContactFormInput
+            type="email"
+            name="email"
+            value={formDetails.email}
+            placeholder="Enter Email address"
+            changeHandler={changeHandler}
+            err={formErr.email}
+          />
+          <ContactFormInput
+            type="text"
+            name="company"
+            value={formDetails.company}
+            placeholder="Enter company name"
+            changeHandler={changeHandler}
+            err={formErr.company}
+          />
+          <ContactFormInput
+            type="tel"
+            name="phone"
+            value={formDetails.phone}
+            placeholder="Enter phone number"
+            changeHandler={changeHandler}
+            err={formErr.phone}
+          />
+          <ContactFormInput
+            type="text"
+            name="message"
+            value={formDetails.message}
+            placeholder="Enter text here"
+            changeHandler={changeHandler}
+            err={formErr.message}
+          />
+        </div>
 
-	function changeHandler (e) {
-		setFormDetails({...formDetails, [e.target.name]: e.target.value})
-		setFormErr({
-			name: '',
-			email: '',
-			company: '',
-			phone: '',
-			message: ''
-		})
-	}
-
-	return (
-		<div className='contact-form'>
-			<div id='suge-contact-info-hdr'>
-				<div>Got Waste?</div>
-				<div>Please feel free to use any of the contact methods listed on this page to get in touch with us. We look forward to hearing from you!</div>
-			</div>
-
-			<form onSubmit={submitHandler}>
-				<div>
-					<ContactFormInput type='text' name='name' value={formDetails.name} placeholder='Enter Name' changeHandler={changeHandler} err={formErr.name} />
-					<ContactFormInput type='email' name='email' value={formDetails.email} placeholder='Enter Email address' changeHandler={changeHandler} err={formErr.email} />
-					<ContactFormInput type='text' name='company' value={formDetails.company} placeholder='Enter company name' changeHandler={changeHandler} err={formErr.company} />
-					<ContactFormInput type='tel' name='phone' value={formDetails.phone} placeholder='Enter phone number' changeHandler={changeHandler} err={formErr.phone} />
-					<ContactFormInput type='text' name='message' value={formDetails.message} placeholder='Enter text here' changeHandler={changeHandler} err={formErr.message} />
-				</div>
-
-				<button>Send</button>
-			</form>
-		</div>
-	)
+        <button>Send</button>
+      </form>
+    </div>
+  );
 }
 
-function Page () {
-	return (
-		<div className='contact'>
+function Page() {
+  return (
+    <div className="contact">
+      <SEO
+        title={`Suge - Contact | Sustainable Organic Waste Collection & Management UK`}
+        link="https://www.suge.uk.co/contact"
+      />
 
-			<SEO title={`Suge - Contact | Sustainable Organic Waste Collection & Management UK`} link="https://www.suge.uk.co/contact" />
+      <Banner page="Contact Us" />
 
-			<Banner page='Contact Us' />
+      <div className="contact-cnt">
+        <ContactInfo />
+        <ContactForm />
 
-			<div className='contact-cnt'>
-				<ContactInfo />
-				<ContactForm />
-
-				<div className='contact-blur' />
-			</div>
-		</div>
-	)
+        <div className="contact-blur" />
+      </div>
+    </div>
+  );
 }
 
 export default Page;

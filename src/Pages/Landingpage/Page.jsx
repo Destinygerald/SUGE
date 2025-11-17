@@ -46,8 +46,6 @@ function Page () {
 
 		const blog = await fetchBlogs()
 
-		// console.log(blog)
-
 		dispatch(setBlogList([...blog.result]))
 	}
 
@@ -77,7 +75,7 @@ function Page () {
 				<Message />
 				<Message2 />
 				<Message3 />
-				{/* <Blogs /> */}
+				<Blogs />
 				<GreenDiv />
 			</Suspense>
 
@@ -88,8 +86,6 @@ function Page () {
 				:
 				<></>
 			}
-
-			
 
 		</div>
 	)

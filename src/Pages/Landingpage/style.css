@@ -1,11 +1,9 @@
 .landing-page {
 	width: 100%;
-	/*padding: 0 4.6%;*/
 	display: flex;
 	flex-direction: column;
 	color: var(--text);
 	overflow-x: clip;
-	/*overflow-y: hidden;*/
 }
 
 .banner {
@@ -15,7 +13,6 @@
 	position: relative;
 	overflow: hidden;
 	aspect-ratio: 1512 / 792;
-	/*height: 792px;*/
 	min-height: 572px;
 	max-height: 868px;
 	background-image: url('../../assets/SUGE DARK TRUCK.webp');
@@ -45,10 +42,7 @@
 }
 
 .banner-cnt > h1 {
-	/*font-size: 5.25rem;*/
 	font-size: clamp(1.72rem, calc(100vw / 26) , 4rem);
-	/* width: 100%; */
-	/* width: fit-content; */
 	font-weight: 400;
 }
 
@@ -107,7 +101,6 @@
 }
 
 .partners-logo > img {
-	/*max-height: 60px;*/
 	width: 100%;
 }
 
@@ -116,7 +109,6 @@
 }
 
 .partners-logo:nth-child(1) {
-	/*height: 60px;*/
 	width: 9.5%;
 }
 
@@ -156,14 +148,18 @@
 	z-index: 1;
 }
 
-.message-cnt > div:first-child {
-	/* font-size: 4rem; */
+.message-cnt > h2:first-child {
 	font-size: clamp(2.4rem, 4.23vw ,4rem);
+	font-weight: 400;
 	text-align: center;
 	width: 100%;
 	color: transparent;
 	background-image: linear-gradient(white 50%, #0a0a0a);
 	background-clip: text;
+}
+
+.light-theme .message-cnt > h2:first-child {
+	background-image: linear-gradient(#373737 50%, rgb(198, 198, 198));
 }
 
 .light-theme .message-cnt > div:first-child {
@@ -291,7 +287,7 @@
 	gap: 32px;
 }
 
-.message-2-card-main > div:first-child {
+.message-2-card-main > h3:first-child {
 	font-size: clamp(1.12rem , 1.72vw, 1.5rem);
 	font-weight: 600;
 }
@@ -354,8 +350,7 @@
 	gap: 20px;
 }
 
-.message-3-cnt > div:first-child {
-	/*font-size: 3rem;*/
+.message-3-cnt > h2:first-child {
 	font-size: clamp(2rem, 3vw, 2.8rem);
 	font-weight: 500;
 }
@@ -478,7 +473,7 @@
 	width: 100%;
 }
 
-.green-div-cnt > div:first-child > div:first-child {
+.green-div-cnt > div:first-child > h2:first-child {
 	font-size: clamp(2.12rem, 2.4vw, 2.6rem);
 	font-weight: 600;
 }
